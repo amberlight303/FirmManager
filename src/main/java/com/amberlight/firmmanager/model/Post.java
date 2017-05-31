@@ -17,6 +17,19 @@ import java.util.*;
 @Table(name = "posts")
 public class Post extends BaseEntity {
 
+    public Post(Date postDate, String title, String content, String contentPreview, String imageFileName, int amountOfLikes, Set<Like> likes, Set<Comment> comments) {
+        this.postDate = postDate;
+        this.title = title;
+        this.content = content;
+        this.contentPreview = contentPreview;
+        this.imageFileName = imageFileName;
+        this.amountOfLikes = amountOfLikes;
+        this.likes = likes;
+        this.comments = comments;
+    }
+
+    public Post () {}
+
     @Column(name = "post_date")
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private Date postDate;

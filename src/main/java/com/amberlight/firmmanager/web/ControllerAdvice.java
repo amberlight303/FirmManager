@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
  * @author Oleh Koryachenko
  * @version 1.0
  */
-@org.springframework.web.bind.annotation.ControllerAdvice(basePackages = "com.amberlight.firmmanager.web")
+//@org.springframework.web.bind.annotation.ControllerAdvice(basePackages = "com.amberlight.firmmanager.web")
 public class ControllerAdvice {
-
+/*
     @Autowired
     UserService userService;
 
@@ -30,5 +30,5 @@ public class ControllerAdvice {
         } catch (EmptyResultDataAccessException e) {
             return null;
         }
-    }
+    }*/
 }

@@ -22,7 +22,7 @@ import java.util.List;
 @Service
 public class FirmManagerServiceImpl implements FirmManagerService {
 
-    @Autowired
+
     private UserDao userDao;
 
     @Autowired
