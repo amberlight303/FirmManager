@@ -33,6 +33,9 @@
     <property name="maxUploadSize" value="5000460" />
     </bean>
 
+    <bean id="firmManagerService" name="firmManagerService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="com.amberlight.firmmanager.service.FirmManagerService"/>
+    </bean>
 
 </beans>
 

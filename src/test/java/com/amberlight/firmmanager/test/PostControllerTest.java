@@ -1,13 +1,11 @@
 package com.amberlight.firmmanager.test;
 
 import com.amberlight.firmmanager.model.Employee;
+import com.amberlight.firmmanager.model.Post;
 import com.amberlight.firmmanager.model.Role;
 import com.amberlight.firmmanager.model.User;
 import com.amberlight.firmmanager.repository.UserDao;
-import com.amberlight.firmmanager.service.FirmManagerService;
-import com.amberlight.firmmanager.service.SecurityService;
-import com.amberlight.firmmanager.service.UserDetailsServiceImpl;
-import com.amberlight.firmmanager.service.UserService;
+import com.amberlight.firmmanager.service.*;
 import com.amberlight.firmmanager.web.ControllerAdvice;
 import com.amberlight.firmmanager.web.PostController;
 import org.junit.Before;
@@ -36,7 +34,8 @@ import javax.persistence.EntityManager;
 import java.lang.instrument.Instrumentation;
 import java.util.HashSet;
 import java.util.Set;
-
+import static org.mockito.Mockito.*;
+import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -60,16 +59,16 @@ public class PostControllerTest {
     private MockMvc mockMvc;
 
 
-    private FirmManagerService firmManagerService = Mockito.mock(FirmManagerService.class);
+    @Autowired
+    private FirmManagerService firmManagerService;// = Mockito.mock(FirmManagerService.class);
 
 
-    @InjectMocks
+  //  @InjectMocks
     private PostController postController;
 
 
-
-    @Mock
-    private UserService userService = Mockito.mock(UserService.class);
+  //  @Mock
+    private UserServiceImpl userService = Mockito.mock(UserServiceImpl.class);
 
     private UserDao userDao = Mockito.mock(UserDao.class);
 
@@ -77,8 +76,8 @@ public class PostControllerTest {
 
     private Authentication auth = Mockito.mock(Authentication.class);
 
-    @InjectMocks
-    private ControllerAdvice controllerAdvice;// = Mockito.mock(ControllerAdvice.class);
+  //  @InjectMocks
+  //  private ControllerAdvice controllerAdvice;// = Mockito.mock(ControllerAdvice.class);
 
 
     private UserDetailsServiceImpl userDetailsServiceImpl = Mockito.mock(UserDetailsServiceImpl.class);
@@ -89,6 +88,11 @@ public class PostControllerTest {
     private User user = new User();
 
     private Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+
+    private SecurityServiceImpl securityServiceImpl= Mockito.mock(SecurityServiceImpl.class);
+
+    private Post post = new Post();
+
 
     @Before
     public void setup() {
@@ -111,26 +115,47 @@ public class PostControllerTest {
         for (Role role1 : user.getRoles()) {
             grantedAuthorities.add(new SimpleGrantedAuthority(role1.getName()));
         }
+
+
+        post.setId(88888);
+        post.setContent("someContent");
+        post.setContentPreview("someContentPreview");
+        post.setTitle("someTitle");
+
     }
 
 
-   // @WithMockUser(username = "admin", password = "admin", value = "admin",roles = {"ADMIN"})
-    @WithUserDetails("admin")
+    @WithMockUser(username = "admin", password = "admin",roles = {"ADMIN"})
+   // @WithUserDetails("admin")
     @Test
     public void initAddPostFormTest () throws Exception{
-        System.out.println("SHO TI KAZHESH?");
-   //     Mockito.when(auth.getName()).thenReturn("admin");
+       Mockito.when(auth.getName()).thenReturn("admin");
      //   Mockito.when(userService.findByUsername(anyString())).thenReturn(user);
-   //    Mockito.when(userService.findUserByUserNameFetchEmployee(anyString())).thenReturn(user);
+       Mockito.when(userService.findUserByUserNameFetchEmployee(anyString())).thenReturn(user);
     //   Mockito.when(controllerAdvice.getCurrentUser()).thenReturn(user);
+        Mockito.when(securityService.findLoggedInUsername()).thenReturn("admin");
         Mockito.when(userDetailsServiceImpl.loadUserByUsername(anyString()))
                 .thenReturn(new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities));
+/*
         mockMvc.perform(get("/admin/posts/addPost"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("posts/createOrUpdatePost"))
                 .andExpect(forwardedUrl("/WEB-INF/views/posts/createOrUpdatePost.jsp"))
                 .andExpect(model().attributeExists("post"));
                 //.andExpect(model().attribute("post", hasItem()
+*/
+        Mockito.when(firmManagerService.findPostById(5)).thenReturn(post);
+        mockMvc.perform(get("/admin/posts/{postId}/editPost", 5))
+                .andExpect(status().isOk())
+                .andExpect(view().name("posts/createOrUpdatePost"))
+                .andExpect(forwardedUrl("/WEB-INF/views/posts/createOrUpdatePost.jsp"))
+                .andExpect(model().attributeExists("post")).andExpect(model().attribute("post",
+                allOf(
+                        hasProperty("id",equalTo(88888)),
+                        hasProperty("title",equalTo("someTitle")),
+                        hasProperty("content",equalTo("someContent"))
+                )
+        ));
 
     }
 
