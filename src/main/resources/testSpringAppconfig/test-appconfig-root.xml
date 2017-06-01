@@ -7,13 +7,13 @@
 
 <import resource="test-appconfig-mvc.xml"/>
 
-<import resource="test-appconfig-data.xml"/>
-
 <import resource="test-appconfig-security.xml"/>
 
 <import resource="test-appconfig-websocket.xml"/>
 
-<context:component-scan base-package="com.amberlight.firmmanager.*"/>
+<context:component-scan base-package="com.amberlight.firmmanager.web"/>
+
+<context:component-scan base-package="com.amberlight.firmmanager.validator"/>
 
 <context:property-placeholder location="classpath:firmmanager.properties"/>
 

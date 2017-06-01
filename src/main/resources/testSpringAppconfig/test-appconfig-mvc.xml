@@ -37,6 +37,18 @@
         <constructor-arg value="com.amberlight.firmmanager.service.FirmManagerService"/>
     </bean>
 
+    <bean id="userService" name="userService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="com.amberlight.firmmanager.service.UserService"/>
+    </bean>
+
+    <bean id="securityService" name="securityService" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="com.amberlight.firmmanager.service.SecurityService"/>
+    </bean>
+
+    <bean id="userDao" name="userDao" class="org.mockito.Mockito" factory-method="mock">
+        <constructor-arg value="com.amberlight.firmmanager.repository.UserDao"/>
+    </bean>
+
 </beans>
 
 
