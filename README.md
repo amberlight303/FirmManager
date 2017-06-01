@@ -29,8 +29,8 @@ User can:
 # I used next technologies during development:
 - Java 8
 - Spring MVC (4.2.0.RELEASE)
-- Spring security (4.2.0.RELEASE)
-- Spring data JPA (1.8.2.RELEASE)
+- Spring Security (4.2.0.RELEASE)
+- Spring Data JPA (1.8.2.RELEASE)
 - Spring WebSocket (4.2.0.RELEASE)
 - Hibernate as a JPA provider (4.3.11.Final)
 - MySQL (5.7.17)
@@ -38,6 +38,10 @@ User can:
 - Maven (3.3.9)
 - Logback (1.1.3)
 - Jackson (2.8.6)
+- JUnit (4.11)
+- Spring Test (4.2.0.RELEASE)
+- Mockito (1.10.19)
+- Hamcrest (1.3)
 - etc.
    
 # Next common tasks facing java web app developer was solved:
@@ -51,11 +55,12 @@ User can:
 - Upload & Download functions
 - Logging
 - Meta data & JavaDoc
+- Testing
 - etc.
 
 # Installation:
 
-Create new schema in MySQL RDBMS. Execute MySQL DB initialization SQL code stored in `/src/main/resources/database.sql`.
+Create a new schema in MySQL RDBMS. Execute MySQL DB initialization SQL code stored in `/src/main/resources/database.sql`.
 
 Specify JDBC parameters and root path for storing uploaded files used in the files system in 
 `/src/main/resources/firmmanager.properties`.
