@@ -193,28 +193,6 @@ public class PostController{
         return "posts/createOrUpdatePost";
     }
 
-    /*
-        @RequestMapping(value = "/posts/addPost", method = RequestMethod.POST)
-        public String addPost(Post post){
-            this.firmManagerService.savePost(post);
-            return "redirect:/posts";
-        }
-
-        @RequestMapping(value = "/posts/addPost", method = RequestMethod.GET)
-        public String initAddPostForm(Model model){
-            model.addAttribute("post", new Post());
-            return "posts/createOrUpdatePost";
-        }
-    */
-    /*
-    @RequestMapping(value = "/posts", method = RequestMethod.GET)
-    public String showPosts(Model model){
-        model.addAttribute("numberOfPosts", this.firmManagerService.countPosts());
-        model.addAttribute("posts", this.firmManagerService.findPosts());
-        return "posts/postsList";
-    }
-*/
-
     /**
      * Handling GET request for showing a particular <code>Post</code> with details.
      */

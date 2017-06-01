@@ -53,8 +53,6 @@ public class AdminController {
         return "redirect:/users/{userId}";
     }
 
-
-
     @RequestMapping(value = "/users/{userId}/attach/find", method = RequestMethod.GET)
     public String searchEmployeesToAttachToUser(@PathVariable("userId") int userId, @ModelAttribute Employee employee, Model model){
         model.addAttribute("employees",
@@ -82,23 +80,13 @@ public class AdminController {
             //empty string signifies broadest possible search
             user.setLastName("");
         }
-
         if (user.getUsername() == null) {
             //empty string signifies broadest possible search
             user.setUsername("");
         }
-
-
         // find users by last name and username
         Collection<User> users = this.firmManagerService
                 .findUsersByLastNameAndUserName(user.getLastName(), user.getUsername());
-/*
-        if (results.isEmpty()) {
-            // no projects found
-            result.rejectValue("name", "notFound", "not found");
-            return "projects/findProjects";
-        }
-        else {*/
         // multiple projects found
         model.put("users", users);
         return "users/usersList";
