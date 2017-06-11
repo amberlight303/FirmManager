@@ -6,13 +6,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="firmManager" tagdir="/WEB-INF/tags" %>
-
-<firmManager:layout activeMenuItem="menu-employees" title="Employee: attach Projects">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<firmManager:layout activeMenuItem="menu-employees"
+                    title="Employee: attach Projects" contextPath="${contextPath}">
     <div class="content-inner">
         <h2 align="center">Projects unrelated with the ${employee.firstName}&nbsp;${employee.lastName}</h2>
         <br>
         <br>
-        <a class="btn btn-default" href="/employees/${employeeId}">Back to the employee details</a>
+        <a class="btn btn-default" href="${contextPath}/employees/${employeeId}">Back to the employee details</a>
         <div class="table-back">
             <p class="colors-expl">
                 <span class="prj-in-progress colored-square">&#9632;</span> - In progress
@@ -56,7 +57,7 @@
                                 <c:when test="${project.projectStatus.name eq 'Completed'}">
                                 prj-complete
                                 </c:when>
-                            </c:choose>" href="/projects/${project.id}"><c:out value="${project.name}"/>
+                            </c:choose>" href="${contextPath}/projects/${project.id}"><c:out value="${project.name}"/>
                             </a>
                         </td>
                         <td>
@@ -81,7 +82,7 @@
                             </c:forEach>
                         </td>
                         <td>
-                            <spring:url value="/admin/employees/{employeeId}/projects/{projectId}/attach" var="attachUrl">
+                            <spring:url value="${contextPath}/admin/employees/{employeeId}/projects/{projectId}/attach" var="attachUrl">
                                 <spring:param name="employeeId" value="${employee.id}"/>
                                 <spring:param name="projectId" value="${project.id}"/>
                             </spring:url>

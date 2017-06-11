@@ -7,9 +7,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="firmManager" tagdir="/WEB-INF/tags" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-
-<firmManager:layout activeMenuItem="" title="User">
+<firmManager:layout activeMenuItem="" title="User" contextPath="${contextPath}">
     <div class="content-inner">
         <h1 align="center">User Information</h1>
         <div class="table-back">
@@ -26,7 +26,8 @@
                     <th>Employee related</th>
                     <c:choose>
                         <c:when test="${user.employee != null}">
-                            <td><a href="/employees/${user.employee.id}">${user.employee.firstName}&nbsp;${user.employee.lastName}</a></td>
+                            <td><a href="${contextPath}/employees/${user.employee.id}">
+                                    ${user.employee.firstName}&nbsp;${user.employee.lastName}</a></td>
                         </c:when>
                         <c:otherwise>
                             <td>none</td>
@@ -36,7 +37,7 @@
             </table>
         </div>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
-            <form:form action="/admin/users/${user.id}/delete" method="post">
+            <form:form action="${contextPath}/admin/users/${user.id}/delete" method="post">
                 <button type="submit" class="btn btn-default btn-center">Delete the user</button>
             </form:form>
         </sec:authorize>

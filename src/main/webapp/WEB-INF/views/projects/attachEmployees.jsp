@@ -6,13 +6,14 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="firmManager" tagdir="/WEB-INF/tags" %>
-
-<firmManager:layout activeMenuItem="menu-projects" title="Project: attach Employees">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<firmManager:layout activeMenuItem="menu-projects" title="Project: attach Employees"
+                    contextPath="${contextPath}">
     <div class="content-inner">
         <h2 align="center">Employees unrelated with the project ${project.name}</h2>
         <br>
         <br>
-        <a class="btn btn-default" href="/projects/${projectId}">Back to the project details</a>
+        <a class="btn btn-default" href="${contextPath}/projects/${projectId}">Back to the project details</a>
         <div class="table-back">
             <p class="colors-expl">
                 <span class="prj-in-progress colored-square">&#9632;</span> - In progress
@@ -41,7 +42,7 @@
                         </td>
                         <td>
                             <a class="${employee.fired == true ? 'empl-fired' : ''}"
-                               href="/employees/${employee.id}">
+                               href="${contextPath}/employees/${employee.id}">
                                 <c:out value="${employee.firstName} ${employee.lastName}"/>
                             </a>
                         </td>
@@ -77,7 +78,7 @@
                             </c:forEach>
                         </td>
                         <td>
-                            <spring:url value="/admin/projects/{projectId}/employees/{employeeId}/attach" var="attachUrl">
+                            <spring:url value="${contextPath}/admin/projects/{projectId}/employees/{employeeId}/attach" var="attachUrl">
                                 <spring:param name="projectId" value="${project.id}"/>
                                 <spring:param name="employeeId" value="${employee.id}"/>
                             </spring:url>

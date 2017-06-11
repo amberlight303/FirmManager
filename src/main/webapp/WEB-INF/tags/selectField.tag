@@ -14,6 +14,6 @@
         <label class="col-sm-2 control-label">${label}</label>
 
         <div class="col-sm-10">
-            <form:select class="form-control" path="${name}" items="${names}" size="${size}">
+            <form:select class="form-control" path="${name}" items="${names}" size="${size}"/>
         </div>
 </spring:bind>

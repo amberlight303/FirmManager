@@ -7,8 +7,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="firmManager" tagdir="/WEB-INF/tags" %>
-
-<firmManager:layout activeMenuItem="menu-employees" title="Employee">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<firmManager:layout activeMenuItem="menu-employees" title="Employee"
+                    contextPath="${contextPath}">
     <div class="content-inner ${employee.fired == true ? 'empl-fired-bg' : ''}">
         <h2 align="center">Employee's information</h2>
         <c:if test="${employee.fired}">
@@ -16,12 +17,14 @@
         </c:if>
         <c:choose>
             <c:when test="${emptyPhotoName != null}">
-                <img src="/resources/images/noPhoto.png" class="empl-photo">
+                <img src="${contextPath}/resources/images/noPhoto.png" class="empl-photo">
             </c:when>
             <c:otherwise>
                 <div class="photo-wrapper">
-                    <img src="/uploads/${photoName}" class="empl-photo">
-                    <a class="btn btn-default btn-center" href="/employees/${employee.id}/download-photo">Download the photo</a>
+                    <img src="${contextPath}/uploads/${photoName}" class="empl-photo">
+                    <a class="btn btn-default btn-center"
+                       href="${contextPath}/employees/${employee.id}/download-photo">
+                        Download the photo</a>
                 </div>
             </c:otherwise>
         </c:choose>
@@ -80,33 +83,33 @@
             </table>
         </div>
         <c:if test="${employee.user != null}">
-            <spring:url value="/users/{userId}" var="userDetailsUrl">
+            <spring:url value="${contextPath}/users/{userId}" var="userDetailsUrl">
                 <spring:param name="userId" value="${employee.user.id}"/>
             </spring:url>
-            <a href="${fn:escapeXml(userDetailsUrl)}" class="btn btn-default btn-center">View user related</a>
+            <a href="${userDetailsUrl}" class="btn btn-default btn-center">View user related</a>
         </c:if>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
-            <spring:url value="/admin/employees/{employeeId}/edit" var="editUrl">
+            <spring:url value="${contextPath}/admin/employees/{employeeId}/edit" var="editUrl">
                 <spring:param name="employeeId" value="${employee.id}"/>
             </spring:url>
-            <a href="${fn:escapeXml(editUrl)}" class="btn btn-default btn-center">Edit Employee</a>
-            <spring:url value="/admin/employees/{employeeId}/delete" var="deleteUrl">
+            <a href="${editUrl}" class="btn btn-default btn-center">Edit Employee</a>
+            <spring:url value="${contextPath}/admin/employees/{employeeId}/delete" var="deleteUrl">
                 <spring:param name="employeeId" value="${employee.id}"/>
             </spring:url>
-            <form:form method="post" action="${fn:escapeXml(deleteUrl)}">
+            <form:form method="post" action="${deleteUrl}">
                 <button class="btn btn-default btn-center full-width" type="submit">Delete Employee</button>
             </form:form>
 
-            <spring:url value="/admin/employees/{employeeId}/fire" var="fireUrl">
+            <spring:url value="${contextPath}/admin/employees/{employeeId}/fire" var="fireUrl">
                 <spring:param name="employeeId" value="${employee.id}"/>
             </spring:url>
-            <form:form method="post" action="${fn:escapeXml(fireUrl)}">
+            <form:form method="post" action="${fireUrl}">
                 <button class="btn btn-default btn-center full-width" type="submit">Set Fired</button>
             </form:form>
-            <spring:url value="/admin/employees/{employeeId}/projects/attach" var="attachUrl">
+            <spring:url value="${contextPath}/admin/employees/{employeeId}/projects/attach" var="attachUrl">
                 <spring:param name="employeeId" value="${employee.id}"/>
             </spring:url>
-            <a href="${fn:escapeXml(attachUrl)}" class="btn btn-default btn-center">Attach Project</a>
+            <a href="${attachUrl}" class="btn btn-default btn-center">Attach Project</a>
         </sec:authorize>
         <h2 align="center">Projects attached to the employee</h2>
         <div class="table-back">
@@ -148,7 +151,7 @@
                                 prj-complete
                                 </c:when>
                             </c:choose>"
-                                   href="/projects/${project.id}"><c:out value="${project.name}"/></a>
+                                   href="${contextPath}/projects/${project.id}"><c:out value="${project.name}"/></a>
                             </td>
                             <td>
                                 <c:out value="${project.projectStatus.name}"/>
@@ -186,7 +189,7 @@
                                 prj-complete
                                 </c:when>
                             </c:choose>"
-                                   href="/projects/${project.id}"><c:out value="${project.name}"/></a>
+                                   href="${contextPath}/projects/${project.id}"><c:out value="${project.name}"/></a>
                             </td>
                             <td>
                                 <c:out value="${project.projectStatus.name}"/>
@@ -201,7 +204,7 @@
                                 <fmt:formatDate value="${project.endDate}" pattern="dd-MM-yyyy"/>
                             </td>
                             <td>
-                                <form:form method="post" action="/admin/employees/${employee.id}/projects/${project.id}/detach">
+                                <form:form method="post" action="${contextPath}/admin/employees/${employee.id}/projects/${project.id}/detach">
                                     <button class="btn btn-default" type="submit">Detach</button>
                                 </form:form>
                             </td>

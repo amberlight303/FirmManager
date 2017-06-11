@@ -6,8 +6,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="firmManager" tagdir="/WEB-INF/tags" %>
-
-<firmManager:layout activeMenuItem="menu-projects" title="${project['new']?'New Project':'Project'}">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<firmManager:layout activeMenuItem="menu-projects" title="${project['new']?'New Project':'Project'}"
+                    contextPath="${contextPath}">
     <div class="content-inner">
         <div id="edit-page-wrapper">
             <h2 align="center">

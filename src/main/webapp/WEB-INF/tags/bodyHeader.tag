@@ -1,3 +1,3 @@
 <%@ taglib prefix="firmManager" tagdir="/WEB-INF/tags" %>
-
-<firmManager:menu/>
+<%@ attribute name="contextPath" required="true" %>
+<firmManager:menu contextPath="${contextPath}"/>

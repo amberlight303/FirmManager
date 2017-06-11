@@ -7,12 +7,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="firmManager" tagdir="/WEB-INF/tags" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-
-<firmManager:layout activeMenuItem="menu-projects" title="Projects">
+<firmManager:layout activeMenuItem="menu-projects" title="Projects"
+                    contextPath="${contextPath}">
     <div class="content-inner">
         <div class="search-wrapper">
-            <form:form modelAttribute="project" action="/projects/find" method="get" class="form-horizontal"
+            <form:form modelAttribute="project" action="${contextPath}/projects/find" method="get" class="form-horizontal"
                        id="search-owner-form">
                 <div class="form-group">
                     <div class="control-group" id="name">
@@ -61,7 +62,7 @@
             </form:form>
         </div>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
-            <a href="/admin/projects/new" class="btn btn-default add-proj-btn">Add Project</a>
+            <a href="${contextPath}/admin/projects/new" class="btn btn-default add-proj-btn">Add Project</a>
         </sec:authorize>
 
         <div class="table-back">
@@ -108,7 +109,7 @@
                                 prj-complete
                                 </c:when>
                             </c:choose>"
-                               href="/projects/${project.id}"><c:out value="${project.name}"/></a>
+                               href="${contextPath}/projects/${project.id}"><c:out value="${project.name}"/></a>
                         </td>
                         <td>
                             <c:out value="${project.projectStatus.name}"/>
@@ -135,7 +136,7 @@
                         <td>
                             <c:forEach var="employee" items="${project.employees}">
                                 <a class="${employee.fired == true ? 'empl-fired' : ''}"
-                                   href="/employees/${employee.id}">
+                                   href="${contextPath}/employees/${employee.id}">
                                     <c:out value="${employee.firstName} "/>
                                     <c:out value="${employee.lastName}"/>
                                 </a>

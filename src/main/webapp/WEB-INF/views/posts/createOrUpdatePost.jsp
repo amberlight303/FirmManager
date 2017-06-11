@@ -6,8 +6,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="firmManager" tagdir="/WEB-INF/tags" %>
-
-<firmManager:layout activeMenuItem="menu-posts" title="${post['new']?'New Post':'Post'}">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<firmManager:layout activeMenuItem="menu-posts" title="${post['new']?'New Post':'Post'}"
+                    contextPath="${contextPath}">
     <div class="content-inner">
         <div class="content-post">
             <h2 align="center">
@@ -16,10 +17,10 @@
             <c:if test="${not post['new']}">
                 <c:choose>
                     <c:when test="${post.imageFileName == null}">
-                        <img class="post-image" src="/resources/images/noImage.png"><br>
+                        <img class="post-image" src="${contextPath}/resources/images/noImage.png"><br>
                     </c:when>
                     <c:otherwise>
-                        <img class="post-image" src="/uploads/postsImages/${post.imageFileName}"><br>
+                        <img class="post-image" src="${contextPath}/uploads/postsImages/${post.imageFileName}"><br>
                     </c:otherwise>
                 </c:choose>
             </c:if>

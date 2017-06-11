@@ -6,9 +6,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="firmManager" tagdir="/WEB-INF/tags" %>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <firmManager:layout activeMenuItem="menu-employees"
-                    title="${employee['new']?'New Employee':'Employee'}">
+                    title="${employee['new']?'New Employee':'Employee'}"
+                    contextPath="${contextPath}">
     <div class="content-inner">
         <div id="edit-page-wrapper">
             <h2 align="center">
@@ -16,10 +17,10 @@
             </h2>
             <c:choose>
                 <c:when test="${emptyPhotoName != null}">
-                    <img src="/resources/images/noPhoto.png" class="empl-photo">
+                    <img src="${contextPath}/resources/images/noPhoto.png" class="empl-photo">
                 </c:when>
                 <c:otherwise>
-                    <img src="/uploads/${photoName}" class="empl-photo">
+                    <img src="${contextPath}/uploads/${photoName}" class="empl-photo">
                 </c:otherwise>
             </c:choose>
             <form:form modelAttribute="employee" method="post"

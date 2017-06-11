@@ -6,12 +6,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="firmManager" tagdir="/WEB-INF/tags" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-
-<firmManager:layout activeMenuItem="menu-admin" title="User: attach to an Employee">
+<firmManager:layout activeMenuItem="menu-admin" title="User: attach to an Employee"
+                    contextPath="${contextPath}">
     <div class="content-inner">
         <div class="search-wrapper">
-            <form:form modelAttribute="employee" action="/admin/users/${userId}/attach/find" method="get" class="form-horizontal"
+            <form:form modelAttribute="employee" action="${contextPath}/admin/users/${userId}/attach/find" method="get" class="form-horizontal"
                        id="search-owner-form">
                 <div class="form-group">
                     <div class="control-group" id="name">
@@ -48,7 +49,7 @@
                         <c:out value="${employee.user.username}"/>
                     </td>
                     <td>
-                        <form:form modelAttribute="project" action="/admin/users/${userId}/attach/${employee.id}" method="post">
+                        <form:form modelAttribute="project" action="${contextPath}/admin/users/${userId}/attach/${employee.id}" method="post">
                             <button type="submit" class="btn btn-default">Attach</button>
                         </form:form>
                     </td>

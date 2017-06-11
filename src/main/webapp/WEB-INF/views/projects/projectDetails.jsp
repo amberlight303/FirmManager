@@ -7,8 +7,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="firmManager" tagdir="/WEB-INF/tags" %>
-
-<firmManager:layout activeMenuItem="menu-projects" title="Project">
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+<firmManager:layout activeMenuItem="menu-projects" title="Project"
+                    contextPath="${contextPath}">
     <div class="content-inner">
         <h2 align="center">Project's information</h2>
         <div class="table-back">
@@ -73,22 +74,22 @@
             </table>
         </div>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
-            <spring:url value="/admin/projects/{projectId}/edit" var="editUrl">
+            <spring:url value="${contextPath}/admin/projects/{projectId}/edit" var="editUrl">
                 <spring:param name="projectId" value="${project.id}"/>
             </spring:url>
-            <a href="${fn:escapeXml(editUrl)}" class="btn btn-default btn-center">Edit Project</a>
+            <a href="${editUrl}" class="btn btn-default btn-center">Edit Project</a>
 
-            <spring:url value="/admin/projects/{projectId}/delete" var="deleteUrl">
+            <spring:url value="${contextPath}/admin/projects/{projectId}/delete" var="deleteUrl">
                 <spring:param name="projectId" value="${project.id}"/>
             </spring:url>
-            <form:form method="post" action="${fn:escapeXml(deleteUrl)}">
+            <form:form method="post" action="${deleteUrl}">
                 <button class="btn btn-default btn-center full-width" type="submit">Delete Project</button>
             </form:form>
 
-            <spring:url value="/admin/projects/{projectId}/employees/attach" var="attachUrl">
+            <spring:url value="${contextPath}/admin/projects/{projectId}/employees/attach" var="attachUrl">
                 <spring:param name="projectId" value="${project.id}"/>
             </spring:url>
-            <a href="${fn:escapeXml(attachUrl)}" class="btn btn-default btn-center">Attach Employee</a>
+            <a href="${attachUrl}" class="btn btn-default btn-center">Attach Employee</a>
         </sec:authorize>
         <h2 align="center">Employees attached to the project</h2>
         <div class="table-back">
@@ -116,7 +117,7 @@
                                 </td>
                                 <td>
                                     <a class="${employee.fired == true ? 'empl-fired' : ''}"
-                                       href="/employees/${employee.id}">
+                                       href="${contextPath}/employees/${employee.id}">
                                         <c:out value="${employee.firstName} ${employee.lastName}"/>
                                     </a>
                                 </td>
@@ -133,11 +134,11 @@
                                     <c:out value="${employee.gender.name}"/>
                                 </td>
                                 <td>
-                                    <spring:url value="/admin/projects/{project.id}/employees/{employee.id}/detach" var="detachUrl">
+                                    <spring:url value="${contextPath}/admin/projects/{project.id}/employees/{employee.id}/detach" var="detachUrl">
                                         <spring:param name="project.id" value="${project.id}"/>
                                         <spring:param name="employee.id" value="${employee.id}"/>
                                     </spring:url>
-                                    <form:form method="post" action="${fn:escapeXml(detachUrl)}">
+                                    <form:form method="post" action="${detachUrl}">
                                         <button class="btn btn-default btn-center full-width" type="submit">Detach</button>
                                     </form:form>
                                 </td>
@@ -151,7 +152,7 @@
                                 </td>
                                 <td>
                                     <a class="${employee.fired == true ? 'empl-fired' : ''}"
-                                       href="/employees/${employee.id}">
+                                       href="${contextPath}/employees/${employee.id}">
                                         <c:out value="${employee.firstName} ${employee.lastName}"/>
                                     </a>
                                 </td>

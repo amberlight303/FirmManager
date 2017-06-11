@@ -8,7 +8,15 @@ $(document).ready(function() {
                 }
             });
             var url = $(this).attr('action');
-            var postId = url.split('/')[2];
+            var numberOfSlashes;
+            if(url.indexOf(contextPath+"/") === 0 && contextPath !== "/" && contextPath !== "") {
+                numberOfSlashes = 3;
+            }  else {
+                numberOfSlashes = 2;
+            }
+            console.log("NUMBER_OF_SLASHES: "+numberOfSlashes);
+            var postId = url.split('/')[numberOfSlashes];
+            console.log(postId);
             $.ajax({
                 url: url,
                 type: "POST",

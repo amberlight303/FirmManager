@@ -7,12 +7,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="firmManager" tagdir="/WEB-INF/tags" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
-
-<firmManager:layout activeMenuItem="menu-employees" title="Employees">
+<firmManager:layout activeMenuItem="menu-employees" title="Employees"
+                    contextPath="${contextPath}">
     <div class="content-inner">
         <div class="search-wrapper">
-            <form:form modelAttribute="employee" action="/employees/find" method="get" class="form-horizontal"
+            <form:form modelAttribute="employee" action="${contextPath}/employees/find" method="get" class="form-horizontal"
                        id="search-owner-form">
                 <div class="form-group">
                     <div class="control-group" id="name">
@@ -72,7 +73,7 @@
                         <td>
                             <div>
                                 <a class="${employee.fired == true ? 'empl-fired' : ''}"
-                                   href="/employees/${employee.id}">
+                                   href="${contextPath}/employees/${employee.id}">
                                     <c:out value="${employee.firstName} ${employee.lastName}"/>
                                 </a>
                             </div>
@@ -108,7 +109,7 @@
                                     prj-complete
                                     </c:when>
                                 </c:choose>"
-                                   href="/projects/${project.id}"><c:out value="${project.name}"/></a>
+                                   href="${contextPath}/projects/${project.id}"><c:out value="${project.name}"/></a>
                                 <hr>
                             </c:forEach>
                         </td>

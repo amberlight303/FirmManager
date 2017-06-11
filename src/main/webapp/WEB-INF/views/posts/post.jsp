@@ -7,22 +7,25 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="firmManager" tagdir="/WEB-INF/tags" %>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
-    <firmManager:htmlHeader title="Post"/>
+    <firmManager:htmlHeader title="Post" contextPath="${contextPath}"/>
 </head>
 <body id="menu-posts">
 <div class="wrapper">
-    <firmManager:bodyHeader/>
+    <firmManager:bodyHeader contextPath="${contextPath}"/>
     <div class="container content-container">
         <div class="content clearfix">
             <div class="content-inner">
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <a class="btn btn-default post-btn" href="/admin/posts/${post.id}/editPost">Edit post</a>
-                    <form:form method="post" action="/admin/posts/${post.id}/deletePost">
-                        <button class="btn btn-default post-btn" type="submit">Delete post</button>
+                    <a class="btn btn-default post-btn"
+                       href="${contextPath}/admin/posts/${post.id}/editPost">Edit post</a>
+                    <form:form method="post" action="${contextPath}/admin/posts/${post.id}/deletePost">
+                        <button class="btn btn-default post-btn" type="submit">
+                            Delete post
+                        </button>
                     </form:form>
                 </sec:authorize>
                 <div class="content-post">
@@ -36,10 +39,10 @@
                     </div>
                     <c:choose>
                         <c:when test="${post.imageFileName == null}">
-                            <img class="post-image" src="/resources/images/noImage.png"><br>
+                            <img class="post-image" src="${contextPath}/resources/images/noImage.png"><br>
                         </c:when>
                         <c:otherwise>
-                            <img class="post-image" src="/uploads/postsImages/${post.imageFileName}"><br>
+                            <img class="post-image" src="${contextPath}/uploads/postsImages/${post.imageFileName}"><br>
                         </c:otherwise>
                     </c:choose>
                     <div class="post-content break-words">
@@ -49,7 +52,7 @@
                     </div>
                     <br>
                     <h2 align="center">Write your comment:</h2>
-                    <spring:url value="/posts/{postId}/addComment" var="addCommentUrl">
+                    <spring:url value="${contextPath}/posts/{postId}/addComment" var="addCommentUrl">
                         <spring:param name="postId" value="${post.id}"/>
                     </spring:url>
                     <form:form id="comment-form" modelAttribute="comment" method="post" action="${addCommentUrl}"
@@ -61,7 +64,7 @@
                     <div class="comments">
                         <c:forEach items="${post.comments}" var="comment">
                             <div class="comment-author-time">
-                                <a href="/users/${comment.userAuthor.id}">
+                                <a href="${contextPath}/users/${comment.userAuthor.id}">
                                         ${comment.userAuthor.firstName}&nbsp;${comment.userAuthor.lastName}
                                 </a>
                                 <div class="time">
@@ -79,9 +82,10 @@
     </div>
     <firmManager:footer/>
 </div>
-<firmManager:footer_scripts/>
-<script src="/resources/js/sockjs-1.0.2.min.js"></script>
-<script src="/resources/js/stomp.js"></script>
-<script src="/resources/js/comments-ws.js"></script>
+<script type="text/javascript">var contextPath = "${contextPath}";</script>
+<firmManager:footer_scripts contextPath="${contextPath}"/>
+<script src="${contextPath}/resources/js/sockjs-1.0.2.min.js"></script>
+<script src="${contextPath}/resources/js/stomp.js"></script>
+<script src="${contextPath}/resources/js/comments-ws.js"></script>
 </body>
 </html>
