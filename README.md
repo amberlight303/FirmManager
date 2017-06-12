@@ -42,6 +42,8 @@ User can:
 - Spring Test (4.2.0.RELEASE)
 - Mockito (1.10.19)
 - Hamcrest (1.3)
+- jQuery (3.2.0)
+- Bootstrap
 - etc.
    
 # Next common tasks facing java web app developer was solved:
