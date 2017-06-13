@@ -65,9 +65,9 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-<!--
+
     <error-page>
         <location>/WEB-INF/views/test/oops.jsp</location>
     </error-page>
--->
+
 </web-app>
