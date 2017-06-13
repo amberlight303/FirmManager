@@ -46,7 +46,7 @@ User can:
 - Bootstrap
 - etc.
    
-# Next common tasks facing java web app developer was solved:
+# Next common tasks facing java web app developer were solved:
 - CRUD operations
 - Authentication and authorization
 - AJAX
