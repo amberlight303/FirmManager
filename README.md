@@ -1,14 +1,15 @@
-# FirmManager description:
-It is software development firm manager web app for a study. The subject of the web application is a closed software development monitoring system, wich can be useful for 
+# Firm Manager 
+# Description:
+It's a web app for a study. The subject of the web application is a closed software development monitoring system, which can be useful for 
 tracking information about employees, projects, assignments employees to the projects, posts with comments and likes. 
 With conditional rendering and security constraints administrator's and user's abilities are divided. 
 Likes functional is implemented with ajax. Comments appear in real-time mode by using WebSocket. 
 Comment object is passing from the server in JSON format, javascript in browser of the client accepts it, 
 parses and displays. The uploaded photos are storing in files system, names of these files are making 
-with the custom random string generator. Employees and projects has fields (age, experience, days left), 
+with the custom random string generator. Employees and projects have fields (age, experience, days left), 
 which are changing in the course of the time. So for always fresh data, once per day with the first request for objects 
-containing these fields, all respective sensetive fields are updating in the database. With all subsequent same requests 
-the server checks whether day has passed. On small displays tables are condencing using footable js plugin. 
+containing these fields, all respective sensitive fields are updating in the database. With all subsequent same requests 
+the server checks whether day has passed. On small displays tables are condensing using footable js plugin. 
 Part of an information is hiding in a drop sub-tables. The fields which need a lot of text input i 
 made as dynamically extended with js.
 
