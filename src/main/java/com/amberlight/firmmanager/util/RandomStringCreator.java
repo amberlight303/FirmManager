@@ -33,4 +33,10 @@ public class RandomStringCreator {
         return new String(sb);
     }
 
+    @Override
+    public String toString() {
+        return "RandomStringCreator{" +
+                "pool[]:" + pool +
+                "}";
+    }
 }

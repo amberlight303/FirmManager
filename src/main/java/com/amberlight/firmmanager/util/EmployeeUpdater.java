@@ -29,4 +29,9 @@ public class EmployeeUpdater {
         employee.setAge((int) ageDifference);
         return employee;
     }
+
+    @Override
+    public String toString() {
+        return "EmployeeUpdater{}";
+    }
 }

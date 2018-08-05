@@ -35,4 +35,8 @@ public class FilesAnalyzer {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "FilesAnalyzer{}";
+    }
 }

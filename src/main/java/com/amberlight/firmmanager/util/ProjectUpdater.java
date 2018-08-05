@@ -42,4 +42,9 @@ public class ProjectUpdater {
         return project;
     }
 
+
+    @Override
+    public String toString() {
+        return "ProjectUpdater{}";
+    }
 }
