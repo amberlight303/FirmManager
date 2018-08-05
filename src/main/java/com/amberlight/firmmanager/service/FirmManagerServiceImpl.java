@@ -22,8 +22,8 @@ import java.util.List;
 @Service
 public class FirmManagerServiceImpl implements FirmManagerService {
 
-
-    private UserDao userDao;
+    @Autowired
+    private UserDaoCustom userDao;
 
     @Autowired
     private ProjectDao projectDao;
