@@ -31,4 +31,11 @@ public class ControllerAdvice {
             return null;
         }
     }
+
+    @Override
+    public String toString() {
+        return "ControllerAdvice{" +
+                "userService=" + userService +
+                '}';
+    }
 }

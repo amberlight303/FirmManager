@@ -308,4 +308,12 @@ public class ProjectController {
         model.addAttribute("selections", selections);
         return "projects/attachEmployees";
     }
+
+    @Override
+    public String toString() {
+        return "ProjectController{" +
+                "firmManagerService=" + firmManagerService +
+                ", projectValidator=" + projectValidator +
+                '}';
+    }
 }

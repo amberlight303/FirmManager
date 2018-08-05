@@ -35,4 +35,11 @@ public class JpaCommentDaoImpl implements CommentDao {
         query.setParameter(1, userId);
         query.executeUpdate();
     }
+
+    @Override
+    public String toString() {
+        return "JpaCommentDaoImpl{" +
+                "em=" + em +
+                '}';
+    }
 }

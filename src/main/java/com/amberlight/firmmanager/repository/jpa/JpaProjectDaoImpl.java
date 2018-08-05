@@ -161,6 +161,13 @@ public class JpaProjectDaoImpl implements ProjectDao{
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "JpaProjectDaoImpl{" +
+                "em=" + em +
+                '}';
+    }
 }
 
 

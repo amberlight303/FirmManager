@@ -67,4 +67,14 @@ public class Comment extends BaseEntity {
     }
 
 
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentDate=" + commentDate +
+                ", text='" + text + '\'' +
+                ", userAuthor=" + userAuthor +
+                ", post=" + post +
+                ", id=" + id +
+                '}';
+    }
 }

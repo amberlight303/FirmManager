@@ -61,4 +61,11 @@ public class UserValidator implements Validator {
             errors.rejectValue("confirmPassword", "Different.userForm.password");
         }
     }
+
+    @Override
+    public String toString() {
+        return "UserValidator{" +
+                "userService=" + userService +
+                '}';
+    }
 }

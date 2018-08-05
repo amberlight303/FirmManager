@@ -33,9 +33,8 @@ public class Role extends NamedEntity{
     @Override
     public String toString() {
         return "Role{" +
-                "id=" + id +
-                ", name='" + this.getName() + '\'' +
-                ", users=" + this.getUsers() +
+                "users=" + users +
+                ", id=" + id +
                 '}';
     }
 }

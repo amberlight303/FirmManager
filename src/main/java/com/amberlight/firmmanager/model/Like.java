@@ -35,4 +35,13 @@ public class Like extends BaseEntity{
     public void setAuthor(User author) {
         this.author = author;
     }
+
+    @Override
+    public String toString() {
+        return "Like{" +
+                "post=" + post +
+                ", author=" + author +
+                ", id=" + id +
+                '}';
+    }
 }

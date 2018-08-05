@@ -250,4 +250,30 @@ public class Employee extends Person implements Comparable<Employee> {
     public int compareTo(Employee employee) {
         return this.isFired()?1:-1;
     }
+
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "birthDate=" + birthDate +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", telephone='" + telephone + '\'' +
+                ", fired=" + fired +
+                ", hireDate=" + hireDate +
+                ", experience=" + experience +
+                ", photoFileName='" + photoFileName + '\'' +
+                ", oldEmplPhotoName='" + oldEmplPhotoName + '\'' +
+                ", image=" + image +
+                ", userIdToAttachWithEmpl=" + userIdToAttachWithEmpl +
+                ", gender=" + gender +
+                ", workingPosition=" + workingPosition +
+                ", user=" + user +
+                ", projects=" + projects +
+                ", id=" + id +
+                '}';
+    }
 }

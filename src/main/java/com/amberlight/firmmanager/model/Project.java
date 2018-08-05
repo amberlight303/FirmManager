@@ -132,16 +132,6 @@ public class Project extends NamedEntity implements Comparable<Project> {
         this.employees = employees;
     }
 
-    /*
-    public boolean isOverdue(Date startDate, Date endDate){
-        if (new Date().after(endDate)) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-*/
 
     @Override
     public int compareTo(Project otherProject) {
@@ -150,5 +140,20 @@ public class Project extends NamedEntity implements Comparable<Project> {
         int otherProjectStatus = otherProject.getProjectStatus().getId();
         result = Integer.compare(myProjectStatus, otherProjectStatus);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", description='" + description + '\'' +
+                ", notes='" + notes + '\'' +
+                ", daysLeft=" + daysLeft +
+                ", projectStatus=" + projectStatus +
+                ", projectObjective=" + projectObjective +
+                ", employees=" + employees +
+                ", id=" + id +
+                '}';
     }
 }

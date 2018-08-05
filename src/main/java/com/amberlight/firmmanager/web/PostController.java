@@ -281,4 +281,12 @@ public class PostController{
         return ""+numberOfLikes;
     }
 
+    @Override
+    public String toString() {
+        return "PostController{" +
+                "userService=" + userService +
+                ", firmManagerService=" + firmManagerService +
+                ", uploadRootPath='" + uploadRootPath + '\'' +
+                '}';
+    }
 }

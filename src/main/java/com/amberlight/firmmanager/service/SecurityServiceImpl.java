@@ -54,4 +54,12 @@ public class SecurityServiceImpl implements SecurityService {
             logger.debug(String.format("Successfully %s auto logged in", username));
         }
     }
+
+    @Override
+    public String toString() {
+        return "SecurityServiceImpl{" +
+                "authenticationManager=" + authenticationManager +
+                ", userDetailsService=" + userDetailsService +
+                '}';
+    }
 }

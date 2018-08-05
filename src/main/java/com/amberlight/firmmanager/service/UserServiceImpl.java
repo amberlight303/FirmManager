@@ -75,4 +75,13 @@ public class UserServiceImpl implements UserService {
     public User findUserById(int id) {
         return this.userDao.findUserById(id);
     }
+
+    @Override
+    public String toString() {
+        return "UserServiceImpl{" +
+                "userDao=" + userDao +
+                ", roleDao=" + roleDao +
+                ", bCryptPasswordEncoder=" + bCryptPasswordEncoder +
+                '}';
+    }
 }

@@ -564,4 +564,14 @@ public class EmployeeController {
         inputStream.close();
         return "redirect:/employees/{employeeId}";
     }
+
+    @Override
+    public String toString() {
+        return "EmployeeController{" +
+                "firmManagerService=" + firmManagerService +
+                ", userService=" + userService +
+                ", employeeValidator=" + employeeValidator +
+                ", uploadRootPath='" + uploadRootPath + '\'' +
+                '}';
+    }
 }

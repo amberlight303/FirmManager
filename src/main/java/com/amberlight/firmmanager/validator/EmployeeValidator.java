@@ -62,4 +62,9 @@ public class EmployeeValidator implements Validator {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "EmployeeValidator{}";
+    }
 }

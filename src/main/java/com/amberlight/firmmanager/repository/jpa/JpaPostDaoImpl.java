@@ -113,4 +113,11 @@ public class JpaPostDaoImpl implements PostDao {
         query.setParameter(2, postId);
         query.executeUpdate();
     }
+
+    @Override
+    public String toString() {
+        return "JpaPostDaoImpl{" +
+                "em=" + em +
+                '}';
+    }
 }

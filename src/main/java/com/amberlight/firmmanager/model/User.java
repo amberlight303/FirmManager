@@ -88,4 +88,17 @@ public class User extends Person{
     public void setCreateEmployeeOrNotFlag(boolean createEmployeeOrNotFlag) {
         this.createEmployeeOrNotFlag = createEmployeeOrNotFlag;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", employee=" + employee +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", createEmployeeOrNotFlag=" + createEmployeeOrNotFlag +
+                ", roles=" + roles +
+                ", id=" + id +
+                '}';
+    }
 }

@@ -110,4 +110,14 @@ public class UserController {
         model.addAttribute("user", this.userService.findUserByIdFetchEmployee(userId));
         return "users/userDetails";
     }
+
+    @Override
+    public String toString() {
+        return "UserController{" +
+                "firmManagerService=" + firmManagerService +
+                ", userService=" + userService +
+                ", securityService=" + securityService +
+                ", userValidator=" + userValidator +
+                '}';
+    }
 }

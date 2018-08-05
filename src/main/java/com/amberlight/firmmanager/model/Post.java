@@ -152,4 +152,21 @@ public class Post extends BaseEntity {
     public void setPostDate(Date postDate) {
         this.postDate = postDate;
     }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "postDate=" + postDate +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", contentPreview='" + contentPreview + '\'' +
+                ", imageFileName='" + imageFileName + '\'' +
+                ", oldPostImgName='" + oldPostImgName + '\'' +
+                ", image=" + image +
+                ", amountOfLikes=" + amountOfLikes +
+                ", likes=" + likes +
+                ", comments=" + comments +
+                ", id=" + id +
+                '}';
+    }
 }

@@ -37,4 +37,12 @@ public class TimeCounter extends BaseEntity{
         this.daysFromStart = daysFromStart;
     }
 
+    @Override
+    public String toString() {
+        return "TimeCounter{" +
+                "startDate=" + startDate +
+                ", daysFromStart=" + daysFromStart +
+                ", id=" + id +
+                '}';
+    }
 }

@@ -92,4 +92,11 @@ public class AdminController {
         return "users/usersList";
     }
 
+    @Override
+    public String toString() {
+        return "AdminController{" +
+                "firmManagerService=" + firmManagerService +
+                ", userService=" + userService +
+                '}';
+    }
 }

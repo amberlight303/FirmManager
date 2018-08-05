@@ -50,4 +50,11 @@ public class JpaLikeDaoImpl implements LikeDao{
         BigInteger count =(BigInteger) query.getSingleResult();
         return count.intValue() == 1;
     }
+
+    @Override
+    public String toString() {
+        return "JpaLikeDaoImpl{" +
+                "em=" + em +
+                '}';
+    }
 }

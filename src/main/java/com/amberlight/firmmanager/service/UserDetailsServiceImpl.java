@@ -37,4 +37,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }
+
+    @Override
+    public String toString() {
+        return "UserDetailsServiceImpl{" +
+                "userDao=" + userDao +
+                '}';
+    }
 }

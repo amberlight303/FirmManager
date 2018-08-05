@@ -347,4 +347,17 @@ public class FirmManagerServiceImpl implements FirmManagerService {
     public Employee findEmployeeByIdFetchUser(int id) throws DataAccessException {
         return this.employeeDao.findEmployeeByIdFetchUser(id);
     }
+
+    @Override
+    public String toString() {
+        return "FirmManagerServiceImpl{" +
+                "userDao=" + userDao +
+                ", projectDao=" + projectDao +
+                ", employeeDao=" + employeeDao +
+                ", postDao=" + postDao +
+                ", commentDao=" + commentDao +
+                ", likeDao=" + likeDao +
+                ", timeCounterDao=" + timeCounterDao +
+                '}';
+    }
 }

@@ -58,4 +58,12 @@ public class CommentController {
         return comment;
     }
 
+    @Override
+    public String toString() {
+        return "CommentController{" +
+                "userService=" + userService +
+                ", securityService=" + securityService +
+                ", firmManagerService=" + firmManagerService +
+                '}';
+    }
 }

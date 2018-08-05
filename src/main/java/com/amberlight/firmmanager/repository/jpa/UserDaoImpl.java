@@ -83,4 +83,12 @@ public class UserDaoImpl implements UserDaoCustom {
         Query query = this.em.createQuery("SELECT user FROM User user LEFT JOIN FETCH user.employee");
         return query.getResultList();
     }
+
+
+    @Override
+    public String toString() {
+        return "UserDaoImpl{" +
+                "em=" + em +
+                '}';
+    }
 }

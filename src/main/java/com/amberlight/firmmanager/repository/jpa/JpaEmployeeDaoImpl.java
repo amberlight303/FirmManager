@@ -191,6 +191,13 @@ public class JpaEmployeeDaoImpl implements EmployeeDao {
 
         }
     }
+
+    @Override
+    public String toString() {
+        return "JpaEmployeeDaoImpl{" +
+                "em=" + em +
+                '}';
+    }
 }
 
 

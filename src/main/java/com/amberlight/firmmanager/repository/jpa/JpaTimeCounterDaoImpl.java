@@ -34,4 +34,11 @@ public class JpaTimeCounterDaoImpl implements TimeCounterDao{
         query.setParameter(2, counterId);
         query.executeUpdate();
     }
+
+    @Override
+    public String toString() {
+        return "JpaTimeCounterDaoImpl{" +
+                "em=" + em +
+                '}';
+    }
 }

@@ -28,4 +28,9 @@ public class ProjectValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "startDate", "Required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "endDate", "Required");
     }
+
+    @Override
+    public String toString() {
+        return "ProjectValidator{}";
+    }
 }
