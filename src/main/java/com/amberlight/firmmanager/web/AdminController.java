@@ -14,9 +14,6 @@ import java.util.Map;
 
 /**
  * A controller for administrator panel.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Controller
 @RequestMapping("/admin")

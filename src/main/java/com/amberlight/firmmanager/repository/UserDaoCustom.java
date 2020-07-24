@@ -8,9 +8,6 @@ import java.util.List;
 
 /**
  * Spring Data JPA custom repository interface for objects of {@link Role} class.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 public interface UserDaoCustom {
 

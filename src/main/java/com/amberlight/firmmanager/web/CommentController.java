@@ -17,9 +17,6 @@ import java.util.Date;
 
 /**
  * A controller for pages related with the {@link Comment} entity.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Controller
 public class CommentController {

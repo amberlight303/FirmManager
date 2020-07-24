@@ -7,9 +7,6 @@ import java.util.*;
 
 /**
  * Simple JavaBean object representing a project.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Entity
 @Table(name = "projects")

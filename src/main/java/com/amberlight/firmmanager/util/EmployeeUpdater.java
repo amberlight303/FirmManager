@@ -5,9 +5,6 @@ import com.amberlight.firmmanager.model.Employee;
 /**
  * An accessory class for {@link Employee}.
  * Serves for calculating values of <code>Employee</code>'s fields.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 public class EmployeeUpdater {
 

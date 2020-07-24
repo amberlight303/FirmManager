@@ -734,7 +734,6 @@
 	 *     return this.dancing;
 	 *   }
 	 * });
-	 *
 	 * var Ninja = Person.extend({
 	 *   construct: function(){
 	 *     this._super( false );
@@ -747,14 +746,11 @@
 	 *     return true;
 	 *   }
 	 * });
-	 *
 	 * var p = new Person(true);
 	 * p.dance(); // => true
-	 *
 	 * var n = new Ninja();
 	 * n.dance(); // => false
 	 * n.swingSword(); // => true
-	 *
 	 * // Should all be true
 	 * p instanceof Person && p instanceof FooTable.Class &&
 	 * n instanceof Ninja && n instanceof Person && n instanceof FooTable.Class

@@ -6,9 +6,6 @@ import java.util.Date;
 /**
  * An accessory class for calculating time differences
  * between passed dates (times) and current date (time).
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 public class TimeAnalyzer {
 

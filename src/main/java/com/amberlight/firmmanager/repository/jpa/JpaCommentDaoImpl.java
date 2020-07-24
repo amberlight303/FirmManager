@@ -10,9 +10,6 @@ import javax.persistence.Query;
 
 /**
  * JPA implementation of {@link CommentDao} interface.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Repository("commentDao")
 public class JpaCommentDaoImpl implements CommentDao {

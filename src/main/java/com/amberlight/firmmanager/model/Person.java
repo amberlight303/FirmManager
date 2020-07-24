@@ -6,12 +6,9 @@ import javax.persistence.MappedSuperclass;
 /**
  * Simple JavaBean object representing a person. Used as a base class for objects
  * needing firstName and lastName properties.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @MappedSuperclass
-public class Person extends BaseEntity{
+public class Person extends BaseEntity {
 
     @Column(name = "first_name")
     private String firstName;

@@ -4,9 +4,6 @@ import java.util.Random;
 
 /**
  * An accessory class for creating random strings with different size.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 public class RandomStringCreator {
 

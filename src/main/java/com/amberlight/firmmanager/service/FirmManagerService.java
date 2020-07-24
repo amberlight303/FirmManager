@@ -9,9 +9,6 @@ import java.util.List;
 /**
  * Used as a facade so all controllers have a single point of
  * entry in the most functions of persistence level.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 public interface FirmManagerService {
 

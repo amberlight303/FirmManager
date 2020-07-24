@@ -4,7 +4,6 @@ import com.amberlight.firmmanager.model.Like;
 import org.springframework.dao.DataAccessException;
 
 /**
- *
  */
 public interface LikeDao {
     /**

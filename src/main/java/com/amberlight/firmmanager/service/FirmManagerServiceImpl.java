@@ -15,9 +15,6 @@ import java.util.List;
  * An implementation of the {@link FirmManagerService} interface. Used as a facade so all
  * controllers have a single point of entry in the persistence level.
  * Also it's a placeholder for @Transactional annotations.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Service
 public class FirmManagerServiceImpl implements FirmManagerService {

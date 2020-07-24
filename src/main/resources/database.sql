@@ -1,150 +1,134 @@
--- creating of tables
 
-CREATE TABLE genders (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
-)
-  ENGINE = InnoDB;
+
+CREATE TABLE genders  (
+                          id SERIAL PRIMARY KEY,
+                          name VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE working_positions (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
-)
-  ENGINE = InnoDB;
+                                   id SERIAL PRIMARY KEY,
+                                   name VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE employees (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  first_name VARCHAR(255),
-  last_name VARCHAR(255),
-  working_position_id INT NOT NULL,
-  gender_id INT NOT NULL,
-  age INT(11) DEFAULT 0,
-  telephone VARCHAR(255),
-  email VARCHAR(255),
-  city VARCHAR(255),
-  country VARCHAR(255),
-  address VARCHAR(255),
-  birth_date DATE,
-  experience INT(11) DEFAULT 0,
-  hire_date DATE,
-  photo_filename VARCHAR(255),
-  is_fired BOOLEAN,
-  FOREIGN KEY (working_position_id) REFERENCES working_positions(id),
-  FOREIGN KEY (gender_id) REFERENCES genders(id)
-)
-  ENGINE = InnoDB;
+                           id SERIAL PRIMARY KEY,
+                           first_name VARCHAR(255),
+                           last_name VARCHAR(255),
+                           working_position_id INT NOT NULL,
+                           gender_id INT NOT NULL,
+                           age INT DEFAULT 0,
+                           telephone VARCHAR(255),
+                           email VARCHAR(255),
+                           city VARCHAR(255),
+                           country VARCHAR(255),
+                           address VARCHAR(255),
+                           birth_date DATE,
+                           experience INT DEFAULT 0,
+                           hire_date DATE,
+                           photo_filename VARCHAR(255),
+                           is_fired BOOLEAN,
+                           FOREIGN KEY (working_position_id) REFERENCES working_positions(id),
+                           FOREIGN KEY (gender_id) REFERENCES genders(id)
+);
 
 CREATE TABLE users (
-  id       INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  employee_id INT DEFAULT NULL,
-  first_name VARCHAR(255),
-  last_name VARCHAR(255),
-  FOREIGN KEY (employee_id) REFERENCES employees (id) ON DELETE CASCADE
-)
-  ENGINE = InnoDB;
+                       id       SERIAL PRIMARY KEY,
+                       username VARCHAR(255) NOT NULL,
+                       password VARCHAR(255) NOT NULL,
+                       employee_id INT DEFAULT NULL,
+                       first_name VARCHAR(255),
+                       last_name VARCHAR(255),
+                       FOREIGN KEY (employee_id) REFERENCES employees (id) ON DELETE CASCADE
+);
 
 
 CREATE TABLE roles (
-  id   INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100) NOT NULL
-)
-  ENGINE = InnoDB;
+                       id   SERIAL PRIMARY KEY,
+                       name VARCHAR(100) NOT NULL
+);
 
 
 CREATE TABLE user_roles (
-  user_id INT NOT NULL,
-  role_id INT NOT NULL,
+                            user_id INT NOT NULL,
+                            role_id INT NOT NULL,
 
-  FOREIGN KEY (user_id) REFERENCES users (id),
-  FOREIGN KEY (role_id) REFERENCES roles (id),
+                            FOREIGN KEY (user_id) REFERENCES users (id),
+                            FOREIGN KEY (role_id) REFERENCES roles (id),
 
-  UNIQUE (user_id, role_id)
-)
-  ENGINE = InnoDB;
+                            UNIQUE (user_id, role_id)
+);
 
 
 CREATE TABLE project_statuses (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
-)
-  ENGINE = InnoDB;
+                                  id SERIAL PRIMARY KEY,
+                                  name VARCHAR(255) NOT NULL
+);
 
 CREATE TABLE project_objectives (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL
-)
-  ENGINE = InnoDB;
+                                    id SERIAL PRIMARY KEY,
+                                    name VARCHAR(255) NOT NULL
+);
 
 
 
 CREATE TABLE projects (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  project_objective_id INT NOT NULL,
-  project_status_id INT NOT NULL,
-  description VARCHAR(255),
-  notes VARCHAR(255),
-  start_date DATE,
-  end_date DATE,
-  days_left INT(11) DEFAULT 0,
-  FOREIGN KEY (project_objective_id) REFERENCES project_objectives(id),
-  FOREIGN KEY (project_status_id) REFERENCES project_statuses(id)
-)
-  ENGINE = InnoDB;
+                          id SERIAL PRIMARY KEY,
+                          name VARCHAR(255) NOT NULL,
+                          project_objective_id INT NOT NULL,
+                          project_status_id INT NOT NULL,
+                          description VARCHAR(255),
+                          notes VARCHAR(255),
+                          start_date DATE,
+                          end_date DATE,
+                          days_left INT DEFAULT 0,
+                          FOREIGN KEY (project_objective_id) REFERENCES project_objectives(id),
+                          FOREIGN KEY (project_status_id) REFERENCES project_statuses(id)
+);
 
 CREATE TABLE projects_employees (
-  project_id INT NOT NULL,
-  employee_id INT NOT NULL,
+                                    project_id INT NOT NULL,
+                                    employee_id INT NOT NULL,
 
-  FOREIGN KEY (project_id) REFERENCES projects (id),
-  FOREIGN KEY (employee_id) REFERENCES employees (id),
+                                    FOREIGN KEY (project_id) REFERENCES projects (id),
+                                    FOREIGN KEY (employee_id) REFERENCES employees (id),
 
-  UNIQUE (project_id, employee_id)
-)
-  ENGINE = InnoDB;
+                                    UNIQUE (project_id, employee_id)
+);
 
 CREATE TABLE posts (
-  id       INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  title VARCHAR(255),
-  content TEXT,
-  content_preview TEXT,
-  amount_of_likes INT DEFAULT 0,
-  image_filename VARCHAR(255),
-  post_date DATETIME NOT NULL
-)
-  ENGINE = InnoDB;
+                       id SERIAL PRIMARY KEY,
+                       title VARCHAR(255),
+                       content TEXT,
+                       content_preview TEXT,
+                       amount_of_likes INT DEFAULT 0,
+                       image_filename VARCHAR(255),
+                       post_date timestamp NOT NULL
+);
 
 CREATE TABLE comments (
-  id       INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  text TEXT,
-  comment_date DATETIME NOT NULL,
-  post_id INT NOT NULL,
-  user_id INT NOT NULL,
-  FOREIGN KEY (post_id) REFERENCES posts (id) ON DELETE CASCADE,
-  FOREIGN KEY (user_id) REFERENCES users (id)
-)
-  ENGINE = InnoDB;
+                          id  SERIAL PRIMARY KEY,
+                          text TEXT,
+                          comment_date timestamp NOT NULL,
+                          post_id INT NOT NULL,
+                          user_id INT NOT NULL,
+                          FOREIGN KEY (post_id) REFERENCES posts (id) ON DELETE CASCADE,
+                          FOREIGN KEY (user_id) REFERENCES users (id)
+);
 
 CREATE TABLE likes (
-  id       INT          NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  post_id INT NOT NULL,
-  user_id INT NOT NULL,
-  FOREIGN KEY (post_id) REFERENCES posts (id),
-  FOREIGN KEY (user_id) REFERENCES users (id)
-)
-  ENGINE = InnoDB;
+                       id       SERIAL PRIMARY KEY,
+                       post_id INT NOT NULL,
+                       user_id INT NOT NULL,
+                       FOREIGN KEY (post_id) REFERENCES posts (id),
+                       FOREIGN KEY (user_id) REFERENCES users (id)
+);
 
 CREATE TABLE time_counter (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  start_date DATE,
-  days_from_start INT(11)
-)
-  ENGINE = InnoDB;
+                              id SERIAL PRIMARY KEY,
+                              start_date DATE,
+                              days_from_start INT
+);
 
--- inserts
--- necessary inserts
 
 INSERT INTO time_counter VALUES (1,'2017-01-01',0);
 INSERT INTO time_counter VALUES (2,'2017-01-01',0);
@@ -188,7 +172,7 @@ INSERT INTO working_positions VALUES (1,'Java junior');
 INSERT INTO working_positions VALUES (2,'Java middle');
 INSERT INTO working_positions VALUES (3,'Java senior');
 
--- optional inserts
+--------------------------- optional inserts ---------------------------
 
 INSERT INTO projects VALUES (1,'Fire',1,1,'some description','some notes','2016-01-01','2018-06-08',0);
 INSERT INTO projects VALUES (2,'Mario',2,2,'some description','some notes','2016-01-01','2017-01-08',0);
@@ -196,13 +180,13 @@ INSERT INTO projects VALUES (3,'HotBlog',3,3,'some description','some notes','20
 INSERT INTO projects VALUES (4,'Shooter',4,4,'some description','some notes','2016-01-01','2016-06-08',0);
 
 INSERT INTO employees VALUES (1,'Nikola','Tesla',1,1,0,'9379992','email@gmail.com','London','United Kingdom',
-                                'Baker st. 221B','1856-06-10',0,'2001-01-01',null,0);
+                              'Baker st. 221B','1856-06-10',0,'2001-01-01',null,false);
 INSERT INTO employees VALUES (2,'James','Bond',2,1,0,'9379992','email@gmail.com','London','United Kingdom',
-                                'Baker st. 221B','1968-03-02',0,'2003-01-01',null,0);
+                              'Baker st. 221B','1968-03-02',0,'2003-01-01',null,false);
 INSERT INTO employees VALUES (3,'Thomas','Riddle',3,1,0,'9379992','email@gmail.com','London','United Kingdom',
-                                'Baker st. 221B','1880-07-01',0,'2005-01-01',null,0);
+                              'Baker st. 221B','1880-07-01',0,'2005-01-01',null,false);
 INSERT INTO employees VALUES (4,'Jack','Sparrow',2,1,0,'9379992','email@gmail.com','London','United Kingdom',
-                                'Baker st. 221B','1666-06-06',0,'2010-01-01',null,1);
+                              'Baker st. 221B','1666-06-06',0,'2010-01-01',null,true);
 
 UPDATE users SET employee_id = 1 WHERE id = 1;
 UPDATE users SET employee_id = 2 WHERE id = 2;
@@ -291,3 +275,35 @@ INSERT INTO comments VALUES (5,'Duis aute irure dolor in
                           pariatur.','2017-03-28 11:30:32',3,2);
 INSERT INTO comments VALUES (6,'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
                           nisi ut aliquip ex ea commodo consequat.','2017-03-28 12:30:32',3,3);
+
+select setval('comments_id_seq', (select COALESCE(max(id) + 1, 1) from comments), false);
+select setval('employees_id_seq', (select COALESCE(max(id) + 1, 1) from employees), false);
+select setval('genders_id_seq', (select COALESCE(max(id) + 1, 1) from genders), false);
+select setval('likes_id_seq', (select COALESCE(max(id) + 1, 1) from likes), false);
+select setval('posts_id_seq', (select COALESCE(max(id) + 1, 1) from posts), false);
+select setval('project_objectives_id_seq', (select COALESCE(max(id) + 1, 1) from project_objectives), false);
+select setval('project_statuses_id_seq', (select COALESCE(max(id) + 1, 1) from project_statuses), false);
+select setval('projects_id_seq', (select COALESCE(max(id) + 1, 1) from projects), false);
+select setval('roles_id_seq', (select COALESCE(max(id) + 1, 1) from roles), false);
+select setval('time_counter_id_seq', (select COALESCE(max(id) + 1, 1) from time_counter), false);
+select setval('users_id_seq', (select COALESCE(max(id) + 1, 1) from users), false);
+select setval('working_positions_id_seq', (select COALESCE(max(id) + 1, 1) from working_positions), false);
+
+/*
+
+drop table time_counter;
+drop table likes;
+drop table comments;
+drop table posts;
+drop table projects_employees;
+drop table projects;
+drop table project_objectives;
+drop table project_statuses;
+drop table user_roles;
+drop table roles;
+drop table users;
+drop table employees;
+drop table working_positions;
+drop table genders;
+
+*/

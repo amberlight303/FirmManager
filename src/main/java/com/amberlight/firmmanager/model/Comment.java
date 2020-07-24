@@ -8,9 +8,6 @@ import java.util.Date;
 
 /**
  * Simple JavaBean object representing a comment of {@link Post}.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Entity
 @Table(name = "comments")

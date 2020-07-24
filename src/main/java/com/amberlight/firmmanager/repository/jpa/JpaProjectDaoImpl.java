@@ -16,9 +16,6 @@ import java.util.List;
 
 /**
  * JPA implementation of {@link ProjectDao} interface.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Repository("projectDao")
 public class JpaProjectDaoImpl implements ProjectDao{

@@ -10,9 +10,6 @@ import java.util.List;
 
 /**
  * Repository interface for objects of {@link Project} class.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 public interface ProjectDao {
 

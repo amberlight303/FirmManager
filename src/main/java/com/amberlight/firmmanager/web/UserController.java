@@ -18,9 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Controller for pages related with {@link User} entity.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 
 @Controller

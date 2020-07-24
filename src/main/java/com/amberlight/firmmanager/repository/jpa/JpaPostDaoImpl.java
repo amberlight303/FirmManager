@@ -13,9 +13,6 @@ import java.util.List;
 
 /**
  * JPA implementation of {@link PostDao} interface.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Repository("postDao")
 public class JpaPostDaoImpl implements PostDao {

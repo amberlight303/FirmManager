@@ -25,9 +25,6 @@ import java.util.List;
 
 /**
  * A controller for pages related with the {@link Post} entity.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Controller
 public class PostController{

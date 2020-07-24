@@ -7,9 +7,6 @@ import com.amberlight.firmmanager.model.ProjectStatus;
 /**
  * An accessory class for {@link Project}.
  * Serves for calculating values of <code>Project</code>'s fields.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 public class ProjectUpdater {
 

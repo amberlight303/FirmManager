@@ -18,9 +18,6 @@ import java.util.List;
 
 /**
  * JPA implementation of {@link EmployeeDao} interface.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Repository("employeeDao")
 public class JpaEmployeeDaoImpl implements EmployeeDao {

@@ -4,9 +4,6 @@ import javax.persistence.*;
 
 /**
  * Simple JavaBean object representing a comment of {@link Like}.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Entity
 @Table(name = "likes")

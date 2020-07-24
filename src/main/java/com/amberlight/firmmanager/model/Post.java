@@ -9,9 +9,6 @@ import java.util.*;
 
 /**
  * Simple JavaBean object representing a post.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Entity
 @Table(name = "posts")

@@ -5,9 +5,6 @@ import org.springframework.dao.DataAccessException;
 
 /**
  * Repository interface for objects of {@link Comment} class.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 public interface CommentDao {
 

@@ -8,9 +8,6 @@ import java.util.List;
 /**
  * Spring Data JPA repository interface for objects of {@link User} class.
  * It's a common interface also extending custom spring data jpa interface {@link UserDaoCustom}.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 public interface UserDao extends JpaRepository<User, Integer>, UserDaoCustom {
 

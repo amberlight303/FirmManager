@@ -15,9 +15,6 @@ import java.util.Set;
 
 /**
  * An implementation of the {@link UserService} interface.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 
 @Service

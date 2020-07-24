@@ -11,9 +11,6 @@ import java.math.BigInteger;
 
 /**
  * JPA implementation of {@link LikeDao} interface.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Repository("LikeDao")
 public class JpaLikeDaoImpl implements LikeDao{

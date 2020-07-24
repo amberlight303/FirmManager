@@ -6,9 +6,6 @@ import java.util.Set;
 
 /**
  * Simple JavaBean object representing role of {@link User}.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 
 @Entity

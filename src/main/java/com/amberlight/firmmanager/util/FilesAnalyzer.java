@@ -4,9 +4,6 @@ import java.io.File;
 
 /**
  * An accessory class for searching and analyzing files in a specific directory.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 public class FilesAnalyzer {
 

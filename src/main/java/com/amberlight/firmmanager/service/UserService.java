@@ -7,9 +7,6 @@ import java.util.List;
 
 /**
  * Service class for {@link com.amberlight.firmmanager.model.User}.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 
 public interface UserService {

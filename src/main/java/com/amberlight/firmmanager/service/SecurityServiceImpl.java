@@ -14,9 +14,6 @@ import org.springframework.stereotype.Service;
  * An implementation of the {@link SecurityService} interface.
  * Used as a facade so all controllers have a single point of
  * entry in the security functions of the persistence level.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 
 @Service

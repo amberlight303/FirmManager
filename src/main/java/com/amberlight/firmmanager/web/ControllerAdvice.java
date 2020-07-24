@@ -11,9 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
  * A controller for pages related with the {@link User} entity.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @org.springframework.web.bind.annotation.ControllerAdvice(basePackages = "com.amberlight.firmmanager.web")
 public class ControllerAdvice {

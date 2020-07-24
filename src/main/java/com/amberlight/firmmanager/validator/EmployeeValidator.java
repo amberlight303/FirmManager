@@ -9,9 +9,6 @@ import org.springframework.validation.Validator;
 /**
  * <code>Validator</code> for {@link Employee} forms,
  * implements {@link Validator} interface
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Component
 public class EmployeeValidator implements Validator {

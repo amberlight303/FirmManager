@@ -11,11 +11,7 @@ import java.util.*;
 
 /**
  * Simple JavaBean object representing an employee.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
-
 @Entity
 @Table(name = "employees")
 public class Employee extends Person implements Comparable<Employee> {

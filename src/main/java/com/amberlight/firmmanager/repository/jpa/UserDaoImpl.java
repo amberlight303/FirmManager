@@ -11,9 +11,6 @@ import java.util.List;
 
 /**
  * JPA implementation of {@link UserDaoCustom} interface.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Repository("userDao")
 public class UserDaoImpl implements UserDaoCustom {

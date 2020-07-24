@@ -22,9 +22,6 @@ import static org.hamcrest.Matchers.*;
 
 /**
  * Standalone test of {@link PostController} with {@link MockitoJUnitRunner}.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @RunWith(MockitoJUnitRunner.class)
 public class StandalonePostControllerTest {

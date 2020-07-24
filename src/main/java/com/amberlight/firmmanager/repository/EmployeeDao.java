@@ -8,9 +8,6 @@ import java.util.List;
 
 /**
  * Repository interface for objects of an {@link Employee} class.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 public interface EmployeeDao {
 

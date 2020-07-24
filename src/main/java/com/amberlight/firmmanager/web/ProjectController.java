@@ -21,9 +21,6 @@ import java.util.*;
 
 /**
  * A controller for pages related with the {@link Project} entity.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Controller
 public class ProjectController {

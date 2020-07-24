@@ -10,9 +10,6 @@ import org.springframework.validation.Validator;
 /**
  * Validator for {@link Project} forms,
  * implements {@link Validator} interface.
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Component
 public class ProjectValidator implements Validator {

@@ -9,9 +9,6 @@ import javax.persistence.Query;
 
 /**
  * Jpa implementation of {@link TimeCounterDao}
- *
- * @author Oleh Koryachenko
- * @version 1.0
  */
 @Repository("timeCounter")
 public class JpaTimeCounterDaoImpl implements TimeCounterDao{
