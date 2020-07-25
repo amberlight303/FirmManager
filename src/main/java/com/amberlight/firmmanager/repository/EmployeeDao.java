@@ -1,7 +1,6 @@
 package com.amberlight.firmmanager.repository;
 
 import com.amberlight.firmmanager.model.*;
-import com.amberlight.firmmanager.util.TimeAnalyzer;
 import org.springframework.dao.DataAccessException;
 import java.util.Collection;
 import java.util.List;
@@ -156,14 +155,4 @@ public interface EmployeeDao {
      */
     void updateEmployeePhoto(String filename, int employeeId) throws DataAccessException;
 
-
-    /**
-     * Update age and experience of all <code>Employee</code>s.
-     * The algorithm is:
-     * For each <code>Employee</code> calculate years differences between current time,
-     * birth and hire time, then set respective fields with values of these time differences.
-     * @param timeAnalyzer accessory object for helping with time difference calculations
-     * @throws DataAccessException
-     */
-    void updateAgeAndExpOfEmployees(TimeAnalyzer timeAnalyzer) throws DataAccessException;
 }

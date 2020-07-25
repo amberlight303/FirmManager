@@ -3,7 +3,6 @@ package com.amberlight.firmmanager.repository;
 import com.amberlight.firmmanager.model.Project;
 import com.amberlight.firmmanager.model.ProjectObjective;
 import com.amberlight.firmmanager.model.ProjectStatus;
-import com.amberlight.firmmanager.util.TimeAnalyzer;
 import org.springframework.dao.DataAccessException;
 import java.util.Collection;
 import java.util.List;
@@ -122,17 +121,4 @@ public interface ProjectDao {
      */
     List<Project> findAllProjects() throws DataAccessException;
 
-    /**
-     * Update status an days left fields of all <code>Project</code>s.
-     * The algorithm is:
-     * For each <code>Project</code> get <code>Project</code>'s status and
-     * calculate the time difference between the end developing time of <code>Project</code>
-     * and current time point. If this time difference is negative
-     * and status is "In progress" or "Inactive", then set <code>Project</code>'s status as "Overdue".
-     * If status is "In progress" or "Inactive" and time difference is positive (is days until the end),
-     * then set daysLeft field with this time difference value.
-     * @param timeAnalyzer accessory object for helping with time difference calculations
-     * @throws DataAccessException
-     */
-    void updateStatusesAndDaysLeftOfProjects(TimeAnalyzer timeAnalyzer) throws DataAccessException;
 }

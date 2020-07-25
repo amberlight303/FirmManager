@@ -37,6 +37,6 @@
 </div>
     <p style="text-align: center">&#169 2017 Amberlight. All rights reserved.</p>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+<script src="${contextPath}/resources/js/libs/bootstrap.min.js"></script>
 </body>
 </html>

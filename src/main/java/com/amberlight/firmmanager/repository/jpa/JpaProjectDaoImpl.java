@@ -5,7 +5,6 @@ import com.amberlight.firmmanager.model.Employee;
 import com.amberlight.firmmanager.model.Project;
 import com.amberlight.firmmanager.model.ProjectObjective;
 import com.amberlight.firmmanager.model.ProjectStatus;
-import com.amberlight.firmmanager.util.TimeAnalyzer;
 import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
@@ -134,28 +133,6 @@ public class JpaProjectDaoImpl implements ProjectDao{
             return (Project) query.getSingleResult();
         } catch (NoResultException e) {
             return null;
-        }
-    }
-
-    @Override
-    public void updateStatusesAndDaysLeftOfProjects(TimeAnalyzer timeAnalyzer) {
-        Collection<Project> projects = this.findAllProjects();
-        long currentTime = System.currentTimeMillis() / 1000;
-        for (Project project : projects) {
-            long endTime = project.getEndDate().getTime() / 1000;
-            long timeDifference = endTime - currentTime;
-            int statusId = project.getProjectStatus().getId();
-            if ((statusId==1 || statusId==3) && timeDifference<=0) {
-                ProjectStatus projectStatus = new ProjectStatus();
-                projectStatus.setId(2);
-                projectStatus.setName("Overdue");
-                project.setProjectStatus(projectStatus);
-                this.saveProject(project);
-            }
-            if ((statusId == 1 || statusId == 3) && timeDifference>0) {
-                project.setDaysLeft((int)timeDifference/86400);
-                this.saveProject(project);
-            }
         }
     }
 

@@ -118,7 +118,7 @@
                             <c:out value="${project.projectObjective.name}"/>
                         </td>
                         <td><c:choose>
-                            <c:when test="${project.daysLeft == 0}">
+                            <c:when test="${project.daysLeft == null || project.daysLeft <= 0}">
                                     &mdash;
                             </c:when>
                             <c:otherwise>

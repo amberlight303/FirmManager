@@ -28,8 +28,8 @@ public class Project extends NamedEntity implements Comparable<Project> {
     @Column(name = "notes")
     private String notes;
 
-    @Column(name = "days_left")
-    private int daysLeft;
+    @Transient
+    private Long daysLeft;
 
     @ManyToOne
     @JoinColumn(name = "project_status_id")
@@ -45,11 +45,11 @@ public class Project extends NamedEntity implements Comparable<Project> {
             inverseJoinColumns = @JoinColumn(name = "employee_id"))
     private Set<Employee> employees;
 
-    public int getDaysLeft() {
+    public Long getDaysLeft() {
         return daysLeft;
     }
 
-    public void setDaysLeft(int daysLeft) {
+    public void setDaysLeft(Long daysLeft) {
         this.daysLeft = daysLeft;
     }
 

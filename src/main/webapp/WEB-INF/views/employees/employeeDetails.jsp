@@ -42,11 +42,12 @@
                 </tr>
                 <tr>
                     <th>Experience</th>
-                    <td><c:out value="${employee.experience}"/></td>
+                    <td>
+                        <fmt:formatNumber type="number" maxFractionDigits="2" value="${employee.experience}"/> <c:out value=" years"/>                    </td>
                 </tr>
                 <tr>
                     <th>Age</th>
-                    <td><c:out value="${employee.age}"/></td>
+                    <td><c:out value="${employee.age} years"/></td>
                 </tr>
                 <tr>
                     <th>Gender</th>
@@ -78,7 +79,7 @@
                 </tr>
                 <tr>
                     <th>Hire Date</th>
-                    <td><fmt:formatDate value="${employee.birthDate}" pattern="dd-MM-yyyy"/></td>
+                    <td><fmt:formatDate value="${employee.hireDate}" pattern="dd-MM-yyyy"/></td>
                 </tr>
             </table>
         </div>

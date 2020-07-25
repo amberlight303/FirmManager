@@ -84,8 +84,8 @@
 </div>
 <script type="text/javascript">var contextPath = "${contextPath}";</script>
 <firmManager:footer_scripts contextPath="${contextPath}"/>
-<script src="${contextPath}/resources/js/sockjs-1.0.2.min.js"></script>
-<script src="${contextPath}/resources/js/stomp.js"></script>
+<script src="${contextPath}/resources/js/libs/sockjs-1.0.2.min.js"></script>
+<script src="${contextPath}/resources/js/libs/stomp.js"></script>
 <script src="${contextPath}/resources/js/comments-ws.js"></script>
 </body>
 </html>

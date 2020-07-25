@@ -5,8 +5,6 @@ import com.amberlight.firmmanager.model.Project;
 import com.amberlight.firmmanager.model.ProjectObjective;
 import com.amberlight.firmmanager.model.ProjectStatus;
 import com.amberlight.firmmanager.service.FirmManagerService;
-import com.amberlight.firmmanager.util.ProjectUpdater;
-import com.amberlight.firmmanager.util.TimeAnalyzer;
 import com.amberlight.firmmanager.validator.ProjectValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,23 +56,8 @@ public class ProjectController {
      */
     @RequestMapping(value = "/admin/projects/{projectId}/edit", method = RequestMethod.GET)
     public String initUpdateProjectForm(@PathVariable("projectId") int projectId, ModelMap model) {
-        //get the Project for editing
         Project project = this.firmManagerService.findProjectById(projectId);
         if (project == null) return "test/oops";
-        //code for keeping days left to the end field of each project always actual
-        TimeAnalyzer timeAnalyzer = new TimeAnalyzer();
-        //there is passing the second TimeCounter object
-        // from the data store special for keeping data of projects actual
-        long daysDifference = timeAnalyzer.hasDayPassed(firmManagerService.getTimeCounterById(2));
-        //if 1 day has been passed
-        if (daysDifference != 0) {
-            //update days from start of the second in data base
-            // TimeCounter object that serves for projects
-            firmManagerService.updateDaysFromStart(daysDifference, 2);
-            //update days left to the end field of all projects
-            this.firmManagerService.updateStatusesAndDaysLeftOfProjects(timeAnalyzer);
-        }
-
         model.put("project", project);
         return "projects/createOrUpdateProject";
     }
@@ -88,19 +71,11 @@ public class ProjectController {
                                            @Valid Project project,
                                            BindingResult bindingResult,
                                            ModelMap model) {
-
-        //validate an inputted project
         projectValidator.validate(project, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("project", project);
             return "projects/createOrUpdateProject";
         }
-        //status and objective options was sent to the edit form as hmtl select options
-        // and project's status and objective fields was set only with id's
-        // of particular status and objective object
-        //for correct persistence all fields should be set, so below code does fetching full
-        // ProjectStatus and ProjectObjective objects from DB and properly
-        // setting an project's respective fields
         int projectStatusId = project.getProjectStatus().getId();
         int projectObjectiveId = project.getProjectObjective().getId();
         ProjectStatus projectStatus = this.firmManagerService.findProjectStatusById(projectStatusId);
@@ -111,10 +86,6 @@ public class ProjectController {
         //add to the submitted Project all employees by fetching them from the data store
         employeeSet.addAll(this.firmManagerService.findProjectByIdFetchEmployees(projectId).getEmployees());
         project.setEmployees(employeeSet);
-        ProjectUpdater projectUpdater = new ProjectUpdater();
-        //calculate an set actual values of status and days left fields based
-        // on old status and the project's developing end time
-        project = projectUpdater.calcStatusAndDaysLeft(project);
         this.firmManagerService.saveProject(project);
         return "redirect:/projects/{projectId}";
     }
@@ -124,25 +95,13 @@ public class ProjectController {
      */
     @RequestMapping(value = "/projects", method = RequestMethod.GET)
     public String initFindProjectsForm(Map<String, Object> model){
-
-        //code for keeping days left to the end field of each project always actual
-        TimeAnalyzer timeAnalyzer = new TimeAnalyzer();
-        //there is passing the second TimeCounter object
-        // from the data store special for keeping data of projects actual
-        long daysDifference = timeAnalyzer.hasDayPassed(firmManagerService.getTimeCounterById(2));
-        //if 1 day has been passed
-        if (daysDifference != 0) {
-            //update days from start of the second in data base
-            // TimeCounter object that serves for projects
-            firmManagerService.updateDaysFromStart(daysDifference, 2);
-            //update days left to the end field of all projects
-            this.firmManagerService.updateStatusesAndDaysLeftOfProjects(timeAnalyzer);
-        }
         model.put("project", new Project());
         List<Project> results = this.firmManagerService.findAllProjects();
         Collections.sort(results);
+        results.forEach( p -> {
+            p.setDaysLeft((System.currentTimeMillis() - p.getEndDate().getTime()) / (1000 * 60 * 60 * 24));
+        });
         model.put("selections", results);
-
         return "projects/projectsList";
     }
 
@@ -152,20 +111,6 @@ public class ProjectController {
      */
     @RequestMapping(value = "/projects/find", method = RequestMethod.GET)
     public String processFindProjectsForm(Project project/*, BindingResult result*/, Map<String, Object> model) {
-
-        //code for keeping days left to the end field of each project always actual
-        TimeAnalyzer timeAnalyzer = new TimeAnalyzer();
-        //there is passing the second TimeCounter object
-        // from the data store special for keeping data of projects actual
-        long daysDifference = timeAnalyzer.hasDayPassed(firmManagerService.getTimeCounterById(2));
-        //if 1 day has been passed
-        if (daysDifference != 0) {
-            //update days from start of the second in data base
-            // TimeCounter object that serves for projects
-            firmManagerService.updateDaysFromStart(daysDifference, 2);
-            //update days left to the end field of all projects
-            this.firmManagerService.updateStatusesAndDaysLeftOfProjects(timeAnalyzer);
-        }
         if (project.getName() == null) {
             project.setName(""); // empty string signifies broadest possible search
         }
@@ -177,14 +122,16 @@ public class ProjectController {
         if (project.getProjectStatus().getName() == null) {
             project.getProjectStatus().setName(""); // empty string signifies broadest possible search
         }
-
-        // find projects by name, project's objective and project's status
         Collection<Project> results = this.firmManagerService
                 .findProjectByNameAndProjectObjectiveAndProjectStatus(
                       project.getName(),
                         project.getProjectObjective().getName(),
                         project.getProjectStatus().getName()
                 );
+
+        results.forEach( p -> {
+            p.setDaysLeft((System.currentTimeMillis() - p.getEndDate().getTime()) / (1000 * 60 * 60 * 24));
+        });
         model.put("selections", results);
         return "projects/projectsList";
     }
@@ -206,15 +153,11 @@ public class ProjectController {
     public String processAddProject(@Valid Project project,
                                     BindingResult bindingResult,
                                     Model model){
-        //validate an inputted project
         projectValidator.validate(project, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("project", project);
             return "projects/createOrUpdateProject";
         }
-        //calculate an set actual values of status and days left fields based
-        // on old status and the project's developing end time
-        project = new ProjectUpdater().calcStatusAndDaysLeft(project);
         this.firmManagerService.saveProject(project);
         return "redirect:/projects";
     }
@@ -230,19 +173,12 @@ public class ProjectController {
             mav.setViewName("test/oops");
             return mav;
         }
-        //code for keeping days left to the end field of each project always actual
-        TimeAnalyzer timeAnalyzer = new TimeAnalyzer();
-        //there is passing the second TimeCounter object
-        // from the data store special for keeping data of projects actual
-        long daysDifference = timeAnalyzer.hasDayPassed(firmManagerService.getTimeCounterById(2));
-        //if 1 day has been passed
-        if (daysDifference != 0) {
-            //update days from start of the second in data base
-            // TimeCounter object that serves for projects
-            firmManagerService.updateDaysFromStart(daysDifference, 2);
-            //update days left to the end field of all projects
-            this.firmManagerService.updateStatusesAndDaysLeftOfProjects(timeAnalyzer);
-            project = this.firmManagerService.findProjectByIdFetchEmployees(projectId);
+        project.setDaysLeft((System.currentTimeMillis() - project.getEndDate().getTime()) / (1000 * 60 * 60 * 24));
+        if (project.getEmployees() != null) {
+            project.getEmployees().forEach(employee -> {
+                employee.setAge(((System.currentTimeMillis() - employee.getBirthDate().getTime()) / (1000 * 60 * 60 * 24)) / 365);
+                employee.setExperience(((System.currentTimeMillis() - employee.getHireDate().getTime()) / (1000 * 60 * 60 * 24)) / 365.0);
+            });
         }
         mav.addObject(project);
         return mav;
@@ -286,19 +222,6 @@ public class ProjectController {
      */
     @RequestMapping(value="/admin/projects/{projectId}/employees/attach", method = RequestMethod.GET)
     public String initAttachEmployee(@PathVariable("projectId") int projectId, Model model){
-        //code for keeping age and experience of each employee always actual
-        TimeAnalyzer timeAnalyzer = new TimeAnalyzer();
-        //there is passing the first TimeCounter object
-        // from the data store special for keeping data of employees actual
-        long daysDifference = timeAnalyzer.hasDayPassed(firmManagerService.getTimeCounterById(1));
-        //if 1 day has been passed
-        if (daysDifference != 0) {
-            //update days from start of first in data base
-            // TimeCounter object that serves for employees
-            firmManagerService.updateDaysFromStart(daysDifference, 1);
-            //update ages and experiences of all employees
-            this.firmManagerService.updateAgeAndExpOfEmployees(timeAnalyzer);
-        }
         model.addAttribute("project", this.firmManagerService.findProjectById(projectId));
         List<Employee> selections = this.firmManagerService.findEmployeesUnrelatedWithProject(projectId);
         Collections.sort(selections);

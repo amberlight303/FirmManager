@@ -84,10 +84,9 @@
                             </p>
                         </td>
                         <td>
-                            <c:out value="${employee.experience}"/>
-                        </td>
+                            <fmt:formatNumber type="number" maxFractionDigits="2" value="${employee.experience}"/> <c:out value=" years"/>                        </td>
                         <td>
-                            <c:out value="${employee.age}"/>
+                            <c:out value="${employee.age} years"/>
                         </td>
                         <td>
                             <c:out value="${employee.gender.name}"/>

@@ -5,7 +5,6 @@ import com.amberlight.firmmanager.model.Employee;
 import com.amberlight.firmmanager.model.Gender;
 import com.amberlight.firmmanager.model.Project;
 import com.amberlight.firmmanager.model.WorkingPosition;
-import com.amberlight.firmmanager.util.TimeAnalyzer;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
@@ -177,17 +176,6 @@ public class JpaEmployeeDaoImpl implements EmployeeDao {
         }
     }
 
-    @Override
-    public void updateAgeAndExpOfEmployees(TimeAnalyzer timeAnalyzer) {
-        Collection<Employee> employees = this.findAllEmployees();
-        for (Employee employee : employees) {
-            long experienceDifference = timeAnalyzer.analyzeYears(employee.getHireDate());
-            updateExperience(experienceDifference, employee.getId());
-            long ageDifference = timeAnalyzer.analyzeYears(employee.getBirthDate());
-            updateAge(ageDifference, employee.getId());
-
-        }
-    }
 
     @Override
     public String toString() {

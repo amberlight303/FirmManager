@@ -1,7 +1,6 @@
 package com.amberlight.firmmanager.service;
 
 import com.amberlight.firmmanager.model.*;
-import com.amberlight.firmmanager.util.TimeAnalyzer;
 import org.springframework.dao.DataAccessException;
 import java.util.Collection;
 import java.util.List;
@@ -70,14 +69,6 @@ public interface FirmManagerService {
 
     List<Post> findPosts(int page, int numberOfPosts) throws DataAccessException;
 
-    void updateExperience(long experience, int employeeId) throws DataAccessException;
-
-    void updateAge(long age, int employeeId) throws DataAccessException;
-
-    TimeCounter getTimeCounterById(int counterId) throws DataAccessException;
-
-    void updateDaysFromStart(long daysFromStart, int counterId) throws DataAccessException;
-
     void deleteUserByUserId(int userId) throws DataAccessException;
 
 
@@ -98,10 +89,6 @@ public interface FirmManagerService {
     Project findProjectByIdFetchEmployees(int id) throws DataAccessException;
 
     Post findPostByIdFetchComments(int id) throws DataAccessException;
-
-    void updateAgeAndExpOfEmployees(TimeAnalyzer timeAnalyzer) throws DataAccessException;
-
-    void updateStatusesAndDaysLeftOfProjects(TimeAnalyzer timeAnalyzer) throws DataAccessException;
 
     Post findPostByIdFetchLikes(int id) throws DataAccessException;
 

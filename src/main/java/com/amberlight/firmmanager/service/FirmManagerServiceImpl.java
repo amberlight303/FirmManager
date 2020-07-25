@@ -2,7 +2,6 @@ package com.amberlight.firmmanager.service;
 
 import com.amberlight.firmmanager.repository.*;
 import com.amberlight.firmmanager.model.*;
-import com.amberlight.firmmanager.util.TimeAnalyzer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -36,9 +35,6 @@ public class FirmManagerServiceImpl implements FirmManagerService {
 
     @Autowired
     private LikeDao likeDao;
-
-    @Autowired
-    private TimeCounterDao timeCounterDao;
 
     @Override
     public Collection<Employee> findEmployeeByLastNameAndWorkingPosition(String lastName, String workingPosition) {
@@ -215,30 +211,6 @@ public class FirmManagerServiceImpl implements FirmManagerService {
 
     @Override
     @Transactional
-    public void updateExperience(long experience, int employeeId) {
-        this.employeeDao.updateExperience(experience, employeeId);
-    }
-
-    @Override
-    @Transactional
-    public void updateAge(long age, int employeeId) {
-        this.employeeDao.updateAge(age, employeeId);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public TimeCounter getTimeCounterById(int counterId) {
-        return this.timeCounterDao.getTimeCounterById(counterId);
-    }
-
-    @Override
-    @Transactional
-    public void updateDaysFromStart(long daysFromStart, int counterId) {
-        this.timeCounterDao.updateDaysFromStart(daysFromStart, counterId);
-    }
-
-    @Override
-    @Transactional
     public void deleteUserByUserId(int userId) {
         this.userDao.deleteUserByUserId(userId);
     }
@@ -298,18 +270,6 @@ public class FirmManagerServiceImpl implements FirmManagerService {
     }
 
     @Override
-    @Transactional
-    public void updateAgeAndExpOfEmployees(TimeAnalyzer timeAnalyzer) {
-        this.employeeDao.updateAgeAndExpOfEmployees(timeAnalyzer);
-    }
-
-    @Override
-    @Transactional
-    public void updateStatusesAndDaysLeftOfProjects(TimeAnalyzer timeAnalyzer) {
-        this.projectDao.updateStatusesAndDaysLeftOfProjects(timeAnalyzer);
-    }
-
-    @Override
     @Transactional(readOnly = true)
     public Post findPostByIdFetchLikes(int id) {
         return this.postDao.findPostByIdFetchLikes(id);
@@ -354,7 +314,6 @@ public class FirmManagerServiceImpl implements FirmManagerService {
                 ", postDao=" + postDao +
                 ", commentDao=" + commentDao +
                 ", likeDao=" + likeDao +
-                ", timeCounterDao=" + timeCounterDao +
                 '}';
     }
 }

@@ -21,8 +21,8 @@ public class Employee extends Person implements Comparable<Employee> {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date birthDate;
 
-    @Column(name = "age")
-    private int age;
+    @Transient
+    private Long age;
 
     @Email
     @Column(name = "email")
@@ -37,7 +37,6 @@ public class Employee extends Person implements Comparable<Employee> {
     @Column(name = "country")
     private String country;
 
-
     @Column(name = "telephone")
     @Digits(fraction = 0, integer = 12, message = "This field may contain only maximum 12 digits (0-9).")
     private String telephone;
@@ -50,8 +49,8 @@ public class Employee extends Person implements Comparable<Employee> {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date hireDate;
 
-    @Column(name = "experience")
-    private int experience;
+    @Transient
+    private Double experience;
 
     @Column(name = "photo_filename")
     private String photoFileName;
@@ -63,7 +62,7 @@ public class Employee extends Person implements Comparable<Employee> {
     private MultipartFile image;
 
     @Transient
-    private int userIdToAttachWithEmpl;
+    private Integer userIdToAttachWithEmpl;
 
     @ManyToOne
     @JoinColumn(name = "gender_id")
@@ -79,11 +78,11 @@ public class Employee extends Person implements Comparable<Employee> {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "employees")
     private Set<Project> projects;
 
-    public int getUserIdToAttachWithEmpl() {
+    public Integer getUserIdToAttachWithEmpl() {
         return userIdToAttachWithEmpl;
     }
 
-    public void setUserIdToAttachWithEmpl(int userIdToAttachWithEmpl) {
+    public void setUserIdToAttachWithEmpl(Integer userIdToAttachWithEmpl) {
         this.userIdToAttachWithEmpl = userIdToAttachWithEmpl;
     }
 
@@ -119,11 +118,11 @@ public class Employee extends Person implements Comparable<Employee> {
         this.hireDate = hireDate;
     }
 
-    public int getExperience() {
+    public Double getExperience() {
         return experience;
     }
 
-    public void setExperience(int experience) {
+    public void setExperience(Double experience) {
         this.experience = experience;
     }
 
@@ -199,11 +198,11 @@ public class Employee extends Person implements Comparable<Employee> {
         this.email = email;
     }
 
-    public int getAge() {
+    public Long getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Long age) {
         this.age = age;
     }
 

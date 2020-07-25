@@ -68,25 +68,17 @@ public class EmployeeController {
      * Handling GET request for list of <code>Employee</code>s and initiation of a searching form.
      */
     @RequestMapping(value = "/employees", method = RequestMethod.GET)
-    public String initFindEmployeesForm(Model model){
-        //code for keeping age and experience of each employee always actual
-        TimeAnalyzer timeAnalyzer = new TimeAnalyzer();
-        //there is passing the first TimeCounter object
-        // from the data store special for keeping data of employees actual
-        long daysDifference = timeAnalyzer.hasDayPassed(firmManagerService.getTimeCounterById(1));
-        //if 1 day has been passed
-        if (daysDifference != 0) {
-            //update days from start of first in data base
-            // TimeCounter object that serves for employees
-            firmManagerService.updateDaysFromStart(daysDifference, 1);
-            //update ages and experiences of all employees
-            this.firmManagerService.updateAgeAndExpOfEmployees(timeAnalyzer);
-        }
+    public String initFindEmployeesForm(Model model) {
         //initiation of a search form for employees
         model.addAttribute("employee", new Employee());
         //get a list of all employees with actual data (age and exp)
         List<Employee> employees = this.firmManagerService.findAllEmployees();
         Collections.sort(employees);
+        employees.forEach(employee -> {
+            employee.setAge(((System.currentTimeMillis() - employee.getBirthDate().getTime()) / (1000 * 60 * 60 * 24)) / 365);
+            employee.setExperience(((System.currentTimeMillis() - employee.getHireDate().getTime()) / (1000 * 60 * 60 * 24)) / 365.0);
+        });
+
         model.addAttribute("selections", employees);
         return "employees/employeesList";
     }
@@ -97,20 +89,6 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/employees/find", method = RequestMethod.GET)
     public String processFindEmployeesForm(Employee employee/*, BindingResult result*/, Map<String, Object> model) {
-
-        //code for keeping age and experience of each employee always actual
-        TimeAnalyzer timeAnalyzer = new TimeAnalyzer();
-        //there is passing the first TimeCounter object
-        // from the data store special for keeping data of employees actual
-        long daysDifference = timeAnalyzer.hasDayPassed(firmManagerService.getTimeCounterById(1));
-        //if 1 day has been passed
-        if (daysDifference != 0) {
-            //update days from start of first in data base
-            // TimeCounter object that serves for employees
-            firmManagerService.updateDaysFromStart(daysDifference, 1);
-            //update ages and experiences of all employees
-            this.firmManagerService.updateAgeAndExpOfEmployees(timeAnalyzer);
-        }
         //get a last name from search form to do search
         if (employee.getLastName() == null) {
             //empty string signifies broadest possible search
@@ -127,6 +105,10 @@ public class EmployeeController {
                         employee.getLastName(),
                         employee.getWorkingPosition().getName()
                 );
+        result.forEach(e -> {
+            e.setAge(((System.currentTimeMillis() - e.getBirthDate().getTime()) / (1000 * 60 * 60 * 24)) / 365);
+            e.setExperience(((System.currentTimeMillis() - e.getHireDate().getTime()) / (1000 * 60 * 60 * 24)) / 365.0);
+        });
         model.put("selections", result);
         return "employees/employeesList";
     }
@@ -141,21 +123,6 @@ public class EmployeeController {
         if(employee == null){
             return "test/oops";
         }
-        //code for keeping age and experience of each employee always actual
-        TimeAnalyzer timeAnalyzer = new TimeAnalyzer();
-        //there is passing the first TimeCounter object
-        // from the data store special for keeping data of employees actual
-        long daysDifference = timeAnalyzer.hasDayPassed(firmManagerService.getTimeCounterById(1));
-        //if 1 day has been passed
-        if (daysDifference != 0) {
-            //update days from start of first in data base
-            // TimeCounter object that serves for employees
-            firmManagerService.updateDaysFromStart(daysDifference, 1);
-            //update ages and experiences of all employees
-            this.firmManagerService.updateAgeAndExpOfEmployees(timeAnalyzer);
-            employee = this.firmManagerService.findEmployeeByIdFetchProjectsAndUser(employeeId);
-        }
-
         //if employee has no photo, send in model default noPhoto image for displaying
         //otherwise send an employee's photo's file name
         if(employee.getPhotoFileName()==null){
@@ -165,6 +132,8 @@ public class EmployeeController {
                     + File.separator
                     + employee.getPhotoFileName());
         }
+        employee.setAge(((System.currentTimeMillis() - employee.getBirthDate().getTime()) / (1000 * 60 * 60 * 24)) / 365);
+        employee.setExperience(((System.currentTimeMillis() - employee.getHireDate().getTime()) / (1000 * 60 * 60 * 24)) / 365.0);
         model.addAttribute("employee", employee);
         return "employees/employeeDetails";
     }
@@ -175,23 +144,9 @@ public class EmployeeController {
     @RequestMapping(value = "/admin/employees/{employeeId}/edit", method = RequestMethod.GET)
     public String initUpdateEmployeeForm(@PathVariable("employeeId") int employeeId,
                                          ModelMap model) {
-        //get an employee to show in the page
         Employee employee = this.firmManagerService.findEmployeeById(employeeId);
         if(employee == null){
             return "test/oops";
-        }
-        //code for keeping age and experience of each employee always actual
-        TimeAnalyzer timeAnalyzer = new TimeAnalyzer();
-        //there is passing the first TimeCounter object
-        // from the data store special for keeping data of employees actual
-        long daysDifference = timeAnalyzer.hasDayPassed(firmManagerService.getTimeCounterById(1));
-        //if 1 day has been passed
-        if (daysDifference != 0) {
-            //update days from start of first in data base
-            // TimeCounter object that serves for employees
-            firmManagerService.updateDaysFromStart(daysDifference, 1);
-            //update ages and experiences of all employees
-            this.firmManagerService.updateAgeAndExpOfEmployees(timeAnalyzer);
         }
         if(employee.getPhotoFileName()==null){
             model.addAttribute("emptyPhotoName", "noPhoto.png");
@@ -213,7 +168,6 @@ public class EmployeeController {
                                             @Valid Employee employee,
                                             BindingResult bindingResult,
                                             ModelMap model)  {
-        //validate an inputted employee
         employeeValidator.validate(employee, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("employee", employee);
@@ -226,11 +180,6 @@ public class EmployeeController {
             }
             return "employees/createOrUpdateEmployee";
         }
-        //gender and working position options was sent to the edit form as hmtl select options
-        // and employee's gender and working position fields was set only with id's of particular gender
-        // and working position object
-        //for correct persistence all fields should be set, so below code does fetching full Gender and
-        // WorkingPosition objects from DB and properly setting an employee's respective fields
         int genderId = employee.getGender().getId();
         int workingPositionId = employee.getWorkingPosition().getId();
         Gender gender = this.firmManagerService.findGenderById(genderId);
@@ -238,17 +187,13 @@ public class EmployeeController {
         employee.getWorkingPosition().setName(workingPosition.getName());
         employee.getGender().setName(gender.getName());
         Set<Project> projectSet = new HashSet<>();
-        //add to the submitted Employee all projects by fetching them from the data store
+        // Add to the submitted Employee all projects by fetching them from the data store
         projectSet.addAll(this.firmManagerService.findEmployeeByIdFetchProjectsAndUser(employeeId).getProjects());
         employee.setProjects(projectSet);
-        //if was uploaded an Employee's photo
+        // If was uploaded an Employee's photo
         if (!employee.getImage().isEmpty()) {
             try {
-                //convert MultipartFile into bytes
                 byte[] bytes = employee.getImage().getBytes();
-
-                //Creating rootpath string to store file
-                // by getting path from the context parameter from web.xml
                 String rootPath = this.uploadRootPath
                         + File.separator
                         + "employeesPhotos";
@@ -257,54 +202,40 @@ public class EmployeeController {
                     File oldPostPhoto = new File(rootPath + File.separator + employee.getOldEmplPhotoName());
                     oldPostPhoto.delete();
                 }
-                //Creating root directory to store file
-                //make directories if there is no such directories
                 File directory = new File(rootPath);
                 if (!directory.exists())
                     directory.mkdirs();
-                //random string creator for making new random photo file name
                 RandomStringCreator randomStringCreator = new RandomStringCreator();
-                //new server file
                 File newServerFile;
-                //file name without extension
                 String fileName;
-                //file name with extension
                 String fullFileName;
-                //files analyzer for inspection saving directory for
-                // an existence of duplicates of the just generated photo's file name
+                // Files analyzer for inspection of saving directory for
+                // existence of duplicates of a just generated photo's file name
                 FilesAnalyzer filesAnalyzer = new FilesAnalyzer();
-                //create a new File until its name will be original in the directory
-                do{
+                // Create a new File until its name will be unique in the directory
+                do {
                     fileName = randomStringCreator.getRandomString(7);
                     fullFileName = fileName+ "." + FilenameUtils.getExtension(employee.getImage().getOriginalFilename());
-                    // Create the file on server
                     newServerFile = new File(directory.getAbsolutePath()
                             + File.separator + fullFileName);
                 } while (filesAnalyzer.doDirectoryHaveFile(
                         fullFileName,
                         directory));
-                //get output stream for writing bytes of the image
                 BufferedOutputStream stream = new BufferedOutputStream(
                         new FileOutputStream(newServerFile));
-                //write bytes
                 stream.write(bytes);
                 stream.close();
-                //set an employee's photo filename with name of a just created file
                 employee.setPhotoFileName(fullFileName);
             } catch (Exception e) {
                 e.printStackTrace();
                 return "test/oops";
             }
         } else {
-            //if new photo image has not been uploaded, set employee's photo file name with old value
+            // If new photo image has not been uploaded, set employee's photo file name with old value
             employee.setPhotoFileName(this.firmManagerService.findEmployeeById(employeeId).getPhotoFileName());
         }
-        //get rid of MultipartFile in the memory
+        // Get rid of MultipartFile in the memory
         employee.setImage(null);
-        EmployeeUpdater employeeUpdater = new EmployeeUpdater();
-        //calculate an set actual values of age and experience fields based on birth and hire dates
-        employee = employeeUpdater.calcAgeAndExpAndSetEmployee(employee, new TimeAnalyzer());
-        //save the edited Employee
         this.firmManagerService.saveEmployee(employee);
         return "redirect:/employees/{employeeId}";
     }
@@ -320,7 +251,7 @@ public class EmployeeController {
     public String addEmployee(Model model,
                               //passed as a redirect flash attribute
                               @ModelAttribute("userForm") User userForm){
-        //if registration is processing and userForm
+        // If registration is processing and userForm
         // has passed from the previous registration form
         if(userForm.getUsername() != null) {
             //initiate employee's creation form
@@ -368,58 +299,39 @@ public class EmployeeController {
         employee.getGender().setName(gender.getName());
         if (!employee.getImage().isEmpty()) {
             try {
-                //convert MultipartFile into bytes
                 byte[] bytes = employee.getImage().getBytes();
-
-                //Create root path string to store file
-                // by getting path from the context parameter from web.xml
                 String rootPath = this.uploadRootPath
                         + File.separator
                         + "employeesPhotos";
-                //delete the old employee's photo if it is
                 if(employee.getOldEmplPhotoName()!=null){
                     File oldPostPhoto = new File(rootPath + File.separator + employee.getOldEmplPhotoName());
                     oldPostPhoto.delete();
                 }
-                //Creating root directory to store file
-                //make directories if there is no such directories
                 File directory = new File(rootPath);
                 if (!directory.exists())
                     directory.mkdirs();
-                //random string creator for making new random photo file name
                 RandomStringCreator randomStringCreator = new RandomStringCreator();
-                //new server file
                 File newServerFile;
-                //file name without extension
                 String fileName;
-                //file name with extension
                 String fullFileName;
-                //files analyzer for inspection saving directory for
-                // an existence of duplicates of the just generated photo's file name
+                // Duplicates control
                 FilesAnalyzer filesAnalyzer = new FilesAnalyzer();
-                //create a new File until its name will be original in the directory
+                //create a new File until its name will be unique in the directory
                 do{
                     fileName = randomStringCreator.getRandomString(7);
                     fullFileName = fileName+ "." + FilenameUtils.getExtension(employee.getImage().getOriginalFilename());
-                    // Create the file on server
                     newServerFile = new File(directory.getAbsolutePath()
                             + File.separator + fullFileName);
                 } while (filesAnalyzer.doDirectoryHaveFile(
                         fullFileName,
                         directory));
-                //get output stream for writing bytes of the image
                 BufferedOutputStream stream = new BufferedOutputStream(
                         new FileOutputStream(newServerFile));
-                //write bytes
                 stream.write(bytes);
                 stream.close();
-                //set an employee's photo filename with name of a just created file
                 employee.setPhotoFileName(fullFileName);
-                //get rid of the MultipartFile (image)
+                // Get rid of the MultipartFile (image)
                 employee.setImage(null);
-                //calculate and set actual values of age and experience
-                // fields based on birth and hire dates
-                employee = new EmployeeUpdater().calcAgeAndExpAndSetEmployee(employee, new TimeAnalyzer());
                 this.firmManagerService.saveEmployee(employee);
                 //if registration is processing and an employee
                 // has an id of user to bind with each other
@@ -433,9 +345,6 @@ public class EmployeeController {
                 return "test/oops";
             }
         }
-        //calculate and set actual values of age and experience
-        // fields based on birth and hire dates
-        employee = new EmployeeUpdater().calcAgeAndExpAndSetEmployee(employee, new TimeAnalyzer());
         this.firmManagerService.saveEmployee(employee);
         //if registration is processing and an employee
         // has an id of user to bind with each other
@@ -502,20 +411,7 @@ public class EmployeeController {
      * <code>Employee</code> to attach <code>Project</code>s to that <code>Employee</code>.
      */
     @RequestMapping(value="/admin/employees/{employeeId}/projects/attach", method = RequestMethod.GET)
-    public String initAttachProject(@PathVariable("employeeId") int employeeId, Model model){
-        //code for keeping days left to the end field of each project always actual
-        TimeAnalyzer timeAnalyzer = new TimeAnalyzer();
-        //there is passing the second TimeCounter object
-        // from the data store special for keeping data of projects actual
-        long daysDifference = timeAnalyzer.hasDayPassed(firmManagerService.getTimeCounterById(2));
-        //if 1 day has been passed
-        if (daysDifference != 0) {
-            //update days from start of the second in data base
-            // TimeCounter object that serves for projects
-            firmManagerService.updateDaysFromStart(daysDifference, 2);
-            //update days left to the end field of all projects
-            this.firmManagerService.updateStatusesAndDaysLeftOfProjects(timeAnalyzer);
-        }
+    public String initAttachProject(@PathVariable("employeeId") int employeeId, Model model) {
         model.addAttribute("employee", this.firmManagerService.findEmployeeById(employeeId));
         List<Project> selections = this.firmManagerService.findProjectsUnrelatedWithEmployee(employeeId);
         Collections.sort(selections);
