@@ -21,7 +21,7 @@
         <div class="content clearfix">
             <div class="content-inner">
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
-                    <a class="btn btn-default add-post-btn" href="${contextPath}/admin/posts/addPost">Add New Post</a>
+                    <a class="btn btn-default add-post-btn" href="${contextPath}/admin/posts/addPost">Add New Post</a> <br>
                 </sec:authorize>
                 <c:forEach items="${posts}" var="post">
                     <div class="content-post">
@@ -30,7 +30,18 @@
                                 <a href="${contextPath}/posts/${post.id}">${post.title}</a>
                             </div>
                             <div class="time">
-                                <fmt:formatDate value="${post.postDate}" pattern="dd.MM.yyyy, HH:mm"/> <br>
+                                <c:choose>
+                                    <c:when test="${post.postUpdateDate != null}">
+                                        <c:out value="Updated: "/>
+                                        <fmt:formatDate value="${post.postUpdateDate}" pattern="dd.MM.yyyy, HH:mm"/>
+                                        <br>
+                                        <c:out value="Published: "/>
+                                        <fmt:formatDate value="${post.postDate}" pattern="dd.MM.yyyy, HH:mm"/> <br>                                    </c:when>
+                                    <c:otherwise>
+                                        <c:out value="Published: "/>
+                                        <fmt:formatDate value="${post.postDate}" pattern="dd.MM.yyyy, HH:mm"/> <br>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </div>
                         <c:choose>
@@ -62,7 +73,7 @@
                             <form class="like-form" method="post"
                                   action="${contextPath}/posts/${post.id}/like">
                                 <button type="submit" class="btn btn-default like-submit-btn">
-                                    <p class="like-btn-p">Like <span class="glyphicon glyphicon-heart"></span></p>
+                                    <p class="like-btn-p"><span class="glyphicon glyphicon-heart"></span></p>
                                 </button>
                             </form>
                         </div>

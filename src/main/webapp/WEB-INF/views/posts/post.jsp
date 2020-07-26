@@ -34,7 +34,19 @@
                             <h4 align="center">${post.title}</h4>
                         </div>
                         <div class="time">
-                            <fmt:formatDate value="${post.postDate}" pattern="dd.MM.yyyy, HH:mm"/> <br>
+                            <c:choose>
+                                <c:when test="${post.postUpdateDate != null}">
+                                    <c:out value="Updated: "/>
+                                    <fmt:formatDate value="${post.postUpdateDate}" pattern="dd.MM.yyyy, HH:mm"/>
+                                    <br>
+                                    <c:out value="Published: "/>
+                                    <fmt:formatDate value="${post.postDate}" pattern="dd.MM.yyyy, HH:mm"/> <br>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:out value="Published: "/>
+                                    <fmt:formatDate value="${post.postDate}" pattern="dd.MM.yyyy, HH:mm"/> <br>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                     <c:choose>

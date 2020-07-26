@@ -100,7 +100,8 @@ CREATE TABLE posts (
                        content_preview TEXT,
                        amount_of_likes INT DEFAULT 0,
                        image_filename VARCHAR(255),
-                       post_date timestamp NOT NULL
+                       post_date timestamp NOT NULL,
+                       post_update_date timestamp NULL
 );
 
 CREATE TABLE comments (
@@ -278,7 +279,6 @@ select setval('working_positions_id_seq', (select COALESCE(max(id) + 1, 1) from 
 
 /*
 
-drop table time_counter;
 drop table likes;
 drop table comments;
 drop table posts;

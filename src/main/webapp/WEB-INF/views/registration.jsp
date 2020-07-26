@@ -21,7 +21,7 @@
 <div class="container">
 
     <form:form id="userForm" method="POST" modelAttribute="userForm" class="form-signin">
-        <h2 class="form-signin-heading">Create an account</h2>
+        <h2 class="form-signin-heading text-center">Create an account</h2>
 
         <spring:bind path="firstName">
             <div class="form-group ${status.error ? 'has-error' : ''}">
@@ -63,9 +63,11 @@
         </spring:bind>
 
         <spring:bind path="createEmployeeOrNotFlag">
-            <div class="form-group ${status.error ? 'has-error' : ''}">
-                <form:checkbox path="createEmployeeOrNotFlag" value="true"
-                               label="Create a new employee and attach to a user"/>
+            <div class="create-empl-or-not-flag-form form-group ${status.error ? 'has-error' : ''}">
+                <span>
+                    <form:checkbox path="createEmployeeOrNotFlag" value="true"/>
+                    Create a new employee attached to the user
+                </span>
             </div>
         </spring:bind>
 

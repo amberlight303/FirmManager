@@ -37,6 +37,7 @@
             </form:form>
         </div>
         <a href="${contextPath}/admin/registration" class="btn btn-default btn-center">Registration</a>
+        <br>
         <div class="table-back">
             <table id="employees" class="table table-striped table-bordered footable">
                 <thead>

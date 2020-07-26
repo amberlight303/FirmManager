@@ -44,26 +44,27 @@
         </div>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <a href="/admin/employees/new" class="btn btn-default add-empl-btn">Add Employee</a>
+            <br>
         </sec:authorize>
         <div class="table-back">
             <p class="colors-expl">
-                <span class="prj-in-progress colored-square">&#9632;</span> - In progress
-                <span class="prj-complete colored-square">&#9632;</span> - Completed
-                <span class="prj-inactive colored-square">&#9632;</span> - Inactive<br>
-                <span class="prj-overdue colored-square">&#9632;</span> - Overdue
-                <span class="empl-fired colored-square">&#9632;</span> - Fired
+                <span class="prj-in-progress colored-square">&#9632; - In progress</span>
+                <span class="prj-complete colored-square">&#9632; - Completed</span>
+                <span class="prj-inactive colored-square">&#9632; - Inactive</span>
+                <span class="prj-overdue colored-square">&#9632; - Overdue</span>
+                <span class="empl-fired colored-square">&#9632; - Fired</span>
             </p>
             <table class="table table-striped table-bordered footable">
                 <thead>
-                <tr>
-                    <th class="extend-table"><span class="glyphicon glyphicon-plus"></span></th>
-                    <th>Name</th>
-                    <th>Working Position</th>
-                    <th data-title="Experience" data-breakpoints="xs sm md">Experience</th>
-                    <th data-title="Age" data-breakpoints="xs sm md">Age</th>
-                    <th data-title="Gender" data-breakpoints="xs sm md">Gender</th>
-                    <th>Projects</th>
-                </tr>
+                    <tr>
+                        <th class="extend-table"><span class="glyphicon glyphicon-plus"></span></th>
+                        <th>Name</th>
+                        <th>Working Position</th>
+                        <th data-title="Experience" data-breakpoints="xs sm md">Experience</th>
+                        <th data-title="Age" data-breakpoints="xs sm md">Age</th>
+                        <th data-title="Gender" data-breakpoints="xs sm md">Gender</th>
+                        <th>Projects</th>
+                    </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${selections}" var="employee">
@@ -92,7 +93,7 @@
                             <c:out value="${employee.gender.name}"/>
                         </td>
                         <td>
-                            <c:forEach var="project" items="${employee.projects}">
+                            <c:forEach var="project" varStatus="loop" items="${employee.projects}">
                                 <a class="
                                 <c:choose>
                                     <c:when test="${project.projectStatus.name eq 'In progress'}">
@@ -109,7 +110,7 @@
                                     </c:when>
                                 </c:choose>"
                                    href="${contextPath}/projects/${project.id}"><c:out value="${project.name}"/></a>
-                                <hr>
+                                ${!loop.last ? '<hr>' : ''}
                             </c:forEach>
                         </td>
                     </tr>

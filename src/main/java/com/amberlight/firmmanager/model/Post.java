@@ -31,6 +31,10 @@ public class Post extends BaseEntity {
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private Date postDate;
 
+    @Column(name = "post_update_date")
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    private Date postUpdateDate;
+
     @Column(name = "title")
     private String title;
 
@@ -57,6 +61,14 @@ public class Post extends BaseEntity {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "post")
     private Set<Comment> comments;
+
+    public Date getPostUpdateDate() {
+        return postUpdateDate;
+    }
+
+    public void setPostUpdateDate(Date postUpdateDate) {
+        this.postUpdateDate = postUpdateDate;
+    }
 
     public String getContentPreview() {
         return contentPreview;

@@ -16,11 +16,11 @@
         <a class="btn btn-default" href="${contextPath}/projects/${projectId}">Back to the project details</a>
         <div class="table-back">
             <p class="colors-expl">
-                <span class="prj-in-progress colored-square">&#9632;</span> - In progress
-                <span class="prj-complete colored-square">&#9632;</span> - Completed
-                <span class="prj-inactive colored-square">&#9632;</span> - Inactive<br>
-                <span class="prj-overdue colored-square">&#9632;</span> - Overdue
-                <span class="empl-fired colored-square">&#9632;</span> - Fired
+                <span class="prj-in-progress colored-square">&#9632; - In progress</span>
+                <span class="prj-complete colored-square">&#9632; - Completed</span>
+                <span class="prj-inactive colored-square">&#9632; - Inactive</span>
+                <span class="prj-overdue colored-square">&#9632; - Overdue</span>
+                <span class="empl-fired colored-square">&#9632; - Fired</span>
             </p>
             <table id="employees" class="table table-striped table-bordered footable">
                 <thead>
@@ -58,7 +58,7 @@
                             <c:out value="${employee.gender.name}"/>
                         </td>
                         <td>
-                            <c:forEach var="project" items="${employee.projects}">
+                            <c:forEach var="project" varStatus="loop" items="${employee.projects}">
                                 <a class="
                                 <c:choose>
                                     <c:when test="${project.projectStatus.name eq 'In progress'}">
@@ -73,7 +73,8 @@
                                     <c:when test="${project.projectStatus.name eq 'Completed'}">
                                     prj-complete
                                     </c:when>
-                                </c:choose>" href="${contextPath}/projects/${project.id}"><c:out value="${project.name}"/></a><hr>
+                                </c:choose>" href="${contextPath}/projects/${project.id}"><c:out value="${project.name}"/></a>
+                                ${!loop.last ? '<hr>' : ''}
                             </c:forEach>
                         </td>
                         <td>

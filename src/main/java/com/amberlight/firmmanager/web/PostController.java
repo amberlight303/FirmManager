@@ -44,35 +44,22 @@ public class PostController{
      */
     @RequestMapping(value = "/admin/posts/addPost", method = RequestMethod.POST)
     public String addPost(Post post){
-
-
-        //if an Post's main image was uploaded
+        // If an Post's main image uploaded
         if (!post.getImage().isEmpty()) {
             try {
-                //convert MultipartFile into bytes
                 byte[] bytes = post.getImage().getBytes();
-                //Creating rootpath string to store file
-                // by getting path from the context parameter from web.xml
+
                 String rootPath = this.uploadRootPath
                         + File.separator
                         + "postsImages";
-                //Creating root directory to store file
-                //make directories if there is no such directories
                 File directory = new File(rootPath);
                 if (!directory.exists())
                     directory.mkdirs();
-                //random string creator for making new random photo file name
                 RandomStringCreator randomStringCreator = new RandomStringCreator();
-                //new server file
                 File newServerFile;
-                //file name without extension
                 String fileName;
-                //file name with extension
                 String fullFileName;
-                //files analyzer for inspection saving directory for
-                // an existence of duplicates of the just generated photo's file name
                 FilesAnalyzer filesAnalyzer = new FilesAnalyzer();
-                //create a new File until its name will be original in the directory
                 do{
                     fileName = randomStringCreator.getRandomString(7);
                     fullFileName = fileName+ "." + FilenameUtils.getExtension(post.getImage().getOriginalFilename());
@@ -82,14 +69,10 @@ public class PostController{
                 } while (filesAnalyzer.doDirectoryHaveFile(
                             fullFileName,
                             directory));
-
-                //get output stream for writing bytes of the image
                 BufferedOutputStream stream = new BufferedOutputStream(
                         new FileOutputStream(newServerFile));
-                //write bytes
                 stream.write(bytes);
                 stream.close();
-                //set post's image file name with name of just created image file
                 post.setImageFileName(fullFileName);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -115,55 +98,39 @@ public class PostController{
      * editing a <code>Post</code> in the data store.
      */
     @RequestMapping(value = "/admin/posts/{postId}/editPost", method = RequestMethod.POST)
-    public String editPost(Post post, @PathVariable("postId") int postId){
-        //if a Post's main image was uploaded
+    public String editPost(Post post, @PathVariable("postId") int postId) {
+        Post dbPost = this.firmManagerService.findPostById(postId);
+        if (dbPost == null) throw new IllegalStateException("post doesn't exist");
         if (!post.getImage().isEmpty()) {
             try {
-                //convert MultipartFile into bytes
                 byte[] bytes = post.getImage().getBytes();
-                //Creating rootpath string to store file
-                // by getting path from the context parameter from web.xml
                 String rootPath = this.uploadRootPath
                         + File.separator
                         + "postsImages";
-                //delete the old post's photo if it is
                 if(post.getOldPostImgName()!=null){
                     File oldPostPhoto = new File(rootPath + File.separator + post.getOldPostImgName());
                     oldPostPhoto.delete();
                 }
-                //Creating root directory to store file
-                //make directories if there is no such directories
                 File directory = new File(rootPath);
                 if (!directory.exists())
                     directory.mkdirs();
-                //random string creator for making new random photo file name
                 RandomStringCreator randomStringCreator = new RandomStringCreator();
-                //new server file
                 File newServerFile;
-                //file name without extension
                 String fileName;
-                //file name with extension
                 String fullFileName;
-                //files analyzer for inspection saving directory for
-                // an existence of duplicates of the just generated photo's file name
                 FilesAnalyzer filesAnalyzer = new FilesAnalyzer();
-                //create a new File until its name will be original in the directory
-                do{
+                do {
                     fileName = randomStringCreator.getRandomString(7);
                     fullFileName = fileName+ "." + FilenameUtils.getExtension(post.getImage().getOriginalFilename());
-                    // Create the file on server
                     newServerFile = new File(directory.getAbsolutePath()
                             + File.separator + fullFileName);
                 } while (filesAnalyzer.doDirectoryHaveFile(
                         fullFileName,
                         directory));
-                //get output stream for writing bytes of the image
                 BufferedOutputStream stream = new BufferedOutputStream(
                         new FileOutputStream(newServerFile));
-                //write bytes
                 stream.write(bytes);
                 stream.close();
-                //set post's image file name with name of just created image file
                 post.setImageFileName(fullFileName);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -174,7 +141,8 @@ public class PostController{
             // set post's image file name with old value
             post.setImageFileName(this.firmManagerService.findPostById(postId).getImageFileName());
         }
-        post.setPostDate(new Date());
+        post.setPostDate(dbPost.getPostDate());
+        post.setPostUpdateDate(new Date());
         post.setAmountOfLikes(this.firmManagerService.findPostById(postId).getAmountOfLikes());
         this.firmManagerService.savePost(post);
         return "redirect:/posts/{postId}";
@@ -223,9 +191,6 @@ public class PostController{
             if (page>numberOfPages || page < 0 || page == 0) return "test/oops";
             //get a list of posts for a particular page
             List<Post> posts = this.firmManagerService.findPosts(page,(int) numberOfPosts);
-            //reverse list for a correct displaying
-            //most newer posts should be displayed at first
-            Collections.reverse(posts);
             model.addAttribute("posts", posts);
             //model attributes below are for displaying the page navigation element
             model.addAttribute("pagesOnTheLeft", page-1);

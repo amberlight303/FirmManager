@@ -9,6 +9,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,6 +26,7 @@ public class JpaPostDaoImpl implements PostDao {
         if (post.getId() == null) {
             this.em.persist(post);
         } else {
+            post.setPostUpdateDate(new Date());
             this.em.merge(post);
         }
     }
@@ -55,11 +57,13 @@ public class JpaPostDaoImpl implements PostDao {
     @Override
     @SuppressWarnings("unchecked")
     public List<Post> findPosts(int page, int numberOfPosts) {
-        Query query = this.em.createQuery("SELECT post FROM Post post");
+        Query query = this.em.createQuery("SELECT post FROM Post post ORDER BY post.id"); // todo: ORDER BY post.postDate DESC
         int offset = numberOfPosts-(page*5);
         query.setFirstResult((offset<0)?0:offset);
         query.setMaxResults((offset<0)?5+offset:5);
-        return query.getResultList();
+        List<Post> posts = query.getResultList();
+        posts.sort((object1, object2) -> object2.getPostDate().compareTo(object1. getPostDate())); // desc order
+        return posts;
     }
 
     @Override

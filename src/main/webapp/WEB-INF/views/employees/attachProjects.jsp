@@ -16,11 +16,11 @@
         <a class="btn btn-default" href="${contextPath}/employees/${employeeId}">Back to the employee details</a>
         <div class="table-back">
             <p class="colors-expl">
-                <span class="prj-in-progress colored-square">&#9632;</span> - In progress
-                <span class="prj-complete colored-square">&#9632;</span> - Completed
-                <span class="prj-inactive colored-square">&#9632;</span> - Inactive<br>
-                <span class="prj-overdue colored-square">&#9632;</span> - Overdue
-                <span class="empl-fired colored-square">&#9632;</span> - Fired
+                <span class="prj-in-progress colored-square">&#9632; - In progress</span>
+                <span class="prj-complete colored-square">&#9632; - Completed</span>
+                <span class="prj-inactive colored-square">&#9632; - Inactive</span>
+                <span class="prj-overdue colored-square">&#9632; - Overdue</span>
+                <span class="empl-fired colored-square">&#9632; - Fired</span>
             </p>
             <table id="employees" class="table table-striped table-bordered footable">
                 <thead>
@@ -73,12 +73,12 @@
                             <fmt:formatDate value="${project.endDate}" pattern="dd-MM-yyyy"/>
                         </td>
                         <td>
-                            <c:forEach var="employee" items="${project.employees}">
+                            <c:forEach var="employee" varStatus="loop" items="${project.employees}">
                                 <a class="${employee.fired == true ? 'empl-fired' : ''}"
                                    href="${contextPath}/employees/${employee.id}">
                                     <c:out value="${employee.firstName} ${employee.lastName}"/>
                                 </a>
-                                <hr>
+                                ${!loop.last ? '<hr>' : ''}
                             </c:forEach>
                         </td>
                         <td>
