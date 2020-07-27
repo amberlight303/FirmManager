@@ -31,29 +31,29 @@ public class EmployeeValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "birthDate", "Required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hireDate", "Required");
         char[] chars = employee.getFirstName().toCharArray();
-        for(char c: chars){
-            if(!Character.isLetter(c) && c != ' '){
+        for(char c: chars) {
+            if (!Character.isLetter(c) && c != ' ') {
                 errors.rejectValue("firstName", "Characters.onlyLetters");
                 break;
             }
         }
         chars = employee.getLastName().toCharArray();
-        for(char c: chars){
-            if(!Character.isLetter(c) && c != ' '){
+        for(char c: chars) {
+            if (!Character.isLetter(c) && c != ' ') {
                 errors.rejectValue("lastName", "Characters.onlyLetters");
                 break;
             }
         }
         chars = employee.getCity().toCharArray();
-        for(char c: chars){
-            if(!Character.isLetter(c) && c != ' '){
+        for(char c: chars) {
+            if (!Character.isLetter(c) && c != ' ') {
                 errors.rejectValue("city", "Characters.onlyLetters");
                 break;
             }
         }
         chars = employee.getCountry().toCharArray();
-        for(char c: chars){
-            if(!Character.isLetter(c) && c != ' '){
+        for(char c: chars) {
+            if (!Character.isLetter(c) && c != ' ') {
                 errors.rejectValue("country", "Characters.onlyLetters");
                 break;
             }

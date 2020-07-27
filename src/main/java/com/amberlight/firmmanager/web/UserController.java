@@ -41,8 +41,6 @@ public class UserController {
     @RequestMapping(value = "/admin/registration", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
-      //  model.addAttribute("createEmployeeOrNotForm", "");
-
         return "registration";
     }
 
@@ -54,16 +52,13 @@ public class UserController {
     public String registration(@ModelAttribute("userForm") User userForm,
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes) {
-        //validate an inputted user
         userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-        //save the User
         userService.save(userForm);
-        //if check mark "Create new employee and attach with user" was set
-        if(userForm.isCreateEmployeeOrNotFlag()){
-            //send the User as a redirect attribute for subsequent operations with
+        if (userForm.isCreateEmployeeOrNotFlag()) {
+            // Send the User as a redirect attribute for subsequent operations with
             // creation an employee and binding that User with the new employee
             redirectAttributes.addFlashAttribute("userForm", userForm);
             return "redirect:/admin/employees/new";
@@ -77,9 +72,8 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error, String logout) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if( SecurityContextHolder.getContext().getAuthentication() != null &&
+        if ( SecurityContextHolder.getContext().getAuthentication() != null &&
         SecurityContextHolder.getContext().getAuthentication().isAuthenticated() &&
-                //when Anonymous Authentication is enabled
                 !(SecurityContextHolder.getContext().getAuthentication()
                         instanceof AnonymousAuthenticationToken) ) return "redirect:/";
         if (error != null) {
@@ -103,7 +97,7 @@ public class UserController {
      * Handling GET request for getting <code>User</code>'s details page.
      */
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
-    public String showUsers(Model model, @PathVariable("userId") int userId){
+    public String showUsers(Model model, @PathVariable("userId") int userId) {
         model.addAttribute("user", this.userService.findUserByIdFetchEmployee(userId));
         return "users/userDetails";
     }

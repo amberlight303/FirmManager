@@ -36,7 +36,6 @@ public class ProjectController {
      */
     @ModelAttribute("projectStatuses")
     public List<ProjectStatus> populateProjectStatuses() {
-
         return this.firmManagerService.findProjectStatuses();
     }
 
@@ -47,7 +46,6 @@ public class ProjectController {
      */
     @ModelAttribute("projectObjectives")
     public List<ProjectObjective> populateProjectObjectives() {
-
         return this.firmManagerService.findProjectObjectives();
     }
 
@@ -94,7 +92,7 @@ public class ProjectController {
      * Handling GET request for list of <code>Project</code>s and initiation of a searching form.
      */
     @RequestMapping(value = "/projects", method = RequestMethod.GET)
-    public String initFindProjectsForm(Map<String, Object> model){
+    public String initFindProjectsForm(Map<String, Object> model) {
         model.put("project", new Project());
         List<Project> results = this.firmManagerService.findAllProjects();
         Collections.sort(results);
@@ -112,15 +110,15 @@ public class ProjectController {
     @RequestMapping(value = "/projects/find", method = RequestMethod.GET)
     public String processFindProjectsForm(Project project/*, BindingResult result*/, Map<String, Object> model) {
         if (project.getName() == null) {
-            project.setName(""); // empty string signifies broadest possible search
+            project.setName("");
         }
 
         if (project.getProjectObjective().getName() == null) {
-            project.getProjectObjective().setName(""); // empty string signifies broadest possible search
+            project.getProjectObjective().setName("");
         }
 
         if (project.getProjectStatus().getName() == null) {
-            project.getProjectStatus().setName(""); // empty string signifies broadest possible search
+            project.getProjectStatus().setName("");
         }
         Collection<Project> results = this.firmManagerService
                 .findProjectByNameAndProjectObjectiveAndProjectStatus(
@@ -140,7 +138,7 @@ public class ProjectController {
      * Handling GET request for getting form for creating new <code>Project</code>.
      */
     @RequestMapping(value="/admin/projects/new", method = RequestMethod.GET)
-    public String addProject(Model model){
+    public String addProject(Model model) {
         model.addAttribute("project", new Project());
         return "projects/createOrUpdateProject";
     }
@@ -152,7 +150,7 @@ public class ProjectController {
     @RequestMapping(value="/admin/projects/new", method = RequestMethod.POST)
     public String processAddProject(@Valid Project project,
                                     BindingResult bindingResult,
-                                    Model model){
+                                    Model model) {
         projectValidator.validate(project, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("project", project);
@@ -189,7 +187,7 @@ public class ProjectController {
      * deleting a <code>Project</code> from the data store.
      */
     @RequestMapping(value = "/admin/projects/{projectId}/delete", method = RequestMethod.POST)
-    public String deleteProject(@PathVariable("projectId") int projectId){
+    public String deleteProject(@PathVariable("projectId") int projectId) {
         this.firmManagerService.removeProject(projectId);
         return "redirect:/projects";
     }
@@ -200,7 +198,7 @@ public class ProjectController {
      */
     @RequestMapping(value="/admin/projects/{projectId}/employees/{employeeId}/detach", method = RequestMethod.POST)
     public String processDetachEmployee(@PathVariable("projectId") int projectId,
-                                        @PathVariable("employeeId") int employeeId){
+                                        @PathVariable("employeeId") int employeeId) {
         this.firmManagerService.detachEmployeeFromProject(projectId, employeeId);
         return "redirect:/projects/{projectId}";
     }
@@ -211,7 +209,7 @@ public class ProjectController {
      */
     @RequestMapping(value="/admin/projects/{projectId}/employees/{employeeId}/attach", method = RequestMethod.POST)
     public String processAttachEmployee(@PathVariable("projectId") int projectId,
-                                        @PathVariable("employeeId") int employeeId){
+                                        @PathVariable("employeeId") int employeeId) {
         this.firmManagerService.attachEmployeeToProject(projectId, employeeId);
         return "redirect:/admin/projects/{projectId}/employees/attach";
     }
@@ -221,7 +219,7 @@ public class ProjectController {
      * <code>Project</code> to attach <code>Employee</code>s to that <code>Project</code>.
      */
     @RequestMapping(value="/admin/projects/{projectId}/employees/attach", method = RequestMethod.GET)
-    public String initAttachEmployee(@PathVariable("projectId") int projectId, Model model){
+    public String initAttachEmployee(@PathVariable("projectId") int projectId, Model model) {
         model.addAttribute("project", this.firmManagerService.findProjectById(projectId));
         List<Employee> selections = this.firmManagerService.findEmployeesUnrelatedWithProject(projectId);
         Collections.sort(selections);

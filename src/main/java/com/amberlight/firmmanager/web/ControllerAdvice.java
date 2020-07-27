@@ -20,7 +20,7 @@ public class ControllerAdvice {
 
     @ModelAttribute("currentUser")
     public User getCurrentUser() {
-        try{
+        try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String currentUserUsername = auth.getName();
             return this.userService.findUserByUserNameFetchEmployee(currentUserUsername);

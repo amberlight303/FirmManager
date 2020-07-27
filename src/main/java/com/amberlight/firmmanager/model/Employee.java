@@ -214,25 +214,25 @@ public class Employee extends Person implements Comparable<Employee> {
         this.user = user;
     }
 
-    protected Set<Project> getProjectsInternal(){
-        if(this.projects == null){
+    protected Set<Project> getProjectsInternal() {
+        if (this.projects == null) {
             this.projects = new HashSet<>();
         }
         return this.projects;
     }
 
 
-    protected void setProjectsInternal(Set<Project> projects){
+    protected void setProjectsInternal(Set<Project> projects) {
         this.projects = projects;
     }
 
-    public List<Project> getProjects(){
+    public List<Project> getProjects() {
         List<Project> projects = new ArrayList<>(getProjectsInternal());
         Collections.sort(projects);
         return projects;
     }
 
-    public void addProject(Project project){
+    public void addProject(Project project) {
         getProjectsInternal().add(project);
         project.addEmployee(this);
     }

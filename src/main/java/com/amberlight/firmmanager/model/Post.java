@@ -118,12 +118,12 @@ public class Post extends BaseEntity {
         this.content = content;
     }
 
-    protected Set<Comment> getCommentsInternal(){
-        if(this.comments == null) return new HashSet<>();
+    protected Set<Comment> getCommentsInternal() {
+        if (this.comments == null) return new HashSet<>();
         return this.comments;
     }
 
-    protected void setCommentsInternal(Set<Comment> comments){
+    protected void setCommentsInternal(Set<Comment> comments) {
         this.comments = comments;
     }
 
@@ -133,7 +133,7 @@ public class Post extends BaseEntity {
         return Collections.unmodifiableList(sortedComments);
     }
 
-    public void addComment(Comment comment){
+    public void addComment(Comment comment) {
         getCommentsInternal().add(comment);
         comment.setPost(this);
     }

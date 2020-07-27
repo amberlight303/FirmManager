@@ -101,26 +101,26 @@ public class Project extends NamedEntity implements Comparable<Project> {
         this.projectObjective = projectObjective;
     }
 
-    protected Set<Employee> getEmployeesInternal(){
-        if(this.employees == null){
+    protected Set<Employee> getEmployeesInternal() {
+        if (this.employees == null) {
             this.employees = new HashSet<>();
         }
         return this.employees;
     }
 
 
-    protected void setEmployeesInternal(Set<Employee> employees){
+    protected void setEmployeesInternal(Set<Employee> employees) {
         this.employees = employees;
     }
 
 
-    public List<Employee> getEmployees(){
+    public List<Employee> getEmployees() {
         List<Employee> employees = new ArrayList<>(getEmployeesInternal());
         Collections.sort(employees);
         return employees;
     }
 
-    public void addEmployee(Employee employee){
+    public void addEmployee(Employee employee) {
         getEmployeesInternal().add(employee);
         employee.addProject(this);
     }

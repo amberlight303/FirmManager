@@ -16,7 +16,7 @@ public class FilesAnalyzer {
     public boolean doDirectoryHaveFile(String targetFileName, File directory)
     {
         File[] list = directory.listFiles();
-        if(list!=null)
+        if (list!=null)
 
             for (File file : list)
             {

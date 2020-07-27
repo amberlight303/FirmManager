@@ -128,30 +128,15 @@ public class JpaEmployeeDaoImpl implements EmployeeDao {
     }
 
     @Override
-    public void updateExperience(long experience, int employeeId) {
-        Query query = this.em.createNativeQuery("UPDATE employees SET experience = ? WHERE id = ?");
-        query.setParameter(1, experience);
-        query.setParameter(2, employeeId);
-        query.executeUpdate();
-    }
-
-    @Override
-    public void updateAge(long age, int employeeId) {
-        Query query = this.em.createNativeQuery("UPDATE employees SET age = ? WHERE id = ?");
-        query.setParameter(1, age);
-        query.setParameter(2, employeeId);
-        query.executeUpdate();
-    }
-
-    @Override
     public void updateEmployeePhoto(String filename, int employeeId) {
         Query query = this.em.createNativeQuery("UPDATE employees SET photo_filename = ? WHERE id = ?");
         query.setParameter(1, filename);
         query.setParameter(2, employeeId);
         query.executeUpdate();
     }
+
     @Override
-    public Employee findEmployeeByIdFetchProjectsAndUser(int id){
+    public Employee findEmployeeByIdFetchProjectsAndUser(int id) {
 
             Query query = this.em.createQuery("SELECT employee FROM Employee employee " +
                     "LEFT JOIN FETCH employee.projects LEFT JOIN FETCH employee.user WHERE employee.id = :id");
@@ -175,7 +160,6 @@ public class JpaEmployeeDaoImpl implements EmployeeDao {
             return null;
         }
     }
-
 
     @Override
     public String toString() {

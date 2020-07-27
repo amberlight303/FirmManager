@@ -31,15 +31,15 @@ public class UserValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "Required");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "confirmPassword", "Required");
         char[] chars = user.getFirstName().toCharArray();
-        for(char c: chars){
-            if(!Character.isLetter(c)){
+        for(char c: chars) {
+            if (!Character.isLetter(c)) {
                 errors.rejectValue("firstName", "Characters.onlyLetters");
                 break;
             }
         }
         chars = user.getLastName().toCharArray();
-        for(char c: chars){
-            if(!Character.isLetter(c)){
+        for(char c: chars) {
+            if (!Character.isLetter(c)) {
                 errors.rejectValue("lastName", "Characters.onlyLetters");
                 break;
             }

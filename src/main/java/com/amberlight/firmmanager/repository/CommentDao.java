@@ -22,4 +22,5 @@ public interface CommentDao {
      * @throws DataAccessException
      */
     void deleteCommentsByUserId(int userId) throws DataAccessException;
+
 }

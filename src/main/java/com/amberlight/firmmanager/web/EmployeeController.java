@@ -69,12 +69,10 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/employees", method = RequestMethod.GET)
     public String initFindEmployeesForm(Model model) {
-        //initiation of a search form for employees
         model.addAttribute("employee", new Employee());
-        //get a list of all employees with actual data (age and exp)
         List<Employee> employees = this.firmManagerService.findAllEmployees();
         Collections.sort(employees);
-        employees.forEach(employee -> {
+        employees.forEach( employee -> {
             employee.setAge(((System.currentTimeMillis() - employee.getBirthDate().getTime()) / (1000 * 60 * 60 * 24)) / 365);
             employee.setExperience(((System.currentTimeMillis() - employee.getHireDate().getTime()) / (1000 * 60 * 60 * 24)) / 365.0);
         });
@@ -89,23 +87,18 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/employees/find", method = RequestMethod.GET)
     public String processFindEmployeesForm(Employee employee/*, BindingResult result*/, Map<String, Object> model) {
-        //get a last name from search form to do search
         if (employee.getLastName() == null) {
-            //empty string signifies broadest possible search
             employee.setLastName("");
         }
-        //get a working position from search form to do search
         if (employee.getWorkingPosition().getName() == null) {
-            //empty string signifies broadest possible search
             employee.getWorkingPosition().setName("");
         }
-        //get collection of matching search criteria employees
         Collection<Employee> result = this.firmManagerService
                 .findEmployeeByLastNameAndWorkingPosition(
                         employee.getLastName(),
                         employee.getWorkingPosition().getName()
                 );
-        result.forEach(e -> {
+        result.forEach( e -> {
             e.setAge(((System.currentTimeMillis() - e.getBirthDate().getTime()) / (1000 * 60 * 60 * 24)) / 365);
             e.setExperience(((System.currentTimeMillis() - e.getHireDate().getTime()) / (1000 * 60 * 60 * 24)) / 365.0);
         });
@@ -118,14 +111,11 @@ public class EmployeeController {
      */
     @RequestMapping(value = "/employees/{employeeId}", method = RequestMethod.GET)
     public String showEmployee(@PathVariable("employeeId") int employeeId, Model model, HttpServletRequest request) {
-        //get an employee to show in the page
         Employee employee = this.firmManagerService.findEmployeeByIdFetchProjectsAndUser(employeeId);
-        if(employee == null){
+        if (employee == null) {
             return "test/oops";
         }
-        //if employee has no photo, send in model default noPhoto image for displaying
-        //otherwise send an employee's photo's file name
-        if(employee.getPhotoFileName()==null){
+        if (employee.getPhotoFileName()==null) {
             model.addAttribute("emptyPhotoName", "noPhoto.png");
         } else {
             model.addAttribute("photoName", "employeesPhotos"
@@ -145,10 +135,10 @@ public class EmployeeController {
     public String initUpdateEmployeeForm(@PathVariable("employeeId") int employeeId,
                                          ModelMap model) {
         Employee employee = this.firmManagerService.findEmployeeById(employeeId);
-        if(employee == null){
+        if (employee == null) {
             return "test/oops";
         }
-        if(employee.getPhotoFileName()==null){
+        if (employee.getPhotoFileName()==null) {
             model.addAttribute("emptyPhotoName", "noPhoto.png");
         } else {
             model.addAttribute("photoName", "employeesPhotos"
@@ -171,7 +161,7 @@ public class EmployeeController {
         employeeValidator.validate(employee, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("employee", employee);
-            if(employee.getPhotoFileName()==null){
+            if (employee.getPhotoFileName()==null) {
                 model.addAttribute("emptyPhotoName", "noPhoto.png");
             } else {
                 model.addAttribute("photoName", "employeesPhotos"
@@ -187,18 +177,15 @@ public class EmployeeController {
         employee.getWorkingPosition().setName(workingPosition.getName());
         employee.getGender().setName(gender.getName());
         Set<Project> projectSet = new HashSet<>();
-        // Add to the submitted Employee all projects by fetching them from the data store
         projectSet.addAll(this.firmManagerService.findEmployeeByIdFetchProjectsAndUser(employeeId).getProjects());
         employee.setProjects(projectSet);
-        // If was uploaded an Employee's photo
         if (!employee.getImage().isEmpty()) {
             try {
                 byte[] bytes = employee.getImage().getBytes();
                 String rootPath = this.uploadRootPath
                         + File.separator
                         + "employeesPhotos";
-                //delete the old employee's photo if it is
-                if(employee.getOldEmplPhotoName()!=null){
+                if (employee.getOldEmplPhotoName()!=null) {
                     File oldPostPhoto = new File(rootPath + File.separator + employee.getOldEmplPhotoName());
                     oldPostPhoto.delete();
                 }
@@ -209,13 +196,10 @@ public class EmployeeController {
                 File newServerFile;
                 String fileName;
                 String fullFileName;
-                // Files analyzer for inspection of saving directory for
-                // existence of duplicates of a just generated photo's file name
                 FilesAnalyzer filesAnalyzer = new FilesAnalyzer();
-                // Create a new File until its name will be unique in the directory
                 do {
                     fileName = randomStringCreator.getRandomString(7);
-                    fullFileName = fileName+ "." + FilenameUtils.getExtension(employee.getImage().getOriginalFilename());
+                    fullFileName = fileName + "." + FilenameUtils.getExtension(employee.getImage().getOriginalFilename());
                     newServerFile = new File(directory.getAbsolutePath()
                             + File.separator + fullFileName);
                 } while (filesAnalyzer.doDirectoryHaveFile(
@@ -231,10 +215,8 @@ public class EmployeeController {
                 return "test/oops";
             }
         } else {
-            // If new photo image has not been uploaded, set employee's photo file name with old value
             employee.setPhotoFileName(this.firmManagerService.findEmployeeById(employeeId).getPhotoFileName());
         }
-        // Get rid of MultipartFile in the memory
         employee.setImage(null);
         this.firmManagerService.saveEmployee(employee);
         return "redirect:/employees/{employeeId}";
@@ -248,20 +230,11 @@ public class EmployeeController {
      *                 created from the previous registration page.
      */
     @RequestMapping(value="/admin/employees/new", method = RequestMethod.GET)
-    public String addEmployee(Model model,
-                              //passed as a redirect flash attribute
-                              @ModelAttribute("userForm") User userForm){
-        // If registration is processing and userForm
-        // has passed from the previous registration form
-        if(userForm.getUsername() != null) {
-            //initiate employee's creation form
+    public String addEmployee(Model model, @ModelAttribute("userForm") User userForm ) {
+        if (userForm != null && userForm.getUsername() != null) {
             Employee employee = new Employee();
-            //set first name of a new employee with first name
-            // of a user that would be attached with this new employee after a submitting the form
             employee.setFirstName(userForm.getFirstName());
-            //set last name of a new employee with last name of the user
             employee.setLastName(userForm.getLastName());
-            //set employee's userId field to attach the user with this employee
             employee.setUserIdToAttachWithEmpl(userForm.getId());
             model.addAttribute("emptyPhotoName", "noPhoto.png");
             model.addAttribute("employee", employee);
@@ -284,7 +257,7 @@ public class EmployeeController {
     @RequestMapping(value="/admin/employees/new", method = RequestMethod.POST)
     public String processAddEmployee(@Valid Employee employee,
                                      BindingResult bindingResult,
-                                     Model model){
+                                     Model model) {
         employeeValidator.validate(employee, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("employee", employee);
@@ -303,7 +276,7 @@ public class EmployeeController {
                 String rootPath = this.uploadRootPath
                         + File.separator
                         + "employeesPhotos";
-                if(employee.getOldEmplPhotoName()!=null){
+                if (employee.getOldEmplPhotoName()!=null) {
                     File oldPostPhoto = new File(rootPath + File.separator + employee.getOldEmplPhotoName());
                     oldPostPhoto.delete();
                 }
@@ -314,29 +287,21 @@ public class EmployeeController {
                 File newServerFile;
                 String fileName;
                 String fullFileName;
-                // Duplicates control
                 FilesAnalyzer filesAnalyzer = new FilesAnalyzer();
-                //create a new File until its name will be unique in the directory
                 do{
                     fileName = randomStringCreator.getRandomString(7);
                     fullFileName = fileName+ "." + FilenameUtils.getExtension(employee.getImage().getOriginalFilename());
                     newServerFile = new File(directory.getAbsolutePath()
                             + File.separator + fullFileName);
-                } while (filesAnalyzer.doDirectoryHaveFile(
-                        fullFileName,
-                        directory));
+                } while (filesAnalyzer.doDirectoryHaveFile(fullFileName, directory));
                 BufferedOutputStream stream = new BufferedOutputStream(
                         new FileOutputStream(newServerFile));
                 stream.write(bytes);
                 stream.close();
                 employee.setPhotoFileName(fullFileName);
-                // Get rid of the MultipartFile (image)
                 employee.setImage(null);
                 this.firmManagerService.saveEmployee(employee);
-                //if registration is processing and an employee
-                // has an id of user to bind with each other
-                if (employee.getUserIdToAttachWithEmpl() != 0){
-                    //attach the User to the Employee
+                if (employee.getUserIdToAttachWithEmpl() != 0) {
                     this.userService.attachUserToEmployee(employee.getUserIdToAttachWithEmpl(), employee.getId());
                 }
                 return "redirect:/employees/" + employee.getId();
@@ -346,10 +311,7 @@ public class EmployeeController {
             }
         }
         this.firmManagerService.saveEmployee(employee);
-        //if registration is processing and an employee
-        // has an id of user to bind with each other
-        if (employee.getUserIdToAttachWithEmpl() != 0){
-            //attach the User to the Employee
+        if (employee.getUserIdToAttachWithEmpl() != 0) {
             this.userService.attachUserToEmployee(employee.getUserIdToAttachWithEmpl(), employee.getId());
         }
         return "redirect:/employees/" + employee.getId();
@@ -360,25 +322,21 @@ public class EmployeeController {
      * deleting an <code>Employee</code> from the data store.
      */
     @RequestMapping(value = "/admin/employees/{employeeId}/delete", method = RequestMethod.POST)
-    public String deleteEmployee(@PathVariable("employeeId") int employeeId){
+    public String deleteEmployee(@PathVariable("employeeId") int employeeId) {
         Employee employee = this.firmManagerService.findEmployeeByIdFetchUser(employeeId);
-        if(employee == null) return "test/oops";
-        //if an employee has photo, delete it
-        if(employee.getPhotoFileName()!=null){
+        if (employee == null) return "test/oops";
+        if (employee.getPhotoFileName() != null) {
             File photoLocation = new File(this.uploadRootPath
                     + File.separator + "employeesPhotos" + File.separator + employee.getPhotoFileName());
             photoLocation.delete();
         }
-        if(employee.getUser() != null) {
+        if (employee.getUser() != null) {
             this.firmManagerService.deleteCommentsByUserId(employee.getUser().getId());
         }
-        //if an employee is bound with some user, delete the user
-        if(employee.getUser()!=null){
+        if (employee.getUser() != null) {
             this.firmManagerService.deleteUserByUserId(employee.getUser().getId());
         }
-        //delete an employee
         this.firmManagerService.removeEmployee(employeeId);
-
         return "redirect:/employees";
     }
 
@@ -388,7 +346,7 @@ public class EmployeeController {
      */
     @RequestMapping(value="/admin/employees/{employeeId}/projects/{projectId}/detach", method = RequestMethod.POST)
     public String processDetachProject(@PathVariable("projectId") int projectId,
-                                        @PathVariable("employeeId") int employeeId){
+                                        @PathVariable("employeeId") int employeeId) {
 
         this.firmManagerService.detachProjectFromEmployee(projectId, employeeId);
         return "redirect:/employees/{employeeId}";
@@ -400,7 +358,7 @@ public class EmployeeController {
      */
     @RequestMapping(value="/admin/employees/{employeeId}/projects/{projectId}/attach", method = RequestMethod.POST)
     public String processAttachProject(@PathVariable("projectId") int projectId,
-                                        @PathVariable("employeeId") int employeeId){
+                                        @PathVariable("employeeId") int employeeId) {
 
         this.firmManagerService.attachProjectToEmployee(projectId, employeeId);
         return "redirect:/admin/employees/{employeeId}/projects/attach";
@@ -437,10 +395,10 @@ public class EmployeeController {
     public String processDownloadEmplPhoto(@PathVariable("employeeId") int employeeId,
                                          HttpServletResponse response) throws IOException {
         Employee employee = this.firmManagerService.findEmployeeById(employeeId);
-        if(employee.getPhotoFileName() == null) return "test/oops";
+        if (employee.getPhotoFileName() == null) return "test/oops";
             File photoInFilesSystem = new File(this.uploadRootPath + File.separator +
                     "employeesPhotos" + File.separator + employee.getPhotoFileName());
-        if(!photoInFilesSystem.exists()) {
+        if (!photoInFilesSystem.exists()) {
             return "test/oops";
         }
         InputStream inputStream = FileUtils.openInputStream(photoInFilesSystem);

@@ -43,8 +43,7 @@ public class PostController{
      * adding a <code>Post</code> to the data store.
      */
     @RequestMapping(value = "/admin/posts/addPost", method = RequestMethod.POST)
-    public String addPost(Post post){
-        // If an Post's main image uploaded
+    public String addPost(Post post) {
         if (!post.getImage().isEmpty()) {
             try {
                 byte[] bytes = post.getImage().getBytes();
@@ -63,7 +62,6 @@ public class PostController{
                 do{
                     fileName = randomStringCreator.getRandomString(7);
                     fullFileName = fileName+ "." + FilenameUtils.getExtension(post.getImage().getOriginalFilename());
-                    // Create the file on server
                     newServerFile = new File(directory.getAbsolutePath()
                             + File.separator + fullFileName);
                 } while (filesAnalyzer.doDirectoryHaveFile(
@@ -88,7 +86,7 @@ public class PostController{
      * Handling GET request for getting form for adding a <code>Post</code>.
      */
     @RequestMapping(value = "/admin/posts/addPost", method = RequestMethod.GET)
-    public String initAddPostForm(Model model){
+    public String initAddPostForm(Model model) {
         model.addAttribute("post", new Post());
         return "posts/createOrUpdatePost";
     }
@@ -107,7 +105,7 @@ public class PostController{
                 String rootPath = this.uploadRootPath
                         + File.separator
                         + "postsImages";
-                if(post.getOldPostImgName()!=null){
+                if (post.getOldPostImgName()!=null) {
                     File oldPostPhoto = new File(rootPath + File.separator + post.getOldPostImgName());
                     oldPostPhoto.delete();
                 }
@@ -137,8 +135,6 @@ public class PostController{
                 return "test/oops";
             }
         } else {
-            //if new post's main image has not been uploaded,
-            // set post's image file name with old value
             post.setImageFileName(this.firmManagerService.findPostById(postId).getImageFileName());
         }
         post.setPostDate(dbPost.getPostDate());
@@ -152,8 +148,7 @@ public class PostController{
      * Handling GET request for getting form for editing <code>Post</code>.
      */
     @RequestMapping(value = "/admin/posts/{postId}/editPost", method = RequestMethod.GET)
-    public String initEditPostForm(Model model, @PathVariable("postId") int postId){
-        //get post for initiation a post's edit form
+    public String initEditPostForm(Model model, @PathVariable("postId") int postId) {
         model.addAttribute("post", this.firmManagerService.findPostById(postId));
         return "posts/createOrUpdatePost";
     }
@@ -162,12 +157,10 @@ public class PostController{
      * Handling GET request for showing a particular <code>Post</code> with details.
      */
     @RequestMapping(value = "/posts/{postId}", method = RequestMethod.GET)
-    public String showPost(@PathVariable int postId, Model model){
-        //get post with comments
+    public String showPost(@PathVariable int postId, Model model) {
         Post post = this.firmManagerService.findPostByIdFetchComments(postId);
         if (post == null) return "test/oops";
         model.addAttribute("post", post);
-        //initiation of a comment's add form
         model.addAttribute("comment", new Comment());
         return "posts/post";
     }
@@ -176,23 +169,18 @@ public class PostController{
      * Handling GET request for getting a certain page of posts.
      */
     @RequestMapping(value = "/page/{page}", method = RequestMethod.GET)
-    public String showPage(@PathVariable("page") int page, Model model){
+    public String showPage(@PathVariable("page") int page, Model model) {
         long numberOfPages = 0;
-        long numberOfPosts = this.firmManagerService.countPosts();
-        if(numberOfPosts != 0){
-            //5 is number of posts per one page
-            //a number of pages depends on a number of posts
-            if(numberOfPosts % 5 == 0){
-                numberOfPages = numberOfPosts/5;
+        long numberOfPostsPerPage = this.firmManagerService.countPosts();
+        if (numberOfPostsPerPage != 0) {
+            if (numberOfPostsPerPage % 5 == 0) {
+                numberOfPages = numberOfPostsPerPage/5;
             } else {
-                numberOfPages = numberOfPosts/5+1;
+                numberOfPages = numberOfPostsPerPage/5+1;
             }
-            //url exceptional input control
             if (page>numberOfPages || page < 0 || page == 0) return "test/oops";
-            //get a list of posts for a particular page
-            List<Post> posts = this.firmManagerService.findPosts(page,(int) numberOfPosts);
+            List<Post> posts = this.firmManagerService.findPosts(page,(int) numberOfPostsPerPage);
             model.addAttribute("posts", posts);
-            //model attributes below are for displaying the page navigation element
             model.addAttribute("pagesOnTheLeft", page-1);
             model.addAttribute("pagesOnTheRight", numberOfPages-page);
             model.addAttribute("currentPage", page);
@@ -206,9 +194,9 @@ public class PostController{
      * Handling POST request for deleting <code>Post</code>.
      */
     @RequestMapping(value = "/admin/posts/{postId}/deletePost", method = RequestMethod.POST)
-    public String processDeletePost(@PathVariable("postId") int postId){
+    public String processDeletePost(@PathVariable("postId") int postId) {
         Post post = this.firmManagerService.findPostById(postId);
-        if(post.getImageFileName()!=null){
+        if (post.getImageFileName()!=null) {
             File imgLocation = new File(this.uploadRootPath
                     + File.separator + "postsImages" + File.separator + post.getImageFileName());
             imgLocation.delete();
@@ -226,9 +214,8 @@ public class PostController{
         Post post = this.firmManagerService.findPostById(postId);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String currentUserUsername = auth.getName();
-        //get current user
         User user = userService.findByUsername(currentUserUsername);
-        if(this.firmManagerService.didUserLikePost(postId, user.getId())) {
+        if (this.firmManagerService.didUserLikePost(postId, user.getId())) {
             this.firmManagerService.removeLikeFromPostByUserId(user.getId(), postId);
             post.setAmountOfLikes(post.getAmountOfLikes() - 1);
         } else {

@@ -1,3 +1,7 @@
+.colors-expl-item {
+    display: inline-block;
+}
+
 .menu-wrapper {
     height: 65px;
 }
@@ -350,19 +354,19 @@ td > hr {
 }
 
 .prj-in-progress {
-    color: #00c41a;
+    color: #3ccc65;
 }
 
 .prj-overdue {
-    color: #e82200;
+    color: #e86034;
 }
 
 .prj-inactive {
-    color: #ff8800;
+    color: #00d8d7;
 }
 
 .prj-complete {
-    color: #aa00d1;
+    color: #9752d1;
 }
 
 .empl-fired {

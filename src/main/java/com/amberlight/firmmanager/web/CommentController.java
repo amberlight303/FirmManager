@@ -39,17 +39,11 @@ public class CommentController {
         Date date = new Date();
         comment.setCommentDate(date);
         Post post = this.firmManagerService.findPostById(postId);
-        //attach comment to the post
         comment.setPost(post);
         String currentUserUsername = principal.getName();
-        //get current user
         User user = userService.findByUsername(currentUserUsername);
-        //set comment's author with the User
         comment.setUserAuthor(user);
-        String commentText = comment.getText();
-        commentText = commentText.replaceAll("<","&lt;");
-        commentText = commentText.replaceAll(">","&gt;");
-        commentText = comment.getText().replaceAll("\n", "<br>");
+        String commentText = comment.getText().replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n", "<br>");
         comment.setText(commentText);
         this.firmManagerService.saveComment(comment);
         return comment;

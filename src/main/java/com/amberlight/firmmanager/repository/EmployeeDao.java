@@ -131,21 +131,6 @@ public interface EmployeeDao {
      */
     List<Employee> findAllEmployees()  throws DataAccessException;
 
-    /**
-     * Update an experience field of <code>Employee</code> in the data store.
-     * @param experience the value of the experience
-     * @param employeeId the id to search for
-     * @throws DataAccessException
-     */
-    void updateExperience(long experience, int employeeId) throws DataAccessException;
-
-    /**
-     * Update an age field of <code>Employee</code> in the data store.
-     * @param age the value of the age
-     * @param employeeId the id to search for
-     * @throws DataAccessException
-     */
-    void updateAge(long age, int employeeId) throws DataAccessException;
 
     /**
      * Update a file name of <code>Employee</code>'s photo in the data store.
