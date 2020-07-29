@@ -4,6 +4,7 @@ import com.amberlight.firmmanager.model.Like;
 import org.springframework.dao.DataAccessException;
 
 /**
+ * A repository interface for objects of a {@link Like} class.
  */
 public interface LikeDao {
     /**

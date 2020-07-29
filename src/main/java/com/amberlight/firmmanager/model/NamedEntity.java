@@ -4,8 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 /**
- * Simple JavaBean object representing a named entity. Used as a base class for objects
- * needing name property.
+ * A simple JavaBean object representing a named entity.
+ * Used as a base class for objects needing name property.
  */
 @MappedSuperclass
 public class NamedEntity extends BaseEntity {

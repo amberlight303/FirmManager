@@ -13,7 +13,7 @@
     <div class="content-inner">
         <h1 align="center">User Information</h1>
         <div class="table-back">
-            <table class="table table-striped table-bordered footable">
+            <table class="table table-striped footable">
                 <tr>
                     <th>Name</th>
                     <td><b><c:out value="${user.firstName} ${user.lastName}"/></b></td>

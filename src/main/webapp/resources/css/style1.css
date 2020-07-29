@@ -1,3 +1,11 @@
+a {
+    color: #007be6;
+}
+
+table > thead > tr > th {
+    vertical-align: middle;
+}
+
 .colors-expl-item {
     display: inline-block;
 }
@@ -21,13 +29,18 @@
 }
 
 .content {
-    background-color: #eeeeee;
-    border-radius: 8px;
+    /*background-color: #eeeeeecc;*/
+    /*border-radius: 10px;*/
 }
 
 
 .wrapper {
-    background-color: #f5f5f5
+    /*background-color: #f5f5f5*/
+    height: 100%;
+    background-image: url(/resources/images/wrapper_background.svg);
+    -o-background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+    background-size:cover;
 }
 
 p {
@@ -58,7 +71,7 @@ p {
 
 .content-inner {
     border: 1px #C9C9C9 solid;
-    background-color: #e8e8e8;
+    background-color: #eaeaea94;
     width: 60%;
     min-height: 85vh;
     float: left;
@@ -226,7 +239,7 @@ body#menu-admin #menu-admin {
 }
 
 .time {
-    font-size: 10px;
+    font-size: 11px;
 }
 
 .post-title-time {
@@ -287,18 +300,16 @@ td, th {
 
 }
 
-
-
 .hidden-default {
     display: none;
 }
 
 .table-back {
-    background-color: #F0F0F0;
+    background-color: #eaeaea75;
 }
 
 .search-wrapper {
-    background-color: #F0F0F0;
+    background-color: #eaeaea75;
     padding: 2%;
 }
 
@@ -366,7 +377,7 @@ td > hr {
 }
 
 .prj-complete {
-    color: #9752d1;
+    color: #e2d000;
 }
 
 .empl-fired {
@@ -451,6 +462,14 @@ li .logout:hover {
 /*SMARTPHONES*/
 @media (max-width: 480px) {
 
+    .wrapper {
+        background-color: #f5f5f5;
+        height: auto;
+        background-image: none;
+        -o-background-size: auto;
+        -webkit-background-size: auto;
+        background-size: auto;
+    }
 
     .login-logo {
         width: 90%;
@@ -601,6 +620,16 @@ li .logout:hover {
 }
 
 @media (min-width: 481px) and (max-width: 768px) {
+
+    .wrapper {
+        background-color: #f5f5f5;
+        height: auto;
+        background-image: none;
+        -o-background-size: auto;
+        -webkit-background-size: auto;
+        background-size: auto;
+    }
+
     .content-inner {
         width: 90%;
         margin: 1% 5%;
@@ -614,6 +643,16 @@ li .logout:hover {
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
+
+    .wrapper {
+        background-color: #f5f5f5;
+        height: auto;
+        background-image: none;
+        -o-background-size: auto;
+        -webkit-background-size: auto;
+        background-size: auto;
+    }
+
     .extend-table {
         display: table-cell;
         visibility: visible;

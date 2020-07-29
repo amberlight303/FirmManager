@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * Simple JavaBean object representing a gender of {@link Employee}.
+ * A simple JavaBean object representing a gender of {@link Employee}.
  */
 @Entity
 @Table(name = "genders")

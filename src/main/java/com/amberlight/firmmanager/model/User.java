@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 /**
- * Simple JavaBean object that represents a User.
+ * A simple JavaBean object that represents a User.
  */
 
 @Entity

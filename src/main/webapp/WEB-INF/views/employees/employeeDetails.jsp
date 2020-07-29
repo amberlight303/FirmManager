@@ -29,7 +29,7 @@
             </c:otherwise>
         </c:choose>
         <div class="table-back">
-            <table class="table table-striped table-bordered footable">
+            <table class="table table-striped footable">
                 <tr>
                     <th>Name</th>
                     <td>
@@ -37,7 +37,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>Working Position</th>
+                    <th>Position</th>
                     <td><c:out value="${employee.workingPosition.name}"/></td>
                 </tr>
                 <tr>
@@ -114,7 +114,7 @@
         </sec:authorize>
         <h2 align="center">Projects attached to the employee</h2>
         <div class="table-back">
-            <table class="table table-striped table-bordered footable">
+            <table class="table table-striped footable">
                 <thead>
                 <tr>
                     <th class="extend-table">

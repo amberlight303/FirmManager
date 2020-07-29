@@ -3,7 +3,7 @@ package com.amberlight.firmmanager.util;
 import java.util.Random;
 
 /**
- * An accessory class for creating random strings with different size.
+ * A util class for creating random strings with different sizes.
  */
 public class RandomStringCreator {
 

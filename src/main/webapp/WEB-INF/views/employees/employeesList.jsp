@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <div class="control-group" id="projectObjective.name">
-                        <label class="col-sm-2 control-label">Working Position </label>
+                        <label class="col-sm-2 control-label">Position </label>
                         <div class="col-sm-10">
                             <form:select class="form-control" path="workingPosition.name" size="1">
                                 <form:option value=""> </form:option>
@@ -43,6 +43,7 @@
             </form:form>
         </div>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
+            <br>
             <a href="/admin/employees/new" class="btn btn-default add-empl-btn">Add Employee</a>
             <br>
         </sec:authorize>
@@ -54,12 +55,12 @@
                 <div class="colors-expl-item prj-overdue colored-square">&#9632; - Overdue</div>
                 <div class="colors-expl-item empl-fired colored-square">&#9632; - Fired</div>
             </div>
-            <table class="table table-striped table-bordered footable">
+            <table class="table table-striped footable">
                 <thead>
                     <tr>
                         <th class="extend-table"><span class="glyphicon glyphicon-plus"></span></th>
                         <th>Name</th>
-                        <th>Working Position</th>
+                        <th>Position</th>
                         <th data-title="Experience" data-breakpoints="xs sm md">Experience</th>
                         <th data-title="Age" data-breakpoints="xs sm md">Age</th>
                         <th data-title="Gender" data-breakpoints="xs sm md">Gender</th>

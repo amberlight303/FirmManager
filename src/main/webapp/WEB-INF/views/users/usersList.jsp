@@ -36,16 +36,17 @@
                 </div>
             </form:form>
         </div>
+        <br>
         <a href="${contextPath}/admin/registration" class="btn btn-default btn-center">Registration</a>
         <br>
         <div class="table-back">
-            <table id="employees" class="table table-striped table-bordered footable">
+            <table id="employees" class="table table-striped footable">
                 <thead>
                     <tr>
                         <th class="extend-table"><span class="glyphicon glyphicon-plus"></span></th>
                         <th>Username</th>
                         <th>Name</th>
-                        <th>Attached to the Employee</th>
+                        <th>Attached to Employee</th>
                         <th data-title="Attach to Employee" data-breakpoints="xs sm md">Attach to the Employee</th>
                         <th data-title="Delete" data-breakpoints="xs sm md">Delete</th>
                     </tr>

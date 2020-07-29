@@ -4,7 +4,7 @@ import com.amberlight.firmmanager.model.Comment;
 import org.springframework.dao.DataAccessException;
 
 /**
- * Repository interface for objects of {@link Comment} class.
+ * A repository interface for objects of {@link Comment} class.
  */
 public interface CommentDao {
 

@@ -47,7 +47,6 @@ public class PostController{
         if (!post.getImage().isEmpty()) {
             try {
                 byte[] bytes = post.getImage().getBytes();
-
                 String rootPath = this.uploadRootPath
                         + File.separator
                         + "postsImages";
@@ -227,7 +226,7 @@ public class PostController{
         }
         int numberOfLikes = post.getAmountOfLikes();
         this.firmManagerService.updateAmountOfLikes(postId, numberOfLikes);
-        return ""+numberOfLikes;
+        return String.valueOf(numberOfLikes);
     }
 
     @Override

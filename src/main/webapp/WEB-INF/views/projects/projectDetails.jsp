@@ -13,7 +13,7 @@
     <div class="content-inner">
         <h2 align="center">Project's information</h2>
         <div class="table-back">
-            <table class="table table-striped table-bordered footable">
+            <table class="table table-striped footable">
                 <tr>
                     <th>Name</th>
                     <td>
@@ -93,14 +93,14 @@
         </sec:authorize>
         <h2 align="center">Employees attached to the project</h2>
         <div class="table-back">
-            <table class="table table-striped table-bordered footable">
+            <table class="table table-striped footable">
                     <thead>
                         <tr>
                             <th class="extend-table">
                                 <span class="glyphicon glyphicon-plus"></span>
                             </th>
                             <th>Name</th>
-                            <th>Working Position</th>
+                            <th>Position</th>
                             <th data-title="Experience" data-breakpoints="xs sm md">Experience</th>
                             <th data-title="Age" data-breakpoints="xs sm md">Age</th>
                             <th data-title="Gender" data-breakpoints="xs sm md">Gender</th>

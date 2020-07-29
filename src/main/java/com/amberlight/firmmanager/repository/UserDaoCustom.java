@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Spring Data JPA custom repository interface for objects of {@link Role} class.
+ * A Spring Data JPA custom repository interface for objects of {@link Role} class.
  */
 public interface UserDaoCustom {
 

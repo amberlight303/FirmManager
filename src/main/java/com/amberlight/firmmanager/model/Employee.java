@@ -10,7 +10,7 @@ import javax.validation.constraints.Digits;
 import java.util.*;
 
 /**
- * Simple JavaBean object representing an employee.
+ * A simple JavaBean object representing an employee.
  */
 @Entity
 @Table(name = "employees")

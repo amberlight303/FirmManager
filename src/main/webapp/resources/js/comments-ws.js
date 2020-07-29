@@ -3,7 +3,7 @@ console.log("CONTEXT PATH IS: "+contextPath);
 function connect() {
     var currentUrl = window.location.pathname;
     var wsEndpointURL;
-    if(currentUrl.indexOf(contextPath + "/")===0 && contextPath !== "/"){
+    if(currentUrl.indexOf(contextPath + "/") === 0 && contextPath !== "/"){
         wsEndpointURL = contextPath + "/stomp-endpoint";
         currentUrl = currentUrl.replace(contextPath, "");
     } else {
@@ -25,7 +25,7 @@ function sendComment() {
     if(currentUrl1.indexOf(contextPath + "/")===0 && contextPath !== "/") {
         currentUrl1 = currentUrl1.replace(contextPath, "");
     }
-    stompClient.send("/app"+currentUrl1+"/addComment", {}, JSON.stringify({'text': $("#comment-textarea").val()}));
+    stompClient.send("/app" + currentUrl1 + "/addComment", {}, JSON.stringify({'text': $("#comment-textarea").val()}));
     document.getElementById("comment-textarea").value = "";
 }
 

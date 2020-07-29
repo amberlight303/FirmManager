@@ -4,8 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 /**
- * Simple JavaBean object representing a person. Used as a base class for objects
- * needing firstName and lastName properties.
+ * A simple JavaBean object representing a person.
+ * Used as a base class for objects needing firstName and lastName properties.
  */
 @MappedSuperclass
 public class Person extends BaseEntity {

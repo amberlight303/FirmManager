@@ -13,7 +13,7 @@ import java.util.Collection;
 import java.util.Map;
 
 /**
- * A controller for administrator panel.
+ * A controller for a administrator panel.
  */
 @Controller
 @RequestMapping("/admin")
@@ -35,6 +35,11 @@ public class AdminController {
         return "users/usersList";
     }
 
+    /**
+     * Handling GET request for getting a users attaching page
+     * @param userId user id
+     * @param model  model
+     */
     @RequestMapping(value = "/users/{userId}/attach", method = RequestMethod.GET)
     public String showAttachUserToEmployee(@PathVariable("userId") int userId, Model model) {
         model.addAttribute("user", this.userService.findUserById(userId));
@@ -43,6 +48,11 @@ public class AdminController {
         return "users/attachUserToEmployee";
     }
 
+    /**
+     * Attaches a user to an employee
+     * @param userId user id
+     * @param employeeId employee id
+     */
     @RequestMapping(value = "/users/{userId}/attach/{employeeId}", method = RequestMethod.POST)
     public String processAttachUserToEmployee(@PathVariable("userId") int userId,
                                               @PathVariable ("employeeId") int employeeId) {
@@ -50,6 +60,12 @@ public class AdminController {
         return "redirect:/users/{userId}";
     }
 
+    /**
+     * Searches employees to attach to user
+     * @param userId user Id
+     * @param employee employee
+     * @param model model
+     */
     @RequestMapping(value = "/users/{userId}/attach/find", method = RequestMethod.GET)
     public String searchEmployeesToAttachToUser(@PathVariable("userId") int userId, @ModelAttribute Employee employee, Model model) {
         model.addAttribute("employees",

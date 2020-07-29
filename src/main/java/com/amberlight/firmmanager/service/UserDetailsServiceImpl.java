@@ -15,10 +15,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Implementation of {@link org.springframework.security.core.userdetails.UserDetailsService} interface.
+ * Implementation of the {@link org.springframework.security.core.userdetails.UserDetailsService} interface.
  */
-
-
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired

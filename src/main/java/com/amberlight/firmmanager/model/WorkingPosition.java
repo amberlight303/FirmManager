@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 /**
- * Simple JavaBean object that represents a working position of {@link Employee}.
+ * A simple JavaBean object that represents a working position of {@link Employee}.
  */
 @Entity
 @Table(name = "working_positions")

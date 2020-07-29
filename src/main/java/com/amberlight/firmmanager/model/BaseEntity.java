@@ -7,8 +7,8 @@ import javax.persistence.MappedSuperclass;
 
 
 /**
- * Simple JavaBean object adds a name property to <code>BaseEntity</code>. Used as a base class for objects
- * needing id property.
+ * A simple JavaBean object that adds a name property to <code>BaseEntity</code>.
+ * Used as a base class for objects needing id property.
  */
 @MappedSuperclass
 public class BaseEntity {

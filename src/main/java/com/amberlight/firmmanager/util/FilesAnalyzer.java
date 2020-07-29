@@ -3,7 +3,7 @@ package com.amberlight.firmmanager.util;
 import java.io.File;
 
 /**
- * An accessory class for searching and analyzing files in a specific directory.
+ * A util class for searching and analyzing files in a specific directory.
  */
 public class FilesAnalyzer {
 

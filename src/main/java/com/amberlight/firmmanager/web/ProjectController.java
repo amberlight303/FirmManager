@@ -30,7 +30,7 @@ public class ProjectController {
     private ProjectValidator projectValidator;
 
     /**
-     * Populate {@link ProjectStatus}es for controllers.
+     * Populate {@link ProjectStatus} list for controllers.
      * In particular for editing <code>Project</code>s.
      * @return a list of <code>ProjectStatus</code>s
      */
@@ -40,7 +40,7 @@ public class ProjectController {
     }
 
     /**
-     * Populate {@link ProjectObjective}s for controllers.
+     * Populate {@link ProjectObjective} list for controllers.
      * In particular for editing <code>Project</code>s.
      * @return a list of <code>ProjectObjective</code>s
      */
@@ -61,7 +61,7 @@ public class ProjectController {
     }
 
     /**
-     * This method will be called on form submission, handling POST request for
+     * This method will be called on a form submission, handling POST request for
      * updating an <code>Project</code> in the data store. It also validates the user input.
      */
     @RequestMapping(value = "/admin/projects/{projectId}/edit", method = RequestMethod.POST)
@@ -81,7 +81,6 @@ public class ProjectController {
         project.getProjectStatus().setName(projectStatus.getName());
         project.getProjectObjective().setName(projectObjective.getName());
         Set<Employee> employeeSet = new HashSet<>();
-        //add to the submitted Project all employees by fetching them from the data store
         employeeSet.addAll(this.firmManagerService.findProjectByIdFetchEmployees(projectId).getEmployees());
         project.setEmployees(employeeSet);
         this.firmManagerService.saveProject(project);
@@ -112,11 +111,9 @@ public class ProjectController {
         if (project.getName() == null) {
             project.setName("");
         }
-
         if (project.getProjectObjective().getName() == null) {
             project.getProjectObjective().setName("");
         }
-
         if (project.getProjectStatus().getName() == null) {
             project.getProjectStatus().setName("");
         }
@@ -126,7 +123,6 @@ public class ProjectController {
                         project.getProjectObjective().getName(),
                         project.getProjectStatus().getName()
                 );
-
         results.forEach( p -> {
             p.setDaysLeft((System.currentTimeMillis() - p.getEndDate().getTime()) / (1000 * 60 * 60 * 24));
         });
@@ -135,7 +131,7 @@ public class ProjectController {
     }
 
     /**
-     * Handling GET request for getting form for creating new <code>Project</code>.
+     * Handling GET request for getting form for creating a new <code>Project</code>.
      */
     @RequestMapping(value="/admin/projects/new", method = RequestMethod.GET)
     public String addProject(Model model) {
@@ -144,7 +140,7 @@ public class ProjectController {
     }
 
     /**
-     * This method will be called on form submission, handling POST request for
+     * This method will be called on a form submission, handling POST request for
      * creating a new <code>Project</code> in the data store.
      */
     @RequestMapping(value="/admin/projects/new", method = RequestMethod.POST)
@@ -193,7 +189,7 @@ public class ProjectController {
     }
 
     /**
-     * Handling POST request for deleting relation
+     * Handling POST request for deleting a relation
      * between certain {@link Project} and {@link Employee}.
      */
     @RequestMapping(value="/admin/projects/{projectId}/employees/{employeeId}/detach", method = RequestMethod.POST)
@@ -204,7 +200,7 @@ public class ProjectController {
     }
 
     /**
-     * Handling POST request for creation relation
+     * Handling POST request for creation a relation
      * between certain {@link Project} and {@link Employee}.
      */
     @RequestMapping(value="/admin/projects/{projectId}/employees/{employeeId}/attach", method = RequestMethod.POST)

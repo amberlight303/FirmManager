@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Repository interface for objects of an {@link Employee} class.
+ * A repository interface for objects of an {@link Employee} class.
  */
 public interface EmployeeDao {
 

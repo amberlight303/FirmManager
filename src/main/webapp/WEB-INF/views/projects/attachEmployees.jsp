@@ -22,12 +22,12 @@
                 <div class="colors-expl-item prj-overdue colored-square">&#9632; - Overdue</div>
                 <div class="colors-expl-item empl-fired colored-square">&#9632; - Fired</div>
             </div>
-            <table id="employees" class="table table-striped table-bordered footable">
+            <table id="employees" class="table table-striped footable">
                 <thead>
                 <tr>
                     <th class="extend-table"><span class="glyphicon glyphicon-plus"></span></th>
                     <th>Name</th>
-                    <th>Working Position</th>
+                    <th>Position</th>
                     <th data-title="Experience" data-breakpoints="xs sm md">Experience</th>
                     <th data-title="Age" data-breakpoints="xs sm md">Age</th>
                     <th data-title="Gender" data-breakpoints="xs sm md">Gender</th>

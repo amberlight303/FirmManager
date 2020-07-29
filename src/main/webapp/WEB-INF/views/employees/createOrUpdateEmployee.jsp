@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label">Working Position</label>
+                    <label class="col-sm-2 control-label">Position</label>
                     <div class="col-sm-10">
                         <form:select class="form-control" path="workingPosition.id">
                             <c:forEach var="workingPosition" items="${workingPositions}">

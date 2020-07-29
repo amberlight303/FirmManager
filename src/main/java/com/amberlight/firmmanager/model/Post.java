@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.util.*;
 
 /**
- * Simple JavaBean object representing a post.
+ * A simple JavaBean object representing a post.
  */
 @Entity
 @Table(name = "posts")

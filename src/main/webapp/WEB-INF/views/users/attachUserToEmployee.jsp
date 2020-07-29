@@ -31,11 +31,11 @@
         </div>
         <h3 align="center">Attach to the user ${user.username} some Employee</h3>
         <div class="table-back">
-        <table id="employees" class="table table-striped table-bordered footable">
+        <table id="employees" class="table table-striped footable">
             <thead>
             <tr>
                 <th>Employee's name</th>
-                <th>Attached with the user</th>
+                <th>Attached to user</th>
                 <th>Attach</th>
             </tr>
             </thead>

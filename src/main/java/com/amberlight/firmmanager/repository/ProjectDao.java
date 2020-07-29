@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Repository interface for objects of {@link Project} class.
+ * A repository interface for objects of {@link Project} class.
  */
 public interface ProjectDao {
 

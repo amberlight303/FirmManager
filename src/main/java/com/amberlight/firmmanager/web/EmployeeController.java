@@ -301,7 +301,7 @@ public class EmployeeController {
                 employee.setPhotoFileName(fullFileName);
                 employee.setImage(null);
                 this.firmManagerService.saveEmployee(employee);
-                if (employee.getUserIdToAttachWithEmpl() != 0) {
+                if (employee.getUserIdToAttachWithEmpl() != null) {
                     this.userService.attachUserToEmployee(employee.getUserIdToAttachWithEmpl(), employee.getId());
                 }
                 return "redirect:/employees/" + employee.getId();
@@ -311,7 +311,7 @@ public class EmployeeController {
             }
         }
         this.firmManagerService.saveEmployee(employee);
-        if (employee.getUserIdToAttachWithEmpl() != 0) {
+        if (employee.getUserIdToAttachWithEmpl() != null) {
             this.userService.attachUserToEmployee(employee.getUserIdToAttachWithEmpl(), employee.getId());
         }
         return "redirect:/employees/" + employee.getId();
@@ -341,7 +341,7 @@ public class EmployeeController {
     }
 
     /**
-     * Handling POST request for deleting relation
+     * Handling POST request for deleting a relation
      * between certain {@link Employee} and {@link Project}.
      */
     @RequestMapping(value="/admin/employees/{employeeId}/projects/{projectId}/detach", method = RequestMethod.POST)
@@ -353,7 +353,7 @@ public class EmployeeController {
     }
 
     /**
-     * Handling POST request for creation relation
+     * Handling POST request for creating a relation
      * between certain {@link Employee} and {@link Project}.
      */
     @RequestMapping(value="/admin/employees/{employeeId}/projects/{projectId}/attach", method = RequestMethod.POST)
@@ -378,7 +378,7 @@ public class EmployeeController {
     }
 
     /**
-     * Handling post request for setting an Employee as fired
+     * Handling post request for setting an employee as fired
      */
     @RequestMapping(value = "/admin/employees/{employeeId}/fire", method = RequestMethod.POST)
     public String processFireEmployee(@PathVariable("employeeId") int employeeId) {

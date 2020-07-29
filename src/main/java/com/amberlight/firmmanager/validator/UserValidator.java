@@ -9,8 +9,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 /**
- * Validator for {@link com.amberlight.firmmanager.model.User} class,
- * implements {@link Validator} interface.
+ * Validator for {@link com.amberlight.firmmanager.model.User} class, implements {@link Validator} interface.
  */
 @Component
 public class UserValidator implements Validator {

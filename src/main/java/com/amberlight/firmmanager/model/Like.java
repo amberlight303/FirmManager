@@ -3,7 +3,7 @@ package com.amberlight.firmmanager.model;
 import javax.persistence.*;
 
 /**
- * Simple JavaBean object representing a comment of {@link Like}.
+ * A simple JavaBean object representing a comment of {@link Like}.
  */
 @Entity
 @Table(name = "likes")

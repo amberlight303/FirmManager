@@ -62,7 +62,9 @@
             </form:form>
         </div>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
-            <a href="${contextPath}/admin/projects/new" class="btn btn-default add-proj-btn">Add Project</a> <br>
+            <br>
+            <a href="${contextPath}/admin/projects/new" class="btn btn-default add-proj-btn">Add Project</a>
+            <br>
         </sec:authorize>
 
         <div class="table-back">
@@ -74,7 +76,7 @@
                 <div class="colors-expl-item empl-fired colored-square">&#9632; - Fired</div>
             </div>
 
-            <table id="projects" class="table table-striped table-bordered footable">
+            <table id="projects" class="table table-striped footable">
                 <thead>
                     <tr>
                         <th class="extend-table hidden-default">

@@ -6,6 +6,7 @@ import com.amberlight.firmmanager.model.User;
 import com.amberlight.firmmanager.service.FirmManagerService;
 import com.amberlight.firmmanager.service.SecurityService;
 import com.amberlight.firmmanager.service.UserService;
+import org.owasp.encoder.Encode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -31,11 +32,11 @@ public class CommentController {
     private FirmManagerService firmManagerService;
 
     /**
-     * Handling asynchronous requests with WebSocket for adding a comment to the post and sharing
+     * Handling asynchronous requests with WebSocket for adding a comment to the post, shares comment among all subs
      */
     @MessageMapping("/posts/{postId}/addComment")
     @SendTo("/topic/posts/{postId}")
-    public Comment saveAndShareComment(@DestinationVariable int postId, Comment comment, Principal principal) throws Exception {
+    public Comment saveAndShareComment(@DestinationVariable int postId, Comment comment, Principal principal) {
         Date date = new Date();
         comment.setCommentDate(date);
         Post post = this.firmManagerService.findPostById(postId);
@@ -43,8 +44,7 @@ public class CommentController {
         String currentUserUsername = principal.getName();
         User user = userService.findByUsername(currentUserUsername);
         comment.setUserAuthor(user);
-        String commentText = comment.getText().replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll("\n", "<br>");
-        comment.setText(commentText);
+        comment.setText(Encode.forHtml(comment.getText()));
         this.firmManagerService.saveComment(comment);
         return comment;
     }

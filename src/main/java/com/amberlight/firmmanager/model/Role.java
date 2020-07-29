@@ -5,7 +5,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 /**
- * Simple JavaBean object representing role of {@link User}.
+ * A simple JavaBean object representing role of {@link User}.
  */
 
 @Entity

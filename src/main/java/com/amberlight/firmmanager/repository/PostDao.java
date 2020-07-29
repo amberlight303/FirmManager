@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Repository interface for objects of {@link Post} class.
+ * A repository interface for objects of {@link Post} class.
  */
 public interface PostDao {
     /**

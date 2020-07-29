@@ -7,8 +7,7 @@ import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 /**
- * <code>Validator</code> for {@link Employee} forms,
- * implements {@link Validator} interface
+ * <code>Validator</code> for {@link Employee} forms, implements {@link Validator} interface
  */
 @Component
 public class EmployeeValidator implements Validator {

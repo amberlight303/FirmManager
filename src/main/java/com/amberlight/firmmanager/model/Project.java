@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.*;
 
 /**
- * Simple JavaBean object representing a project.
+ * A simple JavaBean object representing a project.
  */
 @Entity
 @Table(name = "projects")

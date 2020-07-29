@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Simple JavaBean object representing a comment of {@link Post}.
+ * A simple JavaBean object representing a comment of {@link Post}.
  */
 @Entity
 @Table(name = "comments")
