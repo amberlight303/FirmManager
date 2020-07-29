@@ -25,7 +25,7 @@ table > thead > tr > th {
 }
 
 .custom-nav {
-    border-bottom: 5px #d8d8d8 solid;
+    border-bottom: 5px #e2e1e1 solid;
 }
 
 .content {
@@ -144,10 +144,7 @@ p {
 
 .footer {
     background-color: #ececec;
-    /* border-top: 1px red solid;*/
-    /*border-color: red;
-    border: 5px;*/
-
+    opacity: 0.75;
     min-height: 15vh;
 }
 
@@ -166,19 +163,19 @@ p {
 }
 
 body#menu-posts #menu-posts {
-    background-color:#d8d8d8;
+    background-color:#e2e1e1;
 }
 
 body#menu-projects #menu-projects {
-    background-color:#d8d8d8;
+    background-color:#e2e1e1;
 }
 
 body#menu-employees #menu-employees {
-    background-color:#d8d8d8;
+    background-color:#e2e1e1;
 }
 
 body#menu-admin #menu-admin {
-    background-color:#d8d8d8;
+    background-color:#e2e1e1;
 }
 
 .post-content > img {
