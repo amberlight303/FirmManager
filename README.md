@@ -13,7 +13,7 @@ Uploaded photos are stored in the files system, unique names of these files are 
 On small displays tables are condensing using footable js plugin. Part of an information is hiding in a drop sub-tables. 
 Fields that need a lot of input text are made dynamically extended using js.
 
-Administrator can do:
+## Administrator can do:
 - CRUD operations with posts, employees, projects, users
 - Bind a user with an employee
 - Attach & detach employees to a project
@@ -22,7 +22,7 @@ Administrator can do:
 - Upload & download photos of employees
 - Comment & like posts
 
-User can do:
+## User can do:
 - Retrieve & inspect posts, employees, projects, assignments, users
 - Download photos of employees
 - Comment & like posts
@@ -105,8 +105,7 @@ Passwords are the same as usernames.
 
 ![Screenshot_20200730_222914](https://user-images.githubusercontent.com/26651009/88972054-a78e6380-d2bd-11ea-866e-a1c2ca44fdce.png)
 
-![Screenshot_20200730_234212](https://user-images.githubusercontent.com/26651009/88972494-50d55980-d2be-11ea-9433-4fbca5183b86.png)
-
+![Screenshot_20200730_234845](https://user-images.githubusercontent.com/26651009/88973065-351e8300-d2bf-11ea-8829-3ca3b3ed2a66.png)
 
 
 
