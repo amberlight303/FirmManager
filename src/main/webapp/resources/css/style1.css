@@ -116,11 +116,11 @@ p {
 }
 
 .pagination > .disabled > a  {
-    background-color: #D0D0D0;
+    background-color: #E1E1E1;
 }
 
 .pagination > .disabled > a:hover  {
-    background-color: #D0D0D0;
+    background-color: #E1E1E1;
 }
 
 .pagination > li a:hover {

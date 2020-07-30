@@ -1,66 +1,79 @@
 # Firm Manager 
-# Description:
-I created this web app while i was studying programming, web apps. The subject of the web application is a closed software development monitoring system, which can be useful for tracking information about employees, projects, employees assignments to the projects, posts with comments and likes. With a conditional rendering and security constraints administrator's and user's abilities are divided. Likes functional is implemented with ajax. Comments appear in real-time mode by using WebSocket. Comment object passes from the server in JSON format, javascript in browser of the client accepts it, parses and displays. Uploaded photos are storing in the files system, names of these files are making with the custom random string generator. Employees and projects have fields (age, experience, days left) which are changing in the course of the time. On small displays tables are condensing using footable js plugin. Part of an information is hiding in a drop sub-tables. The fields which need a lot of text input i made as dynamically extended with js.
+## Description:
+I created this demo web app originally in 2016 while I was studying at the university, made minor subsequent changes after.
+The subject of this demo web application is a closed software development tracking system 
+that can be useful for tracking information about employees, projects, employees assignments to the projects. 
+There is features such as posts with comments, pagination, likes.
 
-Administrator can:
-- CRUD posts, employees, projects, users
+With a conditional rendering and security constraints administrator's and user's abilities are divided. 
+Likes feature is implemented with ajax async requests. Comments appear in real-time using WebSocket.
+
+Uploaded photos are stored in the files system, unique names of these files are making with the random string generator. 
+
+On small displays tables are condensing using footable js plugin. Part of an information is hiding in a drop sub-tables. 
+Fields that need a lot of input text are made dynamically extended using js.
+
+Administrator can do:
+- CRUD operations with posts, employees, projects, users
 - Bind a user with an employee
-- Attach/Detach employees to a project
-- Attach/Detach projects to an employee
+- Attach & detach employees to a project
+- Attach & detach projects to an employee
 - Upload main images of posts
-- Upload & Download photos of employees
+- Upload & download photos of employees
 - Comment & like posts
 
-User can:
-- Retrieve and inspect posts, employees, projects, assingments between them, users
+User can do:
+- Retrieve & inspect posts, employees, projects, assignments, users
 - Download photos of employees
 - Comment & like posts
 
-# I used next technologies during development:
+## I used next technologies during development:
 - Java 8
 - Spring MVC (4.2.0.RELEASE)
 - Spring Security (4.2.0.RELEASE)
 - Spring Data JPA (1.8.2.RELEASE)
 - Spring WebSocket (4.2.0.RELEASE)
 - Hibernate as a JPA provider (4.3.11.Final)
-- MySQL (5.7.17)
-- Tomcat (8.0.32)
+- PostgreSQL (12.2)
+- Tomcat (8.5.49)
 - Maven (3.3.9)
 - Logback (1.1.3)
-- Jackson (2.8.6)
+- Jackson (2.11.1)
 - JUnit (4.11)
 - Spring Test (4.2.0.RELEASE)
 - Mockito (1.10.19)
 - Hamcrest (1.3)
 - jQuery (3.2.0)
+- OWASP encoder (1.2.2)
 - Bootstrap
 - etc.
    
-# Next common tasks facing java web app developer were solved:
+## Next common tasks facing java web app developer solved:
 - CRUD operations
 - Authentication and authorization
-- AJAX
 - Asynchronous requests processing
-- Modern adaptive front-end for all devices with navigation and pagination
+- Adaptive front-end for all devices with navigation and pagination
 - Validation
 - Search
-- Upload & Download functions
+- Upload & Download
 - Logging
 - Meta data & JavaDoc
 - Testing
 - etc.
 
-# Installation:
+## Installation:
 
-Create a new schema in MySQL RDBMS. Execute MySQL DB initialization SQL code stored in `/src/main/resources/database.sql`.
+Create a new schema in PostgreSQL RDBMS. Execute initialization SQL code stored in: 
+`/src/main/resources/database.sql`.
 
-Specify JDBC parameters and root path for storing uploaded files used in the files system in 
+Specify JDBC parameters and root path for storing uploaded files used in the files system in: 
 `/src/main/resources/firmmanager.properties`.
 
-The MySQL DB initialization code has inserts with users: admin, user, user1, user2, user3. Passwords are the same as logins.
+The PostgreSQL DB initialization code has inserts with users: admin, user, user1, user2, user3. 
+Passwords are the same as usernames.
 
 
-# Screenshots:
+## Screenshots:
 ![screen](https://pp.userapi.com/c639717/v639717440/136ac/n2C4ZzBXmec.jpg)
 ![screen](https://pp.userapi.com/c639717/v639717440/135d7/4V2boJfr4lg.jpg)
 ![screen](https://pp.userapi.com/c639717/v639717440/135c3/ZEkJ0UjB0_M.jpg)

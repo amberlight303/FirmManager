@@ -24,7 +24,7 @@
                     <img src="${contextPath}/uploads/${photoName}" class="empl-photo">
                     <a class="btn btn-default btn-center"
                        href="${contextPath}/employees/${employee.id}/download-photo">
-                        Download the photo</a>
+                        Download Image</a>
                 </div>
             </c:otherwise>
         </c:choose>
@@ -87,7 +87,7 @@
             <spring:url value="${contextPath}/users/{userId}" var="userDetailsUrl">
                 <spring:param name="userId" value="${employee.user.id}"/>
             </spring:url>
-            <a href="${userDetailsUrl}" class="btn btn-default btn-center">View user related</a>
+            <a href="${userDetailsUrl}" class="btn btn-default btn-center">View User Related</a>
         </c:if>
         <sec:authorize access="hasRole('ROLE_ADMIN')">
             <spring:url value="${contextPath}/admin/employees/{employeeId}/edit" var="editUrl">

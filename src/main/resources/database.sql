@@ -165,7 +165,7 @@ INSERT INTO working_positions VALUES (3,'Java senior');
 
 INSERT INTO projects VALUES (1,'Fire',1,1,'some description','some notes','2016-01-01','2023-06-08');
 INSERT INTO projects VALUES (2,'Mario',2,2,'some description','some notes','2016-01-01','2017-01-08');
-INSERT INTO projects VALUES (3,'HotBlog',3,3,'some description','some notes','2016-01-01','2018-05-08');
+INSERT INTO projects VALUES (3,'HotBlog',3,3,'some description','some notes','2016-01-01','2025-05-08');
 INSERT INTO projects VALUES (4,'Shooter',4,4,'some description','some notes','2016-01-01','2016-06-08');
 
 INSERT INTO employees VALUES (1,'Nikola','Tesla',1,1,'9379992','email@gmail.com','London','United Kingdom',
