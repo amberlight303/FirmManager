@@ -27,7 +27,7 @@ Fields that need a lot of input text are made dynamically extended using js. Com
 - Download photos of employees
 - Comment & like posts
 
-## I used next technologies during development:
+## Used next technologies during development:
 - Java 8
 - Spring MVC (4.2.0.RELEASE)
 - Spring Security (4.2.0.RELEASE)
