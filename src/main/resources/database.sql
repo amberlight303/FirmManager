@@ -141,8 +141,8 @@ INSERT INTO user_roles VALUES (2, 1);
 INSERT INTO user_roles VALUES (3, 1);
 INSERT INTO user_roles VALUES (4, 1);
 
-INSERT INTO genders VALUES (1,'male');
-INSERT INTO genders VALUES (2,'female');
+INSERT INTO genders VALUES (1,'Male');
+INSERT INTO genders VALUES (2,'Female');
 
 INSERT INTO project_objectives VALUES (1,'Android application');
 INSERT INTO project_objectives VALUES (2,'Android game');
@@ -163,7 +163,7 @@ INSERT INTO working_positions VALUES (3,'Java senior');
 
 --------------------------- optional inserts ---------------------------
 
-INSERT INTO projects VALUES (1,'Fire',1,1,'some description','some notes','2016-01-01','2018-06-08');
+INSERT INTO projects VALUES (1,'Fire',1,1,'some description','some notes','2016-01-01','2023-06-08');
 INSERT INTO projects VALUES (2,'Mario',2,2,'some description','some notes','2016-01-01','2017-01-08');
 INSERT INTO projects VALUES (3,'HotBlog',3,3,'some description','some notes','2016-01-01','2018-05-08');
 INSERT INTO projects VALUES (4,'Shooter',4,4,'some description','some notes','2016-01-01','2016-06-08');

@@ -26,7 +26,7 @@ public class JpaEmployeeDaoImpl implements EmployeeDao {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Collection<Employee> findEmployeeByLastNameAndWorkingPosition(String lastName, String workingPosition) {
+    public List<Employee> findEmployeeByLastNameAndWorkingPosition(String lastName, String workingPosition) {
         Query query = this.em.createQuery(
                 "SELECT DISTINCT employee FROM Employee employee " +
                         "LEFT JOIN FETCH employee.projects " +

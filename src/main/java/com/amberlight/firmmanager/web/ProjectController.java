@@ -95,11 +95,34 @@ public class ProjectController {
         model.put("project", new Project());
         List<Project> results = this.firmManagerService.findAllProjects();
         Collections.sort(results);
-        results.forEach( p -> {
-            p.setDaysLeft((System.currentTimeMillis() - p.getEndDate().getTime()) / (1000 * 60 * 60 * 24));
-        });
+        results = prepareProjectsForFront(results);
         model.put("selections", results);
         return "projects/projectsList";
+    }
+
+    /**
+     * Prepares projects for front, makes calculations, sets fields
+     * @param projects projects
+     * @return prepared projects
+     */
+    private List<Project> prepareProjectsForFront(List<Project> projects) {
+        if (projects != null) {
+            projects.forEach( p -> {
+                if (p.getProjectStatus().getName().equals("In progress")) {
+                    p.setDaysLeft((p.getEndDate().getTime() - System.currentTimeMillis()) / (1000 * 60 * 60 * 24));
+                }
+                int numberOfWorkingEmployees = 0;
+                if (p.getEmployees() != null && !p.getEmployees().isEmpty()) {
+                    for (Employee employee: p.getEmployees()) {
+                        if (!employee.isFired()) {
+                            numberOfWorkingEmployees++;
+                        }
+                    }
+                }
+                p.setNumberOfWorkingEmployees(numberOfWorkingEmployees);
+            });
+            return projects;
+        } else return null;
     }
 
     /**
@@ -117,15 +140,13 @@ public class ProjectController {
         if (project.getProjectStatus().getName() == null) {
             project.getProjectStatus().setName("");
         }
-        Collection<Project> results = this.firmManagerService
+        List<Project> results = this.firmManagerService
                 .findProjectByNameAndProjectObjectiveAndProjectStatus(
                       project.getName(),
                         project.getProjectObjective().getName(),
                         project.getProjectStatus().getName()
                 );
-        results.forEach( p -> {
-            p.setDaysLeft((System.currentTimeMillis() - p.getEndDate().getTime()) / (1000 * 60 * 60 * 24));
-        });
+        results = prepareProjectsForFront(results);
         model.put("selections", results);
         return "projects/projectsList";
     }
@@ -167,7 +188,9 @@ public class ProjectController {
             mav.setViewName("test/oops");
             return mav;
         }
-        project.setDaysLeft((System.currentTimeMillis() - project.getEndDate().getTime()) / (1000 * 60 * 60 * 24));
+        if (project.getProjectStatus().getName().equals("In progress")) {
+            project.setDaysLeft((project.getEndDate().getTime() - System.currentTimeMillis()) / (1000 * 60 * 60 * 24));
+        }
         if (project.getEmployees() != null) {
             project.getEmployees().forEach(employee -> {
                 employee.setAge(((System.currentTimeMillis() - employee.getBirthDate().getTime()) / (1000 * 60 * 60 * 24)) / 365);

@@ -20,7 +20,6 @@
                 <div class="colors-expl-item prj-complete colored-square">&#9632; - Completed</div>
                 <div class="colors-expl-item prj-inactive colored-square">&#9632; - Inactive</div>
                 <div class="colors-expl-item prj-overdue colored-square">&#9632; - Overdue</div>
-                <div class="colors-expl-item empl-fired colored-square">&#9632; - Fired</div>
             </div>
             <table id="employees" class="table table-striped footable">
                 <thead>

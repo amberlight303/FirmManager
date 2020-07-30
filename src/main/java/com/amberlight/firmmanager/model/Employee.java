@@ -78,6 +78,17 @@ public class Employee extends Person implements Comparable<Employee> {
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "employees")
     private Set<Project> projects;
 
+    @Transient
+    private Integer numberOfProjects;
+
+    public Integer getNumberOfProjects() {
+        return numberOfProjects;
+    }
+
+    public void setNumberOfProjects(Integer numberOfProjects) {
+        this.numberOfProjects = numberOfProjects;
+    }
+
     public Integer getUserIdToAttachWithEmpl() {
         return userIdToAttachWithEmpl;
     }

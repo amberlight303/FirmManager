@@ -75,6 +75,7 @@ public class EmployeeController {
         employees.forEach( employee -> {
             employee.setAge(((System.currentTimeMillis() - employee.getBirthDate().getTime()) / (1000 * 60 * 60 * 24)) / 365);
             employee.setExperience(((System.currentTimeMillis() - employee.getHireDate().getTime()) / (1000 * 60 * 60 * 24)) / 365.0);
+            employee.setNumberOfProjects(employee.getProjects() == null ? 0 : employee.getProjects().size());
         });
 
         model.addAttribute("selections", employees);
@@ -93,7 +94,7 @@ public class EmployeeController {
         if (employee.getWorkingPosition().getName() == null) {
             employee.getWorkingPosition().setName("");
         }
-        Collection<Employee> result = this.firmManagerService
+        List<Employee> result = this.firmManagerService
                 .findEmployeeByLastNameAndWorkingPosition(
                         employee.getLastName(),
                         employee.getWorkingPosition().getName()
@@ -101,6 +102,7 @@ public class EmployeeController {
         result.forEach( e -> {
             e.setAge(((System.currentTimeMillis() - e.getBirthDate().getTime()) / (1000 * 60 * 60 * 24)) / 365);
             e.setExperience(((System.currentTimeMillis() - e.getHireDate().getTime()) / (1000 * 60 * 60 * 24)) / 365.0);
+            e.setNumberOfProjects(e.getProjects() == null ? 0 : e.getProjects().size());
         });
         model.put("selections", result);
         return "employees/employeesList";

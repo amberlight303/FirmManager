@@ -45,6 +45,17 @@ public class Project extends NamedEntity implements Comparable<Project> {
             inverseJoinColumns = @JoinColumn(name = "employee_id"))
     private Set<Employee> employees;
 
+    @Transient
+    private Integer numberOfWorkingEmployees;
+
+    public Integer getNumberOfWorkingEmployees() {
+        return numberOfWorkingEmployees;
+    }
+
+    public void setNumberOfWorkingEmployees(Integer numberOfWorkingEmployees) {
+        this.numberOfWorkingEmployees = numberOfWorkingEmployees;
+    }
+
     public Long getDaysLeft() {
         return daysLeft;
     }

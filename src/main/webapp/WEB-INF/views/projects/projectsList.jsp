@@ -73,7 +73,6 @@
                 <div class="colors-expl-item prj-complete colored-square">&#9632; - Completed</div>
                 <div class="colors-expl-item prj-inactive colored-square">&#9632; - Inactive</div>
                 <div class="colors-expl-item prj-overdue colored-square">&#9632; - Overdue</div>
-                <div class="colors-expl-item empl-fired colored-square">&#9632; - Fired</div>
             </div>
 
             <table id="projects" class="table table-striped footable">
@@ -93,7 +92,20 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${selections}" var="project">
-                    <tr>
+                    <c:choose>
+                        <c:when test="${project.projectStatus.name eq 'In progress'}">
+                            <tr class="tr-in-progress">
+                        </c:when>
+                        <c:when test="${project.projectStatus.name eq 'Inactive'}">
+                            <tr class="tr-in-inactive">
+                        </c:when>
+                        <c:when test="${project.projectStatus.name eq 'Overdue'}">
+                            <tr class="tr-in-overdue">
+                        </c:when>
+                        <c:when test="${project.projectStatus.name eq 'Completed'}">
+                            <tr class="tr-in-complete">
+                        </c:when>
+                    </c:choose>
                         <td class="extend-table">
                         </td>
                         <td>
@@ -120,15 +132,15 @@
                         <td>
                             <c:out value="${project.projectObjective.name}"/>
                         </td>
-                        <td><c:choose>
-                            <c:when test="${project.daysLeft == null || project.daysLeft <= 0}">
-                                    &mdash;
-                            </c:when>
-                            <c:otherwise>
-                                    <c:out value="${project.daysLeft}"/>
-                            </c:otherwise>
-                        </c:choose>
-
+                        <td>
+                            <c:choose>
+                                <c:when test="${project.daysLeft == null}">
+                                        &mdash;
+                                </c:when>
+                                <c:otherwise>
+                                        <c:out value="${project.daysLeft}"/>
+                                </c:otherwise>
+                            </c:choose>
                         </td>
                         <td>
                             <fmt:formatDate value="${project.startDate}" pattern="dd-MM-yyyy"/>
@@ -137,14 +149,7 @@
                             <fmt:formatDate value="${project.endDate}" pattern="dd-MM-yyyy"/>
                         </td>
                         <td>
-                            <c:forEach var="employee" varStatus="loop" items="${project.employees}">
-                                <a class="${employee.fired == true ? 'empl-fired' : ''}"
-                                   href="${contextPath}/employees/${employee.id}">
-                                    <c:out value="${employee.firstName} "/>
-                                    <c:out value="${employee.lastName}"/>
-                                </a>
-                                ${!loop.last ? '<hr>' : ''}
-                            </c:forEach>
+                            <c:out value="${project.numberOfWorkingEmployees}"/>
                         </td>
                     </tr>
                 </c:forEach>

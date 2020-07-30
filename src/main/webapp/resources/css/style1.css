@@ -365,16 +365,32 @@ td > hr {
     color: #3ccc65;
 }
 
+.tr-in-progress {
+    background-color: #4ae0241f !important;
+}
+
 .prj-overdue {
     color: #e86034;
+}
+
+.tr-in-overdue  {
+    background-color: #ef9a001f !important;
 }
 
 .prj-inactive {
     color: #00d8d7;
 }
 
+.tr-in-inactive {
+    background-color: #12dcc924 !important;
+}
+
 .prj-complete {
     color: #e2d000;
+}
+
+.tr-in-complete {
+    background-color: #ffd30030 !important;
 }
 
 .empl-fired {
@@ -387,6 +403,19 @@ td > hr {
 
 td a {
     font-weight: bolder;
+}
+
+.table > tbody > tr > td, .table > tfoot > tr > td {
+    border-top: 3px solid #fff;
+}
+
+.table > thead > tr > th, .table > tbody > tr > th,
+.table > tfoot > tr > th, .table > thead > tr > td,
+.table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: 3px solid #fff;
 }
 
 .colors-expl {

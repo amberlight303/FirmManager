@@ -19,7 +19,7 @@ public interface EmployeeDao {
      * @return a collection of matching <code>Employee</code>s (or an empty collection if none found)
      * @throws DataAccessException
      */
-    Collection<Employee> findEmployeeByLastNameAndWorkingPosition(String lastName, String workingPosition) throws DataAccessException;
+    List<Employee> findEmployeeByLastNameAndWorkingPosition(String lastName, String workingPosition) throws DataAccessException;
 
     /**
      * Retrieve a list of all working positions from the data base.

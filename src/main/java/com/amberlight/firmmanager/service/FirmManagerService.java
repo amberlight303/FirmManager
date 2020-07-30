@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface FirmManagerService {
 
-    Collection<Employee> findEmployeeByLastNameAndWorkingPosition(String lastName, String workingPosition) throws DataAccessException;
+    List<Employee> findEmployeeByLastNameAndWorkingPosition(String lastName, String workingPosition) throws DataAccessException;
 
     List<WorkingPosition> findWorkingPositions() throws DataAccessException;
 
@@ -19,7 +19,7 @@ public interface FirmManagerService {
 
     void saveEmployee(Employee employee) throws DataAccessException;
 
-    Collection<Project> findProjectByNameAndProjectObjectiveAndProjectStatus(String name, String projectObjective, String projectStatus) throws DataAccessException;
+    List<Project> findProjectByNameAndProjectObjectiveAndProjectStatus(String name, String projectObjective, String projectStatus) throws DataAccessException;
 
     List<ProjectObjective> findProjectObjectives() throws DataAccessException;
 

@@ -37,7 +37,7 @@ public class FirmManagerServiceImpl implements FirmManagerService {
     private LikeDao likeDao;
 
     @Override
-    public Collection<Employee> findEmployeeByLastNameAndWorkingPosition(String lastName, String workingPosition) {
+    public List<Employee> findEmployeeByLastNameAndWorkingPosition(String lastName, String workingPosition) {
         return employeeDao.findEmployeeByLastNameAndWorkingPosition(lastName,workingPosition);
     }
 
@@ -61,7 +61,7 @@ public class FirmManagerServiceImpl implements FirmManagerService {
 
     @Override
     @Transactional(readOnly = true)
-    public Collection<Project> findProjectByNameAndProjectObjectiveAndProjectStatus(String name, String projectObjective, String projectStatus) {
+    public List<Project> findProjectByNameAndProjectObjectiveAndProjectStatus(String name, String projectObjective, String projectStatus) {
         return projectDao.findProjectByNameAndProjectObjectiveAndProjectStatus(name,projectObjective,projectStatus);
     }
 

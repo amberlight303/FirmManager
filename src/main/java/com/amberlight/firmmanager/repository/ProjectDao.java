@@ -21,7 +21,7 @@ public interface ProjectDao {
      * @return a collection of matching <code>Employee</code>'s (or an empty collection if none found)
      * @throws DataAccessException
      */
-    Collection<Project> findProjectByNameAndProjectObjectiveAndProjectStatus(String name, String projectObjective, String projectStatus) throws DataAccessException;
+    List<Project> findProjectByNameAndProjectObjectiveAndProjectStatus(String name, String projectObjective, String projectStatus) throws DataAccessException;
 
     /**
      * Retrieve all <code>ProjectObjective</code>s from the data store.

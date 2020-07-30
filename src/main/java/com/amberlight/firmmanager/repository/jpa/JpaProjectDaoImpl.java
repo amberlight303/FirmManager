@@ -24,7 +24,7 @@ public class JpaProjectDaoImpl implements ProjectDao{
 
     @Override
     @SuppressWarnings("unchecked")
-    public Collection<Project> findProjectByNameAndProjectObjectiveAndProjectStatus(String name, String projectObjective, String projectStatus) {
+    public List<Project> findProjectByNameAndProjectObjectiveAndProjectStatus(String name, String projectObjective, String projectStatus) {
         Query query = this.em.createQuery(
                 "SELECT DISTINCT project FROM Project project " +
                 "LEFT JOIN FETCH project.employees " +

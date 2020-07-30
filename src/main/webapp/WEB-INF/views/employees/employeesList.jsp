@@ -48,13 +48,6 @@
             <br>
         </sec:authorize>
         <div class="table-back">
-            <div class="colors-expl">
-                <div class="colors-expl-item prj-in-progress colored-square">&#9632; - In progress</div>
-                <div class="colors-expl-item prj-complete colored-square">&#9632; - Completed</div>
-                <div class="colors-expl-item prj-inactive colored-square">&#9632; - Inactive</div>
-                <div class="colors-expl-item prj-overdue colored-square">&#9632; - Overdue</div>
-                <div class="colors-expl-item empl-fired colored-square">&#9632; - Fired</div>
-            </div>
             <table class="table table-striped footable">
                 <thead>
                     <tr>
@@ -94,25 +87,7 @@
                             <c:out value="${employee.gender.name}"/>
                         </td>
                         <td>
-                            <c:forEach var="project" varStatus="loop" items="${employee.projects}">
-                                <a class="
-                                <c:choose>
-                                    <c:when test="${project.projectStatus.name eq 'In progress'}">
-                                    prj-in-progress
-                                    </c:when>
-                                    <c:when test="${project.projectStatus.name eq 'Inactive'}">
-                                    prj-inactive
-                                    </c:when>
-                                    <c:when test="${project.projectStatus.name eq 'Overdue'}">
-                                    prj-overdue
-                                    </c:when>
-                                    <c:when test="${project.projectStatus.name eq 'Completed'}">
-                                    prj-complete
-                                    </c:when>
-                                </c:choose>"
-                                   href="${contextPath}/projects/${project.id}"><c:out value="${project.name}"/></a>
-                                ${!loop.last ? '<hr>' : ''}
-                            </c:forEach>
+                            <c:out value="${employee.numberOfProjects}"/>
                         </td>
                     </tr>
                 </c:forEach>

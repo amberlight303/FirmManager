@@ -133,7 +133,20 @@
                 <tbody>
                 <sec:authorize access="hasRole('ROLE_USER')">
                     <c:forEach var="project" items="${employee.projects}">
-                        <tr>
+                        <c:choose>
+                            <c:when test="${project.projectStatus.name eq 'In progress'}">
+                                <tr class="tr-in-progress">
+                            </c:when>
+                            <c:when test="${project.projectStatus.name eq 'Inactive'}">
+                                <tr class="tr-in-inactive">
+                            </c:when>
+                            <c:when test="${project.projectStatus.name eq 'Overdue'}">
+                                <tr class="tr-in-overdue">
+                            </c:when>
+                            <c:when test="${project.projectStatus.name eq 'Completed'}">
+                                <tr class="tr-in-complete">
+                            </c:when>
+                        </c:choose>
                             <td class="extend-table">
                             </td>
                             <td>
@@ -171,7 +184,20 @@
                 </sec:authorize>
                 <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <c:forEach var="project" items="${employee.projects}">
-                        <tr>
+                        <c:choose>
+                            <c:when test="${project.projectStatus.name eq 'In progress'}">
+                                <tr class="tr-in-progress">
+                            </c:when>
+                            <c:when test="${project.projectStatus.name eq 'Inactive'}">
+                                <tr class="tr-in-inactive">
+                            </c:when>
+                            <c:when test="${project.projectStatus.name eq 'Overdue'}">
+                                <tr class="tr-in-overdue">
+                            </c:when>
+                            <c:when test="${project.projectStatus.name eq 'Completed'}">
+                                <tr class="tr-in-complete">
+                            </c:when>
+                        </c:choose>
                             <td class="extend-table">
                             </td>
                             <td>

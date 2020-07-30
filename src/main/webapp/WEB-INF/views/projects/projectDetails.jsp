@@ -45,10 +45,12 @@
 
                     </td>
                 </tr>
-                <c:if test="${project.daysLeft != null && project.daysLeft > 0}">
+                <c:if test="${project.daysLeft != null}">
                     <tr>
                         <th>Days left</th>
-                        <td><c:out value="${project.daysLeft}"/></td>
+                        <td>
+                            <c:out value="${project.daysLeft}"/>
+                        </td>
                     </tr>
                 </c:if>
                 <tr>
