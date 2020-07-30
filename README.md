@@ -10,7 +10,7 @@ Likes feature is implemented with ajax async requests. Comments appear in real-t
 
 Uploaded photos are stored in the files system, unique names of these files are making with the random string generator. 
 
-On small displays tables are condensing using footable js plugin. Part of an information is hiding in a drop sub-tables. 
+On small displays tables are condensing using footable js plugin. Part of information is hiding in a drop sub-tables. 
 Fields that need a lot of input text are made dynamically extended using js. Comments has XSS protection provided by OWASP lib.
 
 ## Administrator can do:
