@@ -105,6 +105,7 @@ Passwords are the same as usernames.
 
 ![Screenshot_20200730_222914](https://user-images.githubusercontent.com/26651009/88972054-a78e6380-d2bd-11ea-866e-a1c2ca44fdce.png)
 
+![Screenshot_20200730_234212](https://user-images.githubusercontent.com/26651009/88972494-50d55980-d2be-11ea-9433-4fbca5183b86.png)
 
 
 
