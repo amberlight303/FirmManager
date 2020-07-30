@@ -3,7 +3,7 @@
 I created this demo web app originally in 2016 while I was studying at the university, made minor subsequent changes after.
 The subject of this demo web application is a closed software development tracking system 
 that can be useful for tracking information about employees, projects, employees assignments to the projects. 
-There is features such as posts with comments, pagination, likes.
+There is features such as posts, comments, pagination, likes.
 
 With a conditional rendering and security constraints administrator's and user's abilities are divided. 
 Likes feature is implemented with ajax async requests. Comments appear in real-time using WebSocket.
@@ -74,19 +74,15 @@ Passwords are the same as usernames.
 
 
 ## Screenshots:
-![screen](https://pp.userapi.com/c639717/v639717440/136ac/n2C4ZzBXmec.jpg)
-![screen](https://pp.userapi.com/c639717/v639717440/135d7/4V2boJfr4lg.jpg)
-![screen](https://pp.userapi.com/c639717/v639717440/135c3/ZEkJ0UjB0_M.jpg)
-![screen](https://pp.userapi.com/c639717/v639717440/13609/hq_dFvi9NuQ.jpg)
-![screen](https://pp.userapi.com/c639717/v639717440/13613/T0wTKA-vH2Y.jpg)
-![screen](https://pp.userapi.com/c639717/v639717440/13627/XH0Mp_EUB3M.jpg)
-![screen](https://pp.userapi.com/c639717/v639717440/1364d/RP1S5hqSfA0.jpg)
-![screen](https://pp.userapi.com/c639717/v639717440/136b3/PLfRpOrL9yU.jpg)
-![screen](https://pp.userapi.com/c639717/v639717440/136cf/TPPywfdSfUc.jpg)
-![screen](https://pp.userapi.com/c639717/v639717440/136c1/QBmtdbKPxNg.jpg)
-![screen](https://pp.userapi.com/c639717/v639717440/13931/NxoJv-b4yoA.jpg)
-![screen](https://pp.userapi.com/c639717/v639717440/138f4/cIMiWaG7ivk.jpg)
-![screen](https://pp.userapi.com/c639717/v639717440/138fb/Ts5naZgozx4.jpg)
+## Screenshots:
+![screen](https://www.dropbox.com/s/zlhjauiysjc4q3e/Screenshot_20200730_212739.png?dl=0)
+![screen](https://imgur.com/FEWnvyn)
+![screen](https://imgur.com/rLptLUd)
+![screen](https://imgur.com/kg9Wxfn)
+![screen](https://imgur.com/aWmU1lU)
+![screen](https://imgur.com/26oRiks)
+![screen](https://imgur.com/NQp1hgi)
+![screen](https://imgur.com/q8PQh9w)
 
 
 
