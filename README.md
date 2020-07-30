@@ -1,6 +1,6 @@
 # Firm Manager 
 ## Description:
-I created this demo web app originally in 2016 while I was studying at the university, made minor subsequent changes after.
+I made this demo web app originally in 2016 while I was studying at the university, made minor subsequent changes after.
 The subject of this demo web application is a closed software development tracking system 
 that can be useful for tracking information about employees, projects, employees assignments to the projects. 
 There is features such as posts, comments, pagination, likes.
