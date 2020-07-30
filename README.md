@@ -75,14 +75,36 @@ Passwords are the same as usernames.
 
 ## Screenshots:
 ## Screenshots:
-![screen](https://www.dropbox.com/s/zlhjauiysjc4q3e/Screenshot_20200730_212739.png?dl=0)
-![screen](https://imgur.com/FEWnvyn)
-![screen](https://imgur.com/rLptLUd)
-![screen](https://imgur.com/kg9Wxfn)
-![screen](https://imgur.com/aWmU1lU)
-![screen](https://imgur.com/26oRiks)
-![screen](https://imgur.com/NQp1hgi)
-![screen](https://imgur.com/q8PQh9w)
+![Screenshot_20200730_212739](https://user-images.githubusercontent.com/26651009/88971975-8594e100-d2bd-11ea-8dd2-3b057dadd3a3.png)
+
+![Screenshot_20200730_212914](https://user-images.githubusercontent.com/26651009/88971991-8b8ac200-d2bd-11ea-8063-1afef26191ba.png)
+
+![Screenshot_20200730_213135](https://user-images.githubusercontent.com/26651009/88971995-8ded1c00-d2bd-11ea-8adf-91cbc7abe8b9.png)
+
+![Screenshot_20200730_213417](https://user-images.githubusercontent.com/26651009/88971999-8f1e4900-d2bd-11ea-83d8-36c385de5f33.png)
+
+![Screenshot_20200730_213901](https://user-images.githubusercontent.com/26651009/88972006-90e80c80-d2bd-11ea-9908-6a54ad0e7467.png)
+
+![Screenshot_20200730_214751](https://user-images.githubusercontent.com/26651009/88972009-947b9380-d2bd-11ea-801f-200bb7375b0f.png)
+
+![Screenshot_20200730_215155](https://user-images.githubusercontent.com/26651009/88972020-96dded80-d2bd-11ea-9b09-ac93dedb96dd.png)
+
+![Screenshot_20200730_215801](https://user-images.githubusercontent.com/26651009/88972022-980f1a80-d2bd-11ea-859e-9576038c7135.png)
+
+![Screenshot_20200730_220627](https://user-images.githubusercontent.com/26651009/88972029-9cd3ce80-d2bd-11ea-9bcb-875355bceb3e.png)
+
+![Screenshot_20200730_220446](https://user-images.githubusercontent.com/26651009/88972032-9e9d9200-d2bd-11ea-9fce-61c8a6709a69.png)
+
+![Screenshot_20200730_220857](https://user-images.githubusercontent.com/26651009/88972037-a1988280-d2bd-11ea-9434-b57e20d80224.png)
+
+![Screenshot_20200730_222015](https://user-images.githubusercontent.com/26651009/88972041-a2c9af80-d2bd-11ea-8794-2d227dedf46d.png)
+
+![Screenshot_20200730_222351](https://user-images.githubusercontent.com/26651009/88972045-a4937300-d2bd-11ea-981a-40092b2a1169.png)
+
+![Screenshot_20200730_222710](https://user-images.githubusercontent.com/26651009/88972048-a65d3680-d2bd-11ea-991d-6545b149448e.png)
+
+![Screenshot_20200730_222914](https://user-images.githubusercontent.com/26651009/88972054-a78e6380-d2bd-11ea-866e-a1c2ca44fdce.png)
+
 
 
 
