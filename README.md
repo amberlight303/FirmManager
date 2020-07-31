@@ -2,16 +2,13 @@
 ## Description:
 I made this demo web app originally in 2016 while I was studying at the university, made minor subsequent changes after.
 The subject of this demo web application is a closed software development tracking system 
-that can be useful for tracking information about employees, projects, employees assignments to the projects. 
-There is features such as posts, comments, pagination, likes.
+that can be useful for storing information about employees, projects, employees assignments to projects. 
+There are features such as posts, comments, pagination, likes.
 
 With a conditional rendering and security constraints administrator's and user's abilities are divided. 
-Likes feature is implemented with ajax async requests. Comments appear in real-time using WebSocket.
-
-Uploaded photos are stored in the files system, unique names of these files are making with the random string generator. 
-
-On small displays tables are condensing using footable js plugin. Part of information is hiding in a drop sub-tables. 
-Fields that need a lot of input text are made dynamically extended using js. Comments has XSS protection provided by OWASP lib.
+Likes feature is implemented with ajax async requests. Comments appear in real-time using WebSocket. Uploaded photos are stored in the files system, unique names of these files made with a random string generator. 
+Tables on small screens are condensing using footable js plugin. Part of information is hiding in a drop sub-tables. 
+Fields that hold a lot of input text are made dynamically extended using js. Comments have XSS protection provided by OWASP lib.
 
 ## Administrator can do:
 - CRUD operations with posts, employees, projects, users
@@ -46,9 +43,8 @@ Fields that need a lot of input text are made dynamically extended using js. Com
 - jQuery (3.2.0)
 - OWASP encoder (1.2.2)
 - Bootstrap
-- etc.
    
-## Next common tasks facing java web app developer solved:
+## Next common tasks facing a java web app developer solved:
 - CRUD operations
 - Authentication and authorization
 - Asynchronous requests processing
@@ -59,17 +55,16 @@ Fields that need a lot of input text are made dynamically extended using js. Com
 - Logging
 - Meta data & JavaDoc
 - Testing
-- etc.
 
 ## Installation:
 
 Create a new schema in PostgreSQL RDBMS. Execute initialization SQL code stored in: 
-`/src/main/resources/database.sql`.
+`/src/main/resources/database.sql`
 
 Specify JDBC parameters and root path for storing uploaded files used in the files system in: 
-`/src/main/resources/firmmanager.properties`.
+`/src/main/resources/firmmanager.properties`
 
-The PostgreSQL DB initialization code has inserts with users: admin, user, user1, user2, user3. 
+PostgreSQL DB initialization code has inserts with users: admin, user, user1, user2, user3. 
 Passwords are the same as usernames.
 
 ## Screenshots:
