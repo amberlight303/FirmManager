@@ -78,27 +78,31 @@ Passwords are the same as usernames.
 </p>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/26651009/88971995-8ded1c00-d2bd-11ea-8adf-91cbc7abe8b9.png" />
+  <img src="https://user-images.githubusercontent.com/26651009/89167421-156bb100-d584-11ea-9392-2c2f5c9c534d.png" />
 </p>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/26651009/88971999-8f1e4900-d2bd-11ea-83d8-36c385de5f33.png" />
+  <img src="https://user-images.githubusercontent.com/26651009/89167429-17357480-d584-11ea-9290-ef7479e163c9.png" />
 </p>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/26651009/88972006-90e80c80-d2bd-11ea-9908-6a54ad0e7467.png" />
+  <img src="https://user-images.githubusercontent.com/26651009/89167434-18ff3800-d584-11ea-8963-8d14b901343e.png" />
 </p>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/26651009/88972009-947b9380-d2bd-11ea-801f-200bb7375b0f.png" />
+  <img src="https://user-images.githubusercontent.com/26651009/89167442-1ac8fb80-d584-11ea-8fc8-e556d85a0602.png" />
 </p>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/26651009/88972020-96dded80-d2bd-11ea-9b09-ac93dedb96dd.png" />
+  <img src="https://user-images.githubusercontent.com/26651009/89167453-1bfa2880-d584-11ea-8dc4-bba351a6c75d.png" />
 </p>
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/26651009/88972022-980f1a80-d2bd-11ea-859e-9576038c7135.png" />
+  <img src="https://user-images.githubusercontent.com/26651009/89167464-1dc3ec00-d584-11ea-9cb1-cfab3f2786e4.png" />
+</p>
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/26651009/89167469-1ef51900-d584-11ea-993d-97625471afac.png" />
 </p>
 
 <p align="center">
