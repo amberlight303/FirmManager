@@ -1,14 +1,14 @@
 # Firm Manager 
 ## Description:
 I made this demo web app originally in 2016 while I was studying at the university, made minor subsequent changes after.
-The subject of this demo web application is a closed software development tracking system 
+The subject of this monolithic demo web application is a closed software development tracking system 
 that can be useful for storing information about employees, projects, employees assignments to projects. 
 There are features such as posts, comments, pagination, likes.
 
 With a conditional rendering and security constraints administrator's and user's abilities are divided. 
 Likes feature is implemented with ajax async requests. Comments appear in real-time using WebSocket. Uploaded photos are stored in the files system, unique names of these files made with a random string generator. 
 Tables on small screens are condensing using footable js plugin. Part of information is hiding in a drop sub-tables. 
-Fields that hold a lot of input text are made dynamically extended using js. Comments have XSS protection provided by OWASP lib.
+Fields that hold a lot of input text are made dynamically extended using js. Comments have XSS protection provided by OWASP lib. Core technologies are: Java, Spring, JSP, PostgreSQL, Spring Data JPA, a few JS plugins for UI, stateful auth.
 
 ## Administrator can do:
 - CRUD operations with posts, employees, projects, users
@@ -25,7 +25,7 @@ Fields that hold a lot of input text are made dynamically extended using js. Com
 - Comment & like posts
 
 ## Used next technologies during development:
-- Java 8
+- Java (8)
 - Spring MVC (4.2.0.RELEASE)
 - Spring Security (4.2.0.RELEASE)
 - Spring Data JPA (1.8.2.RELEASE)
@@ -42,7 +42,7 @@ Fields that hold a lot of input text are made dynamically extended using js. Com
 - Hamcrest (1.3)
 - jQuery (3.2.0)
 - OWASP encoder (1.2.2)
-- Bootstrap
+- Bootstrap (3.3.7)
    
 ## Next common tasks facing a java web app developer solved:
 - CRUD operations
