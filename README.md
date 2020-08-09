@@ -8,7 +8,7 @@ There are features such as posts, comments, pagination, likes.
 With a conditional rendering and security constraints administrator's and user's abilities are divided. 
 Likes feature is implemented with ajax async requests. Comments appear in real-time using WebSocket. Uploaded photos are stored in the files system, unique names of these files made with a random string generator. 
 Tables on small screens are condensing using footable js plugin. Part of information is hiding in a drop sub-tables. 
-Fields that hold a lot of input text are made dynamically extended using js. Comments have XSS protection provided by OWASP lib. Core technologies are: Java, Spring, JSP, PostgreSQL, Spring Data JPA, a few JS plugins for UI, stateful auth.
+Fields that hold a lot of input text are made dynamically extended using js. Comments have XSS protection provided by OWASP lib. Core technologies are: Java, Spring, JSP, PostgreSQL, Spring Data JPA, Tomcat, a few JS plugins for UI, stateful auth.
 
 ## Administrator can do:
 - CRUD operations with posts, employees, projects, users
