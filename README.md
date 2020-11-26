@@ -1,3 +1,4 @@
+[![Build Status](https://api.travis-ci.org/amberlight303/FirmManager.svg?branch=master)](https://travis-ci.org/github/amberlight303/FirmManager)
 # Firm Manager 
 ## Description:
 I made this demo web app originally in 2016 while I was studying at the university, made minor subsequent changes after.
