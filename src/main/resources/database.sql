@@ -278,7 +278,6 @@ select setval('users_id_seq', (select COALESCE(max(id) + 1, 1) from users), fals
 select setval('working_positions_id_seq', (select COALESCE(max(id) + 1, 1) from working_positions), false);
 
 /*
-
 drop table likes;
 drop table comments;
 drop table posts;
@@ -292,5 +291,4 @@ drop table users;
 drop table employees;
 drop table working_positions;
 drop table genders;
-
 */
